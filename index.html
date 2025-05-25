@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="KinetraX - Create workouts, participate in events, and pay through TON blockchain">
+    <title>KinetraX - Blockchain Fitness Platform</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="index.html">
+                <div class="logo">
+                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo">
+                    <h1>KinetraX</h1>
+                </div>
+            </a>
+            <div class="language-dropdown">
+                <div class="selected-language">
+                    <span>EN</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="language-options">
+                    <!-- Language options will be populated by JavaScript -->
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="fitness-map-animation">
+            <svg width="100%" height="100%" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice">
+                <!-- Map background with grid -->
+                <rect class="map-bg" x="0" y="0" width="1000" height="600" fill="#2DC9D6" />
+
+                <!-- Grid lines -->
+                <g class="grid-lines">
+                    <!-- Horizontal grid lines -->
+                    <line class="grid-line" x1="0" y1="100" x2="1000" y2="100" stroke="#FFFFFF" stroke-width="1" opacity="0.3" />
+                    <line class="grid-line" x1="0" y1="200" x2="1000" y2="200" stroke="#FFFFFF" stroke-width="1" opacity="0.3" />
+                    <line class="grid-line" x1="0" y1="300" x2="1000" y2="300" stroke="#FFFFFF" stroke-width="1" opacity="0.3" />
+                    <line class="grid-line" x1="0" y1="400" x2="1000" y2="400" stroke="#FFFFFF" stroke-width="1" opacity="0.3" />
+                    <line class="grid-line" x1="0" y1="500" x2="1000" y2="500" stroke="#FFFFFF" stroke-width="1" opacity="0.3" />
+
+                    <!-- Vertical grid lines -->
+                    <line class="grid-line" x1="100" y1="0" x2="100" y2="600" stroke="#FFFFFF" stroke-width="1" opacity="0.3" />
+                    <line class="grid-line" x1="200" y1="0" x2="200" y2="600" stroke="#FFFFFF" stroke-width="1" opacity="0.3" />
+                    <line class="grid-line" x1="300" y1="0" x2="300" y2="600" stroke="#FFFFFF" stroke-width="1" opacity="0.3" />
+                    <line class="grid-line" x1="400" y1="0" x2="400" y2="600" stroke="#FFFFFF" stroke-width="1" opacity="0.3" />
+                    <line class="grid-line" x1="500" y1="0" x2="500" y2="600" stroke="#FFFFFF" stroke-width="1" opacity="0.3" />
+                    <line class="grid-line" x1="600" y1="0" x2="600" y2="600" stroke="#FFFFFF" stroke-width="1" opacity="0.3" />
+                    <line class="grid-line" x1="700" y1="0" x2="700" y2="600" stroke="#FFFFFF" stroke-width="1" opacity="0.3" />
+                    <line class="grid-line" x1="800" y1="0" x2="800" y2="600" stroke="#FFFFFF" stroke-width="1" opacity="0.3" />
+                    <line class="grid-line" x1="900" y1="0" x2="900" y2="600" stroke="#FFFFFF" stroke-width="1" opacity="0.3" />
+                </g>
+
+                <!-- Map features -->
+                <g class="map-features">
+                    <!-- Parks (green areas) -->
+                    <path class="park" d="M100,100 C150,80 200,120 250,100 S300,50 350,80 S400,120 450,100 S500,50 550,80 L550,200 L100,200 Z" fill="#FFA990" opacity="0.3" />
+                    <path class="park" d="M700,300 C750,280 800,320 850,300 S900,250 950,280 L950,400 L700,400 Z" fill="#FFA990" opacity="0.3" />
+
+                    <!-- Roads (curved paths) -->
+                    <path class="road" d="M0,150 C200,180 400,120 600,150 S800,180 1000,150" stroke="#FFA990" stroke-width="4" fill="none" opacity="0.6" />
+                    <path class="road" d="M0,350 C200,380 400,320 600,350 S800,380 1000,350" stroke="#FFA990" stroke-width="4" fill="none" opacity="0.6" />
+                    <path class="road" d="M150,0 C180,200 120,400 150,600" stroke="#FFA990" stroke-width="4" fill="none" opacity="0.6" />
+                    <path class="road" d="M850,0 C880,200 820,400 850,600" stroke="#FFA990" stroke-width="4" fill="none" opacity="0.6" />
+                </g>
+
+                <!-- Location pins for fitness events -->
+                <g class="location-pins">
+                    <!-- Yoga pin -->
+                    <g class="pin pin1" transform="translate(200, 150)">
+                        <circle class="pin-base" cx="0" cy="0" r="15" fill="#FFA990" />
+                        <path class="pin-icon" d="M-5,-5 L5,5 M-5,5 L5,-5" stroke="#fff" stroke-width="3" stroke-linecap="round" />
+                        <circle class="pin-pulse" cx="0" cy="0" r="25" fill="#FFA990" opacity="0" />
+                    </g>
+
+                    <!-- Running pin -->
+                    <g class="pin pin2" transform="translate(750, 350)">
+                        <circle class="pin-base" cx="0" cy="0" r="15" fill="#2DC9D6" />
+                        <path class="pin-icon" d="M-5,0 L5,0 M0,-5 L0,5" stroke="#fff" stroke-width="3" stroke-linecap="round" />
+                        <circle class="pin-pulse" cx="0" cy="0" r="25" fill="#2DC9D6" opacity="0" />
+                    </g>
+
+                    <!-- Gym pin -->
+                    <g class="pin pin3" transform="translate(500, 250)">
+                        <circle class="pin-base" cx="0" cy="0" r="15" fill="#FFA990" />
+                        <path class="pin-icon" d="M-5,-5 L5,5 M-5,5 L5,-5" stroke="#fff" stroke-width="3" stroke-linecap="round" />
+                        <circle class="pin-pulse" cx="0" cy="0" r="25" fill="#FFA990" opacity="0" />
+                    </g>
+                </g>
+
+                <!-- Blockchain elements -->
+                <g class="blockchain-elements">
+                    <!-- Connection lines between nodes -->
+                    <line class="connection" x1="200" y1="150" x2="500" y2="250" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="5,5" opacity="0.7" />
+                    <line class="connection" x1="500" y1="250" x2="750" y2="350" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="5,5" opacity="0.7" />
+                    <line class="connection" x1="200" y1="150" x2="750" y2="350" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="5,5" opacity="0.7" />
+
+                    <!-- Data packets moving along connections -->
+                    <circle class="data-packet packet1" cx="200" cy="150" r="5" fill="#fff" />
+                    <circle class="data-packet packet2" cx="500" cy="250" r="5" fill="#fff" />
+                    <circle class="data-packet packet3" cx="750" cy="350" r="5" fill="#fff" />
+                </g>
+
+                <!-- KinetraX logo elements -->
+                <g class="logo-elements">
+                    <polygon class="logo-diamond" points="500,100 550,150 500,200 450,150" fill="none" stroke="#fff" stroke-width="2" />
+                </g>
+
+                <!-- Animated particles -->
+                <g class="particles">
+                    <circle class="particle p1" cx="100" cy="100" r="3" fill="#2DC9D6" />
+                    <circle class="particle p2" cx="300" cy="200" r="3" fill="#FFA990" />
+                    <circle class="particle p3" cx="700" cy="150" r="3" fill="#2DC9D6" />
+                    <circle class="particle p4" cx="900" cy="300" r="3" fill="#FFA990" />
+                    <circle class="particle p5" cx="500" cy="400" r="3" fill="#2DC9D6" />
+                    <circle class="particle p6" cx="200" cy="500" r="3" fill="#FFA990" />
+                    <circle class="particle p7" cx="800" cy="450" r="3" fill="#2DC9D6" />
+                    <circle class="particle p8" cx="400" cy="100" r="3" fill="#FFA990" />
+                </g>
+            </svg>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h2 data-i18n="hero_title">Create workouts, participate in events, and pay through TON blockchain</h2>
+                <div class="cta-buttons">
+                    <a href="#" class="btn primary" data-i18n="become_trainer">Become a Trainer</a>
+                    <a href="#" class="btn secondary" data-i18n="find_workout">Find a Workout</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title" data-i18n="platform_benefits">Platform Benefits</h2>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h3 data-i18n="for_trainers">For Trainers</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="blockchain_verification">Blockchain verification</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="automatic_payments">Automatic payments in TON or KinetraX</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="flexibility">Flexibility: from one-time sessions to courses</span></li>
+                    </ul>
+                </div>
+
+                <div class="benefit-card">
+                    <h3 data-i18n="for_athletes">For Athletes</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="find_trainers">Find trainers by location</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="secure_transactions">Secure transactions via smart contracts</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="discounts">Discounts when paying with KinetraX token</span></li>
+                    </ul>
+                </div>
+
+                <div class="benefit-card">
+                    <h3 data-i18n="technology">Technology</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="using_ton">Using TON for fast and cheap transactions</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="staking">Staking KinetraX tokens for rewards</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title" data-i18n="how_it_works">How It Works</h2>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 data-i18n="step1_title">Trainer registers and gets verified</h3>
+                    <p data-i18n="step1_desc">Complete the verification process to become a certified trainer on our platform.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 data-i18n="step2_title">Publishes an event on the map with a price</h3>
+                    <p data-i18n="step2_desc">Create one-time or recurring events and set your own pricing.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 data-i18n="step3_title">Athlete finds a workout and pays through wallet</h3>
+                    <p data-i18n="step3_desc">Browse events on the map and pay securely with TON or KinetraX tokens.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3 data-i18n="step4_title">Smart contract automatically transfers funds after completion</h3>
+                    <p data-i18n="step4_desc">Secure and transparent payment system with no intermediaries.</p>
+                </div>
+            </div>
+
+            <div class="phone-mockup">
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <div class="app-screen active" data-step="1">
+                            <div class="app-header">
+                                <div class="app-logo">
+                                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo" class="app-logo-img">
+                                    <span>KinetraX</span>
+                                </div>
+                            </div>
+                            <div class="app-content">
+                                <div class="app-title" data-i18n="trainer_verification">Trainer Verification</div>
+                                <div class="verification-form">
+                                    <div class="form-field">
+                                        <label data-i18n="full_name">Full Name</label>
+                                        <div class="input-field"></div>
+                                    </div>
+                                    <div class="form-field">
+                                        <label data-i18n="specialization">Specialization</label>
+                                        <div class="input-field"></div>
+                                    </div>
+                                    <div class="form-field">
+                                        <label data-i18n="experience">Experience (years)</label>
+                                        <div class="input-field"></div>
+                                    </div>
+                                    <div class="form-field">
+                                        <label data-i18n="upload_certificate">Upload Certificate</label>
+                                        <div class="upload-btn" data-i18n="choose_file">Choose File</div>
+                                    </div>
+                                    <div class="verification-status">
+                                        <i class="fas fa-check-circle"></i> <span data-i18n="verification_pending">Verification Pending</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="app-screen" data-step="2">
+                            <div class="app-header">
+                                <div class="app-logo">
+                                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo" class="app-logo-img">
+                                    <span>KinetraX</span>
+                                </div>
+                            </div>
+                            <div class="app-content">
+                                <div class="app-title" data-i18n="create_event">Create Event</div>
+                                <div class="map-container">
+                                    <div class="map-placeholder"></div>
+                                    <div class="map-pin"></div>
+                                </div>
+                                <div class="event-form">
+                                    <div class="form-field">
+                                        <label data-i18n="event_name">Event Name</label>
+                                        <div class="input-field">Yoga on the Beach</div>
+                                    </div>
+                                    <div class="form-field">
+                                        <label data-i18n="price">Price</label>
+                                        <div class="input-field">10 TON</div>
+                                    </div>
+                                    <div class="form-field">
+                                        <label data-i18n="date_time">Date & Time</label>
+                                        <div class="input-field">Aug 15, 2023 - 8:00 AM</div>
+                                    </div>
+                                    <div class="publish-btn" data-i18n="publish_event">Publish Event</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="app-screen" data-step="3">
+                            <div class="app-header">
+                                <div class="app-logo">
+                                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo" class="app-logo-img">
+                                    <span>KinetraX</span>
+                                </div>
+                            </div>
+                            <div class="app-content">
+                                <div class="app-title" data-i18n="find_workout_title">Find Workout</div>
+                                <div class="map-container">
+                                    <div class="map-placeholder"></div>
+                                    <div class="map-pin pin1"></div>
+                                    <div class="map-pin pin2"></div>
+                                    <div class="map-pin pin3"></div>
+                                </div>
+                                <div class="event-details">
+                                    <div class="event-name">Yoga on the Beach</div>
+                                    <div class="event-info">
+                                        <div><i class="fas fa-map-marker-alt"></i> <span data-i18n="location">Central Beach</span></div>
+                                        <div><i class="fas fa-calendar"></i> <span data-i18n="event_date">Aug 15, 2023 - 8:00 AM</span></div>
+                                        <div><i class="fas fa-coins"></i> <span data-i18n="event_price">10 TON</span></div>
+                                    </div>
+                                    <div class="payment-btn" data-i18n="pay_with_wallet">Pay with Wallet</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="app-screen" data-step="4">
+                            <div class="app-header">
+                                <div class="app-logo">
+                                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo" class="app-logo-img">
+                                    <span>KinetraX</span>
+                                </div>
+                            </div>
+                            <div class="app-content">
+                                <div class="app-title" data-i18n="payment_confirmation">Payment Confirmation</div>
+                                <div class="transaction">
+                                    <div class="transaction-icon">
+                                        <i class="fas fa-exchange-alt"></i>
+                                    </div>
+                                    <div class="transaction-status">
+                                        <i class="fas fa-check-circle"></i> <span data-i18n="payment_complete">Payment Complete</span>
+                                    </div>
+                                    <div class="transaction-details">
+                                        <div class="transaction-item">
+                                            <span data-i18n="event">Event:</span>
+                                            <span>Yoga on the Beach</span>
+                                        </div>
+                                        <div class="transaction-item">
+                                            <span data-i18n="amount">Amount:</span>
+                                            <span>10 TON</span>
+                                        </div>
+                                        <div class="transaction-item">
+                                            <span data-i18n="date">Date:</span>
+                                            <span>Aug 15, 2023</span>
+                                        </div>
+                                        <div class="transaction-item">
+                                            <span data-i18n="transaction_id">Transaction ID:</span>
+                                            <span>0x1a2b...3c4d</span>
+                                        </div>
+                                    </div>
+                                    <div class="blockchain-note">
+                                        Secured by TON Blockchain
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="phone-notch"></div>
+                    <div class="phone-button"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Examples Section -->
+    <section class="event-examples">
+        <div class="container">
+            <h2 class="section-title" data-i18n="event_examples">Event Examples</h2>
+
+            <div class="events-grid">
+                <div class="event-card">
+                    <img src="assets/images/event1.png" alt="Yoga on the beach">
+                    <h3 data-i18n="yoga_beach">Yoga on the Beach</h3>
+                    <div class="event-details">
+                        <p><i class="fas fa-map-marker-alt"></i> <span data-i18n="central_beach">Central Beach</span></p>
+                        <p><i class="fas fa-coins"></i> <span data-i18n="ten_ton">10 TON</span></p>
+                        <p><i class="fas fa-star"></i> <span data-i18n="yoga_rating">4.8/5 (24 reviews)</span></p>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <img src="assets/images/event2.png" alt="Marathon Run">
+                    <h3 data-i18n="marathon_run">Marathon Run</h3>
+                    <div class="event-details">
+                        <p><i class="fas fa-map-marker-alt"></i> <span data-i18n="city_park">City Park</span></p>
+                        <p><i class="fas fa-coins"></i> <span data-i18n="fifteen_ton">15 TON</span></p>
+                        <p><i class="fas fa-star"></i> <span data-i18n="marathon_rating">4.9/5 (36 reviews)</span></p>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <img src="assets/images/event3.png" alt="Personal Training">
+                    <h3 data-i18n="personal_training">Personal Training</h3>
+                    <div class="event-details">
+                        <p><i class="fas fa-map-marker-alt"></i> <span data-i18n="fitness_center">Fitness Center</span></p>
+                        <p><i class="fas fa-coins"></i> <span data-i18n="twenty_ton">20 TON</span></p>
+                        <p><i class="fas fa-star"></i> <span data-i18n="training_rating">5.0/5 (18 reviews)</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Token Section -->
+    <section class="token">
+        <div class="container">
+            <h2 class="section-title" data-i18n="kinetrax_token">KinetraX Token</h2>
+
+            <div class="token-info">
+                <div class="token-description">
+                    <h3 data-i18n="ecosystem_role">Role in the Ecosystem</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="discounts">Discounts on platform services</span></li>
+<!--                        <li><i class="fas fa-check-circle"></i> <span data-i18n="staking_rewards">Staking for rewards</span></li>-->
+<!--                        <li><i class="fas fa-check-circle"></i> <span data-i18n="voting">Voting on platform development</span></li>-->
+                    </ul>
+
+                    <h3 data-i18n="token_distribution">Token Distribution</h3>
+                    <ul>
+                        <li><i class="fas fa-info-circle"></i> <span data-i18n="total_supply">Total Supply: 21 million</span></li>
+<!--                        <li><i class="fas fa-info-circle"></i> <span data-i18n="distribution_details">Distribution: 40% for users, 20% team</span></li>-->
+                    </ul>
+
+                    <a href="https://tonscan.org/jetton/EQBUMSTVkfi0GaAl1q8rGXIKmSnU3_Uyd6wsvP6UN_r9DiBc" target="_blank" class="btn secondary" data-i18n="view_explorer">View on Blockchain Explorer</a>
+                </div>
+
+                <div class="token-image">
+                    <img src="assets/images/token.png" alt="KinetraX Token">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section class="documentation">
+        <div class="container">
+            <h2 class="section-title" data-i18n="documentation">Documentation</h2>
+
+            <div class="docs-grid">
+                <a href="#" class="doc-card">
+                    <i class="fas fa-file-pdf"></i>
+                    <h3 data-i18n="whitepaper">Whitepaper</h3>
+                    <p data-i18n="whitepaper_desc">Detailed project description and technical specifications</p>
+                </a>
+
+                <a href="#" class="doc-card">
+                    <i class="fas fa-road"></i>
+                    <h3 data-i18n="roadmap">Roadmap</h3>
+                    <p data-i18n="roadmap_desc">Development plans and milestones</p>
+                </a>
+
+
+                <a href="#" class="doc-card">
+                    <i class="fas fa-user-check"></i>
+                    <h3 data-i18n="verification_guide">Verification Guide</h3>
+                    <p data-i18n="verification_desc">How to become a verified trainer on KinetraX</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo">
+                    <h2>KinetraX</h2>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://x.com/kinetrax" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://t.me/kinetraX" target="_blank" ><i class="fab fa-telegram"></i></a>
+                </div>
+
+                <div class="footer-links">
+                    <a href="privacy-policy.html" data-i18n="privacy_policy">Privacy Policy</a>
+                    <a href="terms-of-use.html" data-i18n="terms_of_use">Terms of Use</a>
+<!--                    <a href="mailto:contact@kinetrax.io">contact@kinetrax.io</a>-->
+                </div>
+
+                <div class="partners">
+                    <img src="assets/images/ton-logo.svg" alt="TON Logo">
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p data-i18n="copyright">&copy; 2025 KinetraX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Coming Soon Modal -->
+    <div id="coming-soon-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 data-i18n="coming_soon">Coming Soon</h2>
+            <p data-i18n="coming_soon_message">This feature is currently under development. Follow us on social media for updates!</p>
+            <div class="modal-social-links">
+                <a href="https://x.com/kinetrax" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://t.me/kinetraX" target="_blank"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
