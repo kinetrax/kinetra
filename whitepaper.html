@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="KinetraX Whitepaper - Blockchain Fitness Platform">
+    <title>KinetraX - Whitepaper</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="index.html">
+                <div class="logo">
+                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo">
+                    <h1>KinetraX</h1>
+                </div>
+            </a>
+            <div class="language-dropdown">
+                <div class="selected-language">
+                    <span>EN</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <ul class="language-options">
+                    <!-- Language options will be populated by JavaScript -->
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Whitepaper Content -->
+    <section class="whitepaper-content">
+        <div class="container">
+            <h1 class="section-title" data-i18n="whitepaper">Whitepaper</h1>
+
+            <!-- Executive Summary -->
+            <div class="whitepaper-section">
+                <h2 data-i18n="wp_executive_summary">Executive Summary</h2>
+                <p data-i18n="wp_summary_p1">KinetraX is a blockchain-based fitness platform that connects trainers and athletes using TON blockchain technology. Our platform enables secure verification of trainers, transparent payment processing, and incentivizes participation through the KinetraX token.</p>
+                <p data-i18n="wp_summary_p2">By leveraging blockchain technology, we eliminate intermediaries, reduce fees, and create a trustless environment for fitness services.</p>
+            </div>
+
+            <!-- Market Analysis -->
+            <div class="whitepaper-section">
+                <h2 data-i18n="wp_market_analysis">Market Analysis</h2>
+                <p data-i18n="wp_market_p1">The global fitness industry is valued at over $100 billion, with a growing demand for personalized training services. However, the industry faces challenges:</p>
+                <ul>
+                    <li data-i18n="wp_market_challenge1">Lack of transparency in trainer qualifications</li>
+                    <li data-i18n="wp_market_challenge2">High fees charged by intermediary platforms</li>
+                    <li data-i18n="wp_market_challenge3">Payment processing delays and disputes</li>
+                </ul>
+                <p data-i18n="wp_market_p2">KinetraX addresses these challenges through blockchain verification, smart contracts, and direct peer-to-peer connections.</p>
+            </div>
+
+            <!-- Platform Overview -->
+            <div class="whitepaper-section">
+                <h2 data-i18n="wp_platform_overview">Platform Overview</h2>
+                <p data-i18n="wp_platform_p1">KinetraX provides a comprehensive ecosystem for fitness services:</p>
+
+                <h3 data-i18n="wp_for_trainers">For Trainers</h3>
+                <ul>
+                    <li data-i18n="wp_trainers_feature1">Blockchain verification of credentials</li>
+                    <li data-i18n="wp_trainers_feature2">Create and manage events with flexible pricing</li>
+                    <li data-i18n="wp_trainers_feature3">Automatic payments through smart contracts</li>
+                    <li data-i18n="wp_trainers_feature4">Build reputation through transparent reviews</li>
+                </ul>
+
+                <h3 data-i18n="wp_for_athletes">For Athletes</h3>
+                <ul>
+                    <li data-i18n="wp_athletes_feature1">Find verified trainers by location</li>
+                    <li data-i18n="wp_athletes_feature2">Secure payments with escrow protection</li>
+                    <li data-i18n="wp_athletes_feature3">Discounts when paying with KinetraX tokens</li>
+                    <li data-i18n="wp_athletes_feature4">Access to workout history and performance metrics</li>
+                </ul>
+            </div>
+
+            <!-- Blockchain Implementation -->
+            <div class="whitepaper-section">
+                <h2 data-i18n="wp_blockchain_implementation">Blockchain Implementation</h2>
+                <p data-i18n="wp_blockchain_p1">KinetraX is built on the TON blockchain, chosen for its high throughput, low transaction costs, and robust smart contract capabilities.</p>
+
+                <h3 data-i18n="wp_smart_contracts">Smart Contracts</h3>
+                <p data-i18n="wp_smart_contracts_p1">Our platform utilizes several key smart contracts:</p>
+                <ul>
+                    <li data-i18n="wp_contract1">Trainer Verification Contract: Stores and verifies trainer credentials</li>
+                    <li data-i18n="wp_contract2">Event Management Contract: Handles event creation, booking, and cancellations</li>
+                    <li data-i18n="wp_contract3">Payment Processing Contract: Manages escrow, releases funds upon completion</li>
+                </ul>
+            </div>
+
+            <!-- Token Economics -->
+            <div class="whitepaper-section">
+                <h2 data-i18n="wp_token_economics">Token Economics</h2>
+                <p data-i18n="wp_token_p1">The KinetraX token (KTX) plays a central role in our ecosystem:</p>
+                <ul>
+                    <li data-i18n="wp_token_use1">Discounts on platform services when paying with KTX</li>
+                    <li data-i18n="wp_token_use2">Staking rewards for token holders</li>
+                    <li data-i18n="wp_token_use3">Governance voting on platform development</li>
+                </ul>
+
+                <h3 data-i18n="wp_token_distribution">Token Distribution</h3>
+                <p data-i18n="wp_token_distribution_p1">Total Supply: 21 million KTX tokens</p>
+                <ul>
+                    <li data-i18n="wp_token_dist1">40% - User rewards and ecosystem growth</li>
+                    <li data-i18n="wp_token_dist2">20% - Team and advisors (vested over 3 years)</li>
+                    <li data-i18n="wp_token_dist3">15% - Development fund</li>
+                    <li data-i18n="wp_token_dist4">15% - Marketing and partnerships</li>
+                    <li data-i18n="wp_token_dist5">10% - Reserve</li>
+                </ul>
+            </div>
+
+            <!-- Roadmap Section -->
+            <div class="whitepaper-section" id="roadmap">
+                <h2 data-i18n="roadmap">Roadmap</h2>
+
+                <div class="roadmap-timeline">
+                    <div class="roadmap-item">
+                        <div class="roadmap-date" data-i18n="roadmap_q2_2025">Q2 2025</div>
+                        <div class="roadmap-content">
+                            <h3 data-i18n="roadmap_q2_2025_title">Platform Launch</h3>
+                            <ul>
+                                <li data-i18n="roadmap_q2_2025_1">Official platform launch</li>
+                                <li data-i18n="roadmap_q2_2025_2">Mobile app release</li>
+                                <li data-i18n="roadmap_q2_2025_3">Initial trainer onboarding</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-item">
+                        <div class="roadmap-date" data-i18n="roadmap_q3_2025">Q3 2025</div>
+                        <div class="roadmap-content">
+                            <h3 data-i18n="roadmap_q3_2025_title">Ecosystem Expansion</h3>
+                            <ul>
+                                <li data-i18n="roadmap_q3_2025_1">Global marketing campaign</li>
+                                <li data-i18n="roadmap_q3_2025_2">Partnership program launch</li>
+                                <li data-i18n="roadmap_q3_2025_3">Advanced analytics dashboard</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-item">
+                        <div class="roadmap-date" data-i18n="roadmap_q4_2025">Q4 2025</div>
+                        <div class="roadmap-content">
+                            <h3 data-i18n="roadmap_q4_2025_title">Feature Enhancement</h3>
+                            <ul>
+                                <li data-i18n="roadmap_q4_2025_1">Integration with fitness wearables</li>
+                                <li data-i18n="roadmap_q4_2025_2">Community governance implementation</li>
+                                <li data-i18n="roadmap_q4_2025_3">Advanced payment options</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-item">
+                        <div class="roadmap-date" data-i18n="roadmap_q1_2026">Q1 2026</div>
+                        <div class="roadmap-content">
+                            <h3 data-i18n="roadmap_q1_2026_title">AI Integration</h3>
+                            <ul>
+                                <li data-i18n="roadmap_q1_2026_1">AI-powered training recommendations</li>
+                                <li data-i18n="roadmap_q1_2026_2">Personalized fitness plans</li>
+                                <li data-i18n="roadmap_q1_2026_3">Performance prediction algorithms</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-item">
+                        <div class="roadmap-date" data-i18n="roadmap_q2_2026">Q2 2026</div>
+                        <div class="roadmap-content">
+                            <h3 data-i18n="roadmap_q2_2026_title">Virtual Training</h3>
+                            <ul>
+                                <li data-i18n="roadmap_q2_2026_1">VR/AR training experiences</li>
+                                <li data-i18n="roadmap_q2_2026_2">Virtual fitness competitions</li>
+                                <li data-i18n="roadmap_q2_2026_3">Interactive training sessions</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-item">
+                        <div class="roadmap-date" data-i18n="roadmap_q3_2026">Q3-Q4 2026</div>
+                        <div class="roadmap-content">
+                            <h3 data-i18n="roadmap_q3_2026_title">Global Expansion</h3>
+                            <ul>
+                                <li data-i18n="roadmap_q3_2026_1">Expansion to additional blockchain networks</li>
+                                <li data-i18n="roadmap_q3_2026_2">Cross-platform integrations</li>
+                                <li data-i18n="roadmap_q3_2026_3">Enterprise solutions for fitness centers</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-item">
+                        <div class="roadmap-date" data-i18n="roadmap_2027">2027</div>
+                        <div class="roadmap-content">
+                            <h3 data-i18n="roadmap_2027_title">Future Vision</h3>
+                            <ul>
+                                <li data-i18n="roadmap_2027_1">Decentralized fitness marketplace</li>
+                                <li data-i18n="roadmap_2027_2">Health data integration with medical providers</li>
+                                <li data-i18n="roadmap_2027_3">Expansion to wellness and nutrition sectors</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="whitepaper-section">
+                <h2 data-i18n="wp_conclusion">Conclusion</h2>
+                <p data-i18n="wp_conclusion_p1">KinetraX represents a paradigm shift in how fitness services are delivered and consumed. By leveraging blockchain technology, we create a more transparent, efficient, and rewarding ecosystem for both trainers and athletes.</p>
+                <p data-i18n="wp_conclusion_p2">We invite you to join us on this journey to revolutionize the fitness industry through blockchain innovation.</p>
+
+                <div class="cta-buttons">
+                    <a href="index.html" class="btn primary" data-i18n="back_to_home">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo">
+                    <h2>KinetraX</h2>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://x.com/kinetrax" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://t.me/kinetraX" target="_blank" ><i class="fab fa-telegram"></i></a>
+                </div>
+
+                <div class="footer-links">
+                    <a href="privacy-policy.html" data-i18n="privacy_policy">Privacy Policy</a>
+                    <a href="terms-of-use.html" data-i18n="terms_of_use">Terms of Use</a>
+                </div>
+
+                <div class="partners">
+                    <img src="assets/images/ton-logo.svg" alt="TON Logo">
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p data-i18n="copyright">&copy; 2025 KinetraX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/translations.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

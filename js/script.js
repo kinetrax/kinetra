@@ -195,10 +195,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
             if (translations[lang][key]) {
-                // Handle special cases for elements with children
-                if (element.children.length === 0 || element.tagName === 'BUTTON' || element.tagName === 'A') {
-                    element.textContent = translations[lang][key];
-                }
+                // Update text content for all elements with data-i18n attribute
+                element.textContent = translations[lang][key];
             }
         });
 
@@ -215,10 +213,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set the initial selected language
     selectedLanguage.textContent = currentLanguage.toUpperCase();
 
-    // Toggle dropdown when clicking on the selected language
+    // Toggle dropdown when clicking on the selected language or its children
     document.querySelector('.selected-language').addEventListener('click', function(e) {
         e.stopPropagation();
-        languageDropdown.classList.toggle('active');
+        // Force the dropdown to open if it's closed, or close if it's open
+        if (languageDropdown.classList.contains('active')) {
+            languageDropdown.classList.remove('active');
+        } else {
+            languageDropdown.classList.add('active');
+        }
     });
 
     // Close dropdown when clicking outside
@@ -352,10 +355,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event listeners for documentation buttons
     if (docCardBtns.length > 0) {
         docCardBtns.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                openModal();
-            });
+            // Only show modal for buttons that don't have a valid href
+            if (btn.getAttribute('href') === '#') {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openModal();
+                });
+            }
         });
     }
 
