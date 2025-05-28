@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fa27ba8-81f8-4ab3-9c1a-e8e2aee83e9d" name="Changes" comment="feat">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/whitepaper.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
+    <list default="true" id="0fa27ba8-81f8-4ab3-9c1a-e8e2aee83e9d" name="Changes" comment="feat: add white paper">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/translations.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/translations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/privacy-policy.html" beforeDir="false" afterPath="$PROJECT_DIR$/privacy-policy.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/terms-of-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/terms-of-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/whitepaper.html" beforeDir="false" afterPath="$PROJECT_DIR$/whitepaper.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +107,7 @@
       <workItem from="1748166083225" duration="20438000" />
       <workItem from="1748196524088" duration="1985000" />
       <workItem from="1748451998541" duration="81000" />
-      <workItem from="1748452094914" duration="2990000" />
+      <workItem from="1748452094914" duration="3479000" />
     </task>
     <task id="LOCAL-00001" summary="feat">
       <option name="closed" value="true" />
@@ -135,7 +133,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748197302331</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: add white paper">
+      <option name="closed" value="true" />
+      <created>1748455768986</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1748455768986</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,6 +188,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixup! init" />
     <MESSAGE value="feat" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat" />
+    <MESSAGE value="feat: add white paper" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add white paper" />
   </component>
 </project>
