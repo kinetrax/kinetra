@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fa27ba8-81f8-4ab3-9c1a-e8e2aee83e9d" name="Changes" comment="feat: add white paper">
+    <list default="true" id="0fa27ba8-81f8-4ab3-9c1a-e8e2aee83e9d" name="Changes" comment="feat: update links">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/privacy-policy.html" beforeDir="false" afterPath="$PROJECT_DIR$/privacy-policy.html" afterDir="false" />
@@ -107,7 +107,7 @@
       <workItem from="1748166083225" duration="20438000" />
       <workItem from="1748196524088" duration="1985000" />
       <workItem from="1748451998541" duration="81000" />
-      <workItem from="1748452094914" duration="3479000" />
+      <workItem from="1748452094914" duration="3941000" />
     </task>
     <task id="LOCAL-00001" summary="feat">
       <option name="closed" value="true" />
@@ -141,7 +141,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748455768986</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feat: update links">
+      <option name="closed" value="true" />
+      <created>1748456819675</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1748456819675</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,6 +197,7 @@
     <MESSAGE value="fixup! init" />
     <MESSAGE value="feat" />
     <MESSAGE value="feat: add white paper" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add white paper" />
+    <MESSAGE value="feat: update links" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: update links" />
   </component>
 </project>
