@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="KinetraX Whitepaper - Blockchain Fitness Platform">
+    <meta name="description" content="KinetraX Whitepaper - Decentralized fitness platform connecting trainers and athletes through TON blockchain. Complete technical documentation and platform overview.">
     <title>KinetraX - Whitepaper</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -31,183 +31,463 @@
         </div>
     </header>
 
-    <!-- Coming Soon Content -->
+    <!-- Whitepaper Content -->
     <section class="whitepaper-content">
         <div class="container">
-            <div style="text-align: center; padding: 100px 20px; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                <i class="fas fa-file-alt" style="font-size: 80px; color: var(--primary-color); margin-bottom: 30px;"></i>
-                <h1 class="section-title" style="margin-bottom: 20px;">Coming Soon</h1>
-                <p style="font-size: 1.2rem; color: var(--gray); max-width: 600px; margin-bottom: 40px;">
-                    The whitepaper and roadmap will be available soon. We're working hard to bring you comprehensive documentation about KinetraX.
-                </p>
-                <div class="cta-buttons">
-                    <a href="./" class="btn primary" data-i18n="back_to_home">Back to Home</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Whitepaper Content - Commented Out -->
-    <!--
-    <section class="whitepaper-content">
-        <div class="container">
-            <h1 class="section-title" data-i18n="whitepaper">Whitepaper</h1>
-
-            <div class="whitepaper-section">
-                <h2 data-i18n="wp_executive_summary">Executive Summary</h2>
-                <p data-i18n="wp_summary_p1">KinetraX is a blockchain-based fitness platform that connects trainers and athletes using TON blockchain technology. Our platform enables secure verification of trainers, transparent payment processing, and incentivizes participation through the KinetraX token.</p>
-                <p data-i18n="wp_summary_p2">By leveraging blockchain technology, we eliminate intermediaries, reduce fees, and create a trustless environment for fitness services.</p>
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h1 class="section-title">KinetraX Whitepaper</h1>
+                <p style="color: var(--gray); font-size: 1.1rem;"><strong>Version 1.0</strong></p>
+                <p style="color: var(--gray);">Last Updated: January 2026</p>
             </div>
 
             <div class="whitepaper-section">
-                <h2 data-i18n="wp_market_analysis">Market Analysis</h2>
-                <p data-i18n="wp_market_p1">The global fitness industry is valued at over $100 billion, with a growing demand for personalized training services. However, the industry faces challenges:</p>
+                <h2>Executive Summary</h2>
+                <p>KinetraX is a decentralized fitness platform that connects trainers with athletes through the TON (The Open Network) blockchain. Built as a Telegram Mini App, KinetraX enables seamless session booking, transparent payments, and automatic revenue distribution using smart contracts. The platform eliminates intermediaries, reduces transaction costs, and provides a trustless environment for fitness professionals and participants.</p>
+            </div>
+
+            <div class="whitepaper-section">
+                <h2>1. Introduction</h2>
+                
+                <h3>1.1 The Problem</h3>
+                <p>The fitness industry faces several challenges:</p>
                 <ul>
-                    <li data-i18n="wp_market_challenge1">Lack of transparency in trainer qualifications</li>
-                    <li data-i18n="wp_market_challenge2">High fees charged by intermediary platforms</li>
-                    <li data-i18n="wp_market_challenge3">Payment processing delays and disputes</li>
-                </ul>
-                <p data-i18n="wp_market_p2">KinetraX addresses these challenges through blockchain verification, smart contracts, and direct peer-to-peer connections.</p>
-            </div>
-
-            <div class="whitepaper-section">
-                <h2 data-i18n="wp_platform_overview">Platform Overview</h2>
-                <p data-i18n="wp_platform_p1">KinetraX provides a comprehensive ecosystem for fitness services:</p>
-
-                <h3 data-i18n="wp_for_trainers">For Trainers</h3>
-                <ul>
-                    <li data-i18n="wp_trainers_feature1">Blockchain verification of credentials</li>
-                    <li data-i18n="wp_trainers_feature2">Create and manage events with flexible pricing</li>
-                    <li data-i18n="wp_trainers_feature3">Automatic payments through smart contracts</li>
-                    <li data-i18n="wp_trainers_feature4">Build reputation through transparent reviews</li>
+                    <li><strong>High Transaction Fees</strong>: Traditional payment processors charge 2.5-3.5% per transaction, reducing trainer earnings</li>
+                    <li><strong>Payment Delays</strong>: Coaches often wait days or weeks to receive payments</li>
+                    <li><strong>Lack of Transparency</strong>: Complex fee structures and unclear commission models</li>
+                    <li><strong>Limited Accessibility</strong>: Geographic barriers and platform lock-ins restrict trainer-audience connections</li>
+                    <li><strong>Trust Issues</strong>: No automated verification of bookings and attendance</li>
                 </ul>
 
-                <h3 data-i18n="wp_for_athletes">For Athletes</h3>
+                <h3>1.2 Our Solution</h3>
+                <p>KinetraX leverages blockchain technology to create a transparent, efficient, and cost-effective marketplace for fitness sessions. By using TON blockchain smart contracts, we enable:</p>
                 <ul>
-                    <li data-i18n="wp_athletes_feature1">Find verified trainers by location</li>
-                    <li data-i18n="wp_athletes_feature2">Secure payments with escrow protection</li>
-                    <li data-i18n="wp_athletes_feature3">Discounts when paying with KinetraX tokens</li>
-                    <li data-i18n="wp_athletes_feature4">Access to workout history and performance metrics</li>
+                    <li><strong>Instant Payments</strong>: Automated payment processing with minimal fees</li>
+                    <li><strong>Transparent Revenue Sharing</strong>: Smart contracts automatically distribute payments between trainers and the platform</li>
+                    <li><strong>Trustless Bookings</strong>: Blockchain-verified registrations and participant verification</li>
+                    <li><strong>Global Accessibility</strong>: Telegram Mini App format enables worldwide access</li>
+                    <li><strong>Low Transaction Costs</strong>: TON blockchain's efficiency keeps costs minimal</li>
                 </ul>
             </div>
 
             <div class="whitepaper-section">
-                <h2 data-i18n="wp_blockchain_implementation">Blockchain Implementation</h2>
-                <p data-i18n="wp_blockchain_p1">KinetraX is built on the TON blockchain, chosen for its high throughput, low transaction costs, and robust smart contract capabilities.</p>
-
-                <h3 data-i18n="wp_smart_contracts">Smart Contracts</h3>
-                <p data-i18n="wp_smart_contracts_p1">Our platform utilizes several key smart contracts:</p>
+                <h2>2. Platform Architecture</h2>
+                
+                <h3>2.1 Technology Stack</h3>
+                <p><strong>Frontend:</strong></p>
                 <ul>
-                    <li data-i18n="wp_contract1">Trainer Verification Contract: Stores and verifies trainer credentials</li>
-                    <li data-i18n="wp_contract2">Event Management Contract: Handles event creation, booking, and cancellations</li>
-                    <li data-i18n="wp_contract3">Payment Processing Contract: Manages escrow, releases funds upon completion</li>
+                    <li>React 18 with TypeScript</li>
+                    <li>Telegram Mini Apps SDK</li>
+                    <li>Tailwind CSS for styling</li>
+                    <li>MapTiler for location services</li>
+                </ul>
+
+                <p><strong>Backend:</strong></p>
+                <ul>
+                    <li>Fastify web framework</li>
+                    <li>TypeScript</li>
+                    <li>TypeORM for database management</li>
+                    <li>PostgreSQL for persistent data storage</li>
+                    <li>Redis for caching and performance optimization</li>
+                </ul>
+
+                <p><strong>Blockchain:</strong></p>
+                <ul>
+                    <li>TON (The Open Network) blockchain</li>
+                    <li>Tolk smart contract language</li>
+                    <li>TON Connect for wallet integration</li>
+                </ul>
+
+                <h3>2.2 System Architecture</h3>
+                <p>KinetraX operates as a three-tier system:</p>
+                <ol>
+                    <li><strong>Presentation Layer</strong>: Telegram Mini App (React frontend)</li>
+                    <li><strong>Application Layer</strong>: RESTful API (Fastify backend)</li>
+                    <li><strong>Blockchain Layer</strong>: TON smart contracts for payments</li>
+                </ol>
+
+                <h3>2.3 Database Schema</h3>
+                <p><strong>Users:</strong></p>
+                <ul>
+                    <li>Unique Telegram user ID (primary key)</li>
+                    <li>First name and last name</li>
+                    <li>Professional description</li>
+                    <li>Created/updated timestamps</li>
+                </ul>
+
+                <p><strong>Sessions:</strong></p>
+                <ul>
+                    <li>Unique session ID (UUID)</li>
+                    <li>Session name, type, and description</li>
+                    <li>Location coordinates (latitude/longitude)</li>
+                    <li>Start date/time and duration</li>
+                    <li>Price (in TON)</li>
+                    <li>Number of available slots</li>
+                    <li>Creator wallet address</li>
+                    <li>Creator ID (foreign key to users)</li>
+                </ul>
+
+                <p><strong>Relations:</strong></p>
+                <ul>
+                    <li>Many-to-many relationship between sessions and users (participants)</li>
                 </ul>
             </div>
 
             <div class="whitepaper-section">
-                <h2 data-i18n="wp_token_economics">Token Economics</h2>
-                <p data-i18n="wp_token_p1">The KinetraX token (KTX) plays a central role in our ecosystem:</p>
+                <h2>3. Core Features</h2>
+                
+                <h3>3.1 User Management</h3>
+                <p><strong>Telegram Authentication:</strong></p>
                 <ul>
-                    <li data-i18n="wp_token_use1">Discounts on platform services when paying with KTX</li>
-                    <li data-i18n="wp_token_use2">Staking rewards for token holders</li>
-                    <li data-i18n="wp_token_use3">Governance voting on platform development</li>
+                    <li>Seamless authentication via Telegram Web App</li>
+                    <li>No separate account creation required</li>
+                    <li>User profiles automatically linked to Telegram accounts</li>
                 </ul>
 
-                <h3 data-i18n="wp_token_distribution">Token Distribution</h3>
-                <p data-i18n="wp_token_distribution_p1">Total Supply: 21 million KTX tokens</p>
+                <p><strong>User Profiles:</strong></p>
                 <ul>
-                    <li data-i18n="wp_token_dist1">40% - User rewards and ecosystem growth</li>
-                    <li data-i18n="wp_token_dist2">20% - Team and advisors (vested over 3 years)</li>
-                    <li data-i18n="wp_token_dist3">15% - Development fund</li>
-                    <li data-i18n="wp_token_dist4">15% - Marketing and partnerships</li>
-                    <li data-i18n="wp_token_dist5">10% - Reserve</li>
+                    <li>Professional profiles with description (minimum 100 characters)</li>
+                    <li>Session statistics (sessions conducted as trainer, sessions participated as athlete)</li>
+                    <li>Profile viewing and editing capabilities</li>
+                </ul>
+
+                <h3>3.2 Session Management</h3>
+                <p><strong>Session Creation:</strong></p>
+                <p>Trainers can create fitness sessions with:</p>
+                <ul>
+                    <li>Session name and type (e.g., "Yoga", "CrossFit", "Running")</li>
+                    <li>Detailed description</li>
+                    <li>Location (GPS coordinates)</li>
+                    <li>Date and time</li>
+                    <li>Duration (in minutes)</li>
+                    <li>Price (in TON)</li>
+                    <li>Number of available slots</li>
+                    <li>Wallet address for receiving payments</li>
+                </ul>
+
+                <p><strong>Session Discovery:</strong></p>
+                <ul>
+                    <li>Interactive map interface showing all available sessions</li>
+                    <li>Location-based filtering</li>
+                    <li>Real-time availability display</li>
+                    <li>Session type filtering</li>
+                </ul>
+
+                <p><strong>Session Management:</strong></p>
+                <ul>
+                    <li>View session details</li>
+                    <li>Update session information (name, description, time, price, location, slots)</li>
+                    <li>Delete sessions</li>
+                    <li>View participant lists</li>
+                </ul>
+
+                <h3>3.3 Booking System</h3>
+                <p><strong>Session Registration:</strong></p>
+                <ul>
+                    <li>Athletes can browse and join available sessions</li>
+                    <li>Real-time slot availability checking</li>
+                    <li>Automatic wallet connection via TON Connect</li>
+                    <li>Blockchain-verified payment processing</li>
+                </ul>
+
+                <p><strong>Participant Verification:</strong></p>
+                <ul>
+                    <li>Unique participant codes generated for each booking</li>
+                    <li>SHA-256 hash-based code generation</li>
+                    <li>Coach-verifiable codes for session attendance</li>
+                    <li>Secure code validation system</li>
+                </ul>
+
+                <h3>3.4 Payment System</h3>
+                <p><strong>Smart Contract Architecture:</strong></p>
+                <p>The platform uses a TON smart contract (Session Payment Contract) that handles:</p>
+                <ul>
+                    <li><strong>Payment Reception</strong>: Receives payments from participants</li>
+                    <li><strong>Automatic Distribution</strong>: Splits payment between trainer and platform</li>
+                    <li><strong>Commission Management</strong>: Configurable commission rate (default: 2% = 200 basis points)</li>
+                    <li><strong>Transparent Transactions</strong>: All transactions recorded on blockchain</li>
+                </ul>
+
+                <p><strong>Payment Flow:</strong></p>
+                <ol>
+                    <li>Participant initiates payment via TON Connect wallet</li>
+                    <li>Payment sent to smart contract with coach wallet address</li>
+                    <li>Smart contract calculates commission (e.g., 2% of payment)</li>
+                    <li>Coach receives payment minus commission</li>
+                    <li>Platform receives commission</li>
+                    <li>Transaction recorded on TON blockchain</li>
+                </ol>
+
+                <p><strong>Commission Model:</strong></p>
+                <ul>
+                    <li>Default commission rate: 2% (200 basis points)</li>
+                    <li>Configurable by platform owner</li>
+                    <li>Commission rate range: 0-100% (0-10,000 basis points)</li>
+                    <li>Platform wallet address configurable</li>
+                </ul>
+
+                <h3>3.5 Session History</h3>
+                <p><strong>Past Sessions:</strong></p>
+                <ul>
+                    <li>View all completed sessions</li>
+                    <li>Filter by user participation (as trainer or participant)</li>
+                    <li>Chronological ordering (newest first)</li>
+                </ul>
+
+                <p><strong>Upcoming Sessions:</strong></p>
+                <ul>
+                    <li>View all future sessions user is involved in</li>
+                    <li>Filter by user participation (as trainer or participant)</li>
+                    <li>Chronological ordering (soonest first)</li>
                 </ul>
             </div>
+
+            <div class="whitepaper-section">
+                <h2>4. Blockchain Integration</h2>
+                
+                <h3>4.1 TON Blockchain Benefits</h3>
+                <p><strong>Why TON?</strong></p>
+                <ul>
+                    <li><strong>High Throughput</strong>: Can handle millions of transactions per second</li>
+                    <li><strong>Low Fees</strong>: Minimal transaction costs (fractions of a cent)</li>
+                    <li><strong>Fast Finality</strong>: Near-instant transaction confirmation</li>
+                    <li><strong>Scalability</strong>: Built for mass adoption</li>
+                    <li><strong>Telegram Integration</strong>: Native support for Telegram ecosystem</li>
+                </ul>
+
+                <h3>4.2 Smart Contract Features</h3>
+                <p><strong>Session Payment Contract:</strong></p>
+                <ul>
+                    <li>Written in Tolk language</li>
+                    <li>Handles payment distribution automatically</li>
+                    <li>Owner-controlled configuration</li>
+                    <li>Transparent and auditable</li>
+                </ul>
+
+                <p><strong>Contract Methods:</strong></p>
+                <ul>
+                    <li><code>getPlatformWallet()</code>: Returns platform wallet address</li>
+                    <li><code>getCommissionRate()</code>: Returns current commission rate</li>
+                    <li><code>getOwner()</code>: Returns contract owner address</li>
+                    <li><code>onInternalMessage()</code>: Handles payment processing</li>
+                </ul>
+
+                <p><strong>Security Features:</strong></p>
+                <ul>
+                    <li>Owner-only settings updates</li>
+                    <li>Input validation for all parameters</li>
+                    <li>Error handling for invalid transactions</li>
+                    <li>Payment requirement validation</li>
+                </ul>
+
+                <h3>4.3 Wallet Integration</h3>
+                <p><strong>TON Connect:</strong></p>
+                <ul>
+                    <li>Native Telegram wallet support</li>
+                    <li>External wallet compatibility</li>
+                    <li>Secure transaction signing</li>
+                    <li>User-friendly payment flow</li>
+                </ul>
+            </div>
+
+            <div class="whitepaper-section">
+                <h2>5. User Experience</h2>
+                
+                <h3>5.1 Telegram Mini App</h3>
+                <p><strong>Accessibility:</strong></p>
+                <ul>
+                    <li>Available within Telegram app</li>
+                    <li>No separate app installation required</li>
+                    <li>Cross-platform compatibility (iOS, Android, Web)</li>
+                    <li>Instant access via Telegram bot or link</li>
+                </ul>
+
+                <p><strong>User Interface:</strong></p>
+                <ul>
+                    <li>Modern, clean design</li>
+                    <li>Mobile-optimized layout</li>
+                    <li>Intuitive navigation</li>
+                    <li>Real-time updates</li>
+                            </ul>
+
+                <h3>5.2 Key User Flows</h3>
+                <p><strong>For Trainers:</strong></p>
+                <ol>
+                    <li>Sign up and create profile</li>
+                    <li>Create fitness session with details</li>
+                    <li>Share session or wait for bookings</li>
+                    <li>Receive payments automatically to wallet</li>
+                    <li>Verify participants using codes</li>
+                    <li>View session statistics</li>
+                </ol>
+
+                <p><strong>For Athletes:</strong></p>
+                <ol>
+                    <li>Browse sessions on map</li>
+                    <li>View session details</li>
+                    <li>Connect wallet and pay</li>
+                    <li>Receive participant verification code</li>
+                    <li>Attend session and provide code</li>
+                    <li>View session history</li>
+                </ol>
+                    </div>
+
+            <div class="whitepaper-section">
+                <h2>6. Revenue Model</h2>
+                
+                <h3>6.1 Commission Structure</h3>
+                <p><strong>Platform Revenue:</strong></p>
+                <ul>
+                    <li>Commission from each session booking</li>
+                    <li>Default rate: 2% of session price</li>
+                    <li>Adjustable by platform governance</li>
+                    <li>Received in TON cryptocurrency</li>
+                </ul>
+
+                <p><strong>Revenue Distribution:</strong></p>
+                <ul>
+                    <li>98% to trainer (coach wallet)</li>
+                    <li>2% to platform (platform wallet)</li>
+                </ul>
+
+                <h3>6.2 Cost Structure</h3>
+                <p><strong>Transaction Costs:</strong></p>
+                <ul>
+                    <li>TON blockchain fees: Minimal (typically &lt;$0.01 per transaction)</li>
+                    <li>No credit card processing fees</li>
+                    <li>No payment gateway fees</li>
+                    <li>No currency conversion fees</li>
+                            </ul>
+                        </div>
+
+            <div class="whitepaper-section">
+                <h2>7. Security & Privacy</h2>
+                
+                <h3>7.1 Security Measures</h3>
+                <p><strong>Blockchain Security:</strong></p>
+                <ul>
+                    <li>Immutable transaction records</li>
+                    <li>Smart contract code auditable</li>
+                    <li>No central point of failure</li>
+                    <li>Decentralized payment processing</li>
+                </ul>
+
+                <p><strong>Application Security:</strong></p>
+                <ul>
+                    <li>Type-safe codebase (TypeScript)</li>
+                    <li>Input validation on all endpoints</li>
+                    <li>Secure participant code generation</li>
+                    <li>Protected API endpoints</li>
+                </ul>
+
+                <p><strong>Data Privacy:</strong></p>
+                <ul>
+                    <li>User data stored securely</li>
+                    <li>Telegram authentication (no password storage)</li>
+                    <li>Location data only stored for session purposes</li>
+                    <li>GDPR-compliant data handling principles</li>
+                </ul>
+
+                <h3>7.2 Participant Verification</h3>
+                <p><strong>Code Generation:</strong></p>
+                <ul>
+                    <li>SHA-256 hash-based codes</li>
+                    <li>Deterministic generation (same input = same code)</li>
+                    <li>Unique per user-session combination</li>
+                    <li>8-character uppercase codes</li>
+                </ul>
+
+                <p><strong>Verification Process:</strong></p>
+                <ul>
+                    <li>Coaches can validate participant codes</li>
+                    <li>Codes linked to registered participants</li>
+                    <li>Secure validation endpoint</li>
+                    <li>Prevents unauthorized access</li>
+                            </ul>
+                        </div>
+
+
+
+
+            <div class="whitepaper-section">
+                <h2>8. Current Status & Development</h2>
+                <p>The platform successfully launched its MVP in Q4 2025 and is currently operational with core features implemented and actively serving users. As of Q1 2026, KinetraX is focused on marketing initiatives and user growth while continuing to enhance the platform based on user feedback.</p>
+                    </div>
 
             <div class="whitepaper-section" id="roadmap">
-                <h2 data-i18n="roadmap">Roadmap</h2>
+                <h2>9. Roadmap</h2>
 
                 <div class="roadmap-timeline">
                     <div class="roadmap-item">
-                        <div class="roadmap-date" data-i18n="roadmap_q2_2025">Q2 2025</div>
+                        <div class="roadmap-date">Q4 2025</div>
                         <div class="roadmap-content">
-                            <h3 data-i18n="roadmap_q2_2025_title">Platform Launch</h3>
+                            <h3>MVP Launch ✅</h3>
                             <ul>
-                                <li data-i18n="roadmap_q2_2025_1">Official platform launch</li>
-                                <li data-i18n="roadmap_q2_2025_2">Mobile app release</li>
-                                <li data-i18n="roadmap_q2_2025_3">Initial trainer onboarding</li>
+                                <li>Platform launch and initial user onboarding</li>
+                                <li>Core features: session creation, booking, and payments</li>
+                                <li>Basic user profiles and session management</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="roadmap-item">
-                        <div class="roadmap-date" data-i18n="roadmap_q3_2025">Q3 2025</div>
+                        <div class="roadmap-date">Q1 2026</div>
                         <div class="roadmap-content">
-                            <h3 data-i18n="roadmap_q3_2025_title">Ecosystem Expansion</h3>
+                            <h3>Marketing & Growth</h3>
                             <ul>
-                                <li data-i18n="roadmap_q3_2025_1">Global marketing campaign</li>
-                                <li data-i18n="roadmap_q3_2025_2">Partnership program launch</li>
-                                <li data-i18n="roadmap_q3_2025_3">Advanced analytics dashboard</li>
+                                <li>Global marketing campaign launch</li>
+                                <li>Social media presence and community building</li>
+                                <li>Influencer partnerships and collaborations</li>
+                                <li>Content marketing and educational resources</li>
+                                <li>User acquisition campaigns</li>
+                                <li>Brand awareness initiatives</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="roadmap-item">
-                        <div class="roadmap-date" data-i18n="roadmap_q4_2025">Q4 2025</div>
+                        <div class="roadmap-date">Q2 2026</div>
                         <div class="roadmap-content">
-                            <h3 data-i18n="roadmap_q4_2025_title">Feature Enhancement</h3>
+                            <h3>Platform Enhancement</h3>
                             <ul>
-                                <li data-i18n="roadmap_q4_2025_1">Integration with fitness wearables</li>
-                                <li data-i18n="roadmap_q4_2025_2">Community governance implementation</li>
-                                <li data-i18n="roadmap_q4_2025_3">Advanced payment options</li>
+                                <li>Enhanced user experience and interface improvements</li>
+                                <li>Advanced filtering and search capabilities</li>
+                                <li>Notification system implementation</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="roadmap-item">
-                        <div class="roadmap-date" data-i18n="roadmap_q1_2026">Q1 2026</div>
+                        <div class="roadmap-date">Q3 2026</div>
                         <div class="roadmap-content">
-                            <h3 data-i18n="roadmap_q1_2026_title">AI Integration</h3>
+                            <h3>Feature Expansion</h3>
                             <ul>
-                                <li data-i18n="roadmap_q1_2026_1">AI-powered training recommendations</li>
-                                <li data-i18n="roadmap_q1_2026_2">Personalized fitness plans</li>
-                                <li data-i18n="roadmap_q1_2026_3">Performance prediction algorithms</li>
+                                <li>Rating and review system</li>
+                                <li>Recurring sessions and advanced booking options</li>
+                                <li>Analytics dashboard for trainers</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="roadmap-item">
-                        <div class="roadmap-date" data-i18n="roadmap_q2_2026">Q2 2026</div>
+                        <div class="roadmap-date">Q4 2026</div>
                         <div class="roadmap-content">
-                            <h3 data-i18n="roadmap_q2_2026_title">Virtual Training</h3>
+                            <h3>Growth & Scaling</h3>
                             <ul>
-                                <li data-i18n="roadmap_q2_2026_1">VR/AR training experiences</li>
-                                <li data-i18n="roadmap_q2_2026_2">Virtual fitness competitions</li>
-                                <li data-i18n="roadmap_q2_2026_3">Interactive training sessions</li>
+                                <li>Multi-language support</li>
+                                <li>Social features and community building</li>
+                                <li>Partnership program launch</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="roadmap-item">
-                        <div class="roadmap-date" data-i18n="roadmap_q3_2026">Q3-Q4 2026</div>
+                        <div class="roadmap-date">2027</div>
                         <div class="roadmap-content">
-                            <h3 data-i18n="roadmap_q3_2026_title">Global Expansion</h3>
+                            <h3>Advanced Features</h3>
                             <ul>
-                                <li data-i18n="roadmap_q3_2026_1">Expansion to additional blockchain networks</li>
-                                <li data-i18n="roadmap_q3_2026_2">Cross-platform integrations</li>
-                                <li data-i18n="roadmap_q3_2026_3">Enterprise solutions for fitness centers</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="roadmap-item">
-                        <div class="roadmap-date" data-i18n="roadmap_2027">2027</div>
-                        <div class="roadmap-content">
-                            <h3 data-i18n="roadmap_2027_title">Future Vision</h3>
-                            <ul>
-                                <li data-i18n="roadmap_2027_1">Decentralized fitness marketplace</li>
-                                <li data-i18n="roadmap_2027_2">Health data integration with medical providers</li>
-                                <li data-i18n="roadmap_2027_3">Expansion to wellness and nutrition sectors</li>
+                                <li>AI-powered recommendations</li>
+                                <li>Gamification and rewards system</li>
+                                <li>Advanced payment options and subscriptions</li>
                             </ul>
                         </div>
                     </div>
@@ -215,17 +495,31 @@
             </div>
 
             <div class="whitepaper-section">
-                <h2 data-i18n="wp_conclusion">Conclusion</h2>
-                <p data-i18n="wp_conclusion_p1">KinetraX represents a paradigm shift in how fitness services are delivered and consumed. By leveraging blockchain technology, we create a more transparent, efficient, and rewarding ecosystem for both trainers and athletes.</p>
-                <p data-i18n="wp_conclusion_p2">We invite you to join us on this journey to revolutionize the fitness industry through blockchain innovation.</p>
+                <h2>10. Conclusion</h2>
+                <p>KinetraX represents a new paradigm in fitness marketplace platforms, leveraging blockchain technology to create a transparent, efficient, and user-friendly experience. By combining Telegram's accessibility with TON blockchain's efficiency, we've built a platform that benefits both trainers and athletes while maintaining minimal operational costs.</p>
+                <p>The platform is currently operational with core features implemented and actively serving users. As we continue to develop and enhance the platform, we remain committed to our core principles: transparency, efficiency, and user empowerment.</p>
+            </div>
 
-                <div class="cta-buttons">
-                    <a href="./" class="btn primary" data-i18n="back_to_home">Back to Home</a>
+            <div class="whitepaper-section">
+                <h2>Contact & Resources</h2>
+                <p><strong>Platform:</strong> <a href="https://kinetra-x.com/" target="_blank">https://kinetra-x.com/</a></p>
+                
+
+                <p><strong>Support:</strong></p>
+                <p>For questions, support, or partnership inquiries, please contact through official channels.</p>
+            </div>
+
+            <div class="whitepaper-section" style="margin-top: 4rem; padding-top: 2rem; border-top: 2px solid var(--light-gray);">
+                <p style="color: var(--gray); font-style: italic; text-align: center;">
+                    <em>This whitepaper reflects the current state of the KinetraX platform as of January 2026. Features and specifications are subject to change as the platform evolves.</em>
+                </p>
                 </div>
+
+            <div class="cta-buttons" style="margin-top: 3rem;">
+                <a href="./" class="btn primary">Back to Home</a>
             </div>
         </div>
     </section>
-    -->
 
     <!-- Footer -->
     <footer>

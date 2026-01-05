@@ -3,14 +3,14 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://kinetrax.io/</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kinetrax.io/"/>
   </url>
   <url>
     <loc>https://kinetrax.io/whitepaper</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kinetrax.io/whitepaper"/>

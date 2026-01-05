@@ -1297,6 +1297,24 @@ header a:hover {
     margin: 1.5rem 0 1rem;
 }
 
+.whitepaper-section h4 {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin: 1.2rem 0 0.8rem;
+    font-weight: 600;
+}
+
+.whitepaper-section ul ul {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+}
+
+.whitepaper-section ul ul li {
+    margin-bottom: 0.3rem;
+    font-size: 0.95em;
+}
+
 .whitepaper-section p, 
 .whitepaper-section ul {
     margin-bottom: 1rem;
@@ -1313,6 +1331,30 @@ header a:hover {
 .whitepaper-section .cta-buttons {
     margin-top: 2rem;
     text-align: center;
+}
+
+.whitepaper-section code {
+    background-color: var(--light-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+    color: var(--primary-color);
+    border: 1px solid var(--light-gray);
+}
+
+.whitepaper-section ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.whitepaper-section ol li {
+    margin-bottom: 0.5rem;
+}
+
+.whitepaper-section strong {
+    color: var(--text-color);
+    font-weight: 600;
 }
 
 /* Roadmap Styles */
