@@ -46,6 +46,19 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/logos/kinetra-logo.svg">
     
+    <!-- Resource Hints for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="preload" href="assets/logos/kinetra-logo.svg" as="image" type="image/svg+xml">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" as="style">
+    
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -155,7 +168,7 @@
         <div class="container">
             <a href="./">
                 <div class="logo">
-                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo">
+                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo" width="40" height="40">
                     <h1>KinetraX</h1>
                 </div>
             </a>
@@ -350,7 +363,7 @@
                         <div class="app-screen active" data-step="1">
                             <div class="app-header">
                                 <div class="app-logo">
-                                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo" class="app-logo-img">
+                                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo" class="app-logo-img" width="24" height="24" loading="lazy">
                                     <span>KinetraX</span>
                                 </div>
                             </div>
@@ -383,7 +396,7 @@
                         <div class="app-screen" data-step="2">
                             <div class="app-header">
                                 <div class="app-logo">
-                                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo" class="app-logo-img">
+                                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo" class="app-logo-img" width="24" height="24" loading="lazy">
                                     <span>KinetraX</span>
                                 </div>
                             </div>
@@ -414,7 +427,7 @@
                         <div class="app-screen" data-step="3">
                             <div class="app-header">
                                 <div class="app-logo">
-                                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo" class="app-logo-img">
+                                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo" class="app-logo-img" width="24" height="24" loading="lazy">
                                     <span>KinetraX</span>
                                 </div>
                             </div>
@@ -441,7 +454,7 @@
                         <div class="app-screen" data-step="4">
                             <div class="app-header">
                                 <div class="app-logo">
-                                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo" class="app-logo-img">
+                                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo" class="app-logo-img" width="24" height="24" loading="lazy">
                                     <span>KinetraX</span>
                                 </div>
                             </div>
@@ -493,7 +506,12 @@
 
             <div class="events-grid">
                 <div class="event-card">
-                    <img src="assets/images/event1.png" alt="Yoga on the beach">
+                    <img src="assets/images/event1.png" 
+                         alt="Yoga on the beach" 
+                         loading="lazy" 
+                         decoding="async"
+                         width="400" 
+                         height="300">
                     <h3 data-i18n="yoga_beach">Yoga on the Beach</h3>
                     <div class="event-details">
                         <p><i class="fas fa-map-marker-alt"></i> <span data-i18n="central_beach">Central Beach</span></p>
@@ -503,7 +521,12 @@
                 </div>
 
                 <div class="event-card">
-                    <img src="assets/images/event2.png" alt="Marathon Run">
+                    <img src="assets/images/event2.png" 
+                         alt="Marathon Run" 
+                         loading="lazy" 
+                         decoding="async"
+                         width="400" 
+                         height="300">
                     <h3 data-i18n="marathon_run">Marathon Run</h3>
                     <div class="event-details">
                         <p><i class="fas fa-map-marker-alt"></i> <span data-i18n="city_park">City Park</span></p>
@@ -513,7 +536,12 @@
                 </div>
 
                 <div class="event-card">
-                    <img src="assets/images/event3.png" alt="Personal Training">
+                    <img src="assets/images/event3.png" 
+                         alt="Personal Training" 
+                         loading="lazy" 
+                         decoding="async"
+                         width="400" 
+                         height="300">
                     <h3 data-i18n="personal_training">Personal Training</h3>
                     <div class="event-details">
                         <p><i class="fas fa-map-marker-alt"></i> <span data-i18n="fitness_center">Fitness Center</span></p>
@@ -549,7 +577,12 @@
                 </div>
 
                 <div class="token-image">
-                    <img src="assets/images/token.png" alt="KinetraX Token">
+                    <img src="assets/images/token.png" 
+                         alt="KinetraX Token" 
+                         loading="lazy" 
+                         decoding="async"
+                         width="400" 
+                         height="400">
                 </div>
             </div>
         </div>
@@ -588,7 +621,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo">
+                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo" width="40" height="40" loading="lazy">
                     <h2>KinetraX</h2>
                 </div>
 
@@ -604,7 +637,7 @@
                 </div>
 
                 <div class="partners">
-                    <img src="assets/images/ton-logo.svg" alt="TON Logo">
+                    <img src="assets/images/ton-logo.svg" alt="TON Logo" loading="lazy" width="100" height="100">
                 </div>
             </div>
 
@@ -627,7 +660,7 @@
         </div>
     </div>
 
-    <script src="js/translations.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/translations.js" defer></script>
+    <script src="js/script.js" defer></script>
 </body>
 </html>
