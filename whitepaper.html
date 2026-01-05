@@ -105,31 +105,6 @@
                     <li><strong>Blockchain Layer</strong>: TON smart contracts for payments</li>
                 </ol>
 
-                <h3>2.3 Database Schema</h3>
-                <p><strong>Users:</strong></p>
-                <ul>
-                    <li>Unique Telegram user ID (primary key)</li>
-                    <li>First name and last name</li>
-                    <li>Professional description</li>
-                    <li>Created/updated timestamps</li>
-                </ul>
-
-                <p><strong>Sessions:</strong></p>
-                <ul>
-                    <li>Unique session ID (UUID)</li>
-                    <li>Session name, type, and description</li>
-                    <li>Location coordinates (latitude/longitude)</li>
-                    <li>Start date/time and duration</li>
-                    <li>Price (in TON)</li>
-                    <li>Number of available slots</li>
-                    <li>Creator wallet address</li>
-                    <li>Creator ID (foreign key to users)</li>
-                </ul>
-
-                <p><strong>Relations:</strong></p>
-                <ul>
-                    <li>Many-to-many relationship between sessions and users (participants)</li>
-                </ul>
             </div>
 
             <div class="whitepaper-section">
