@@ -164,7 +164,7 @@
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header id="header">
         <div class="container">
             <a href="./">
                 <div class="logo">
@@ -172,20 +172,37 @@
                     <h1>KinetraX</h1>
                 </div>
             </a>
-            <div class="language-dropdown">
-                <div class="selected-language">
-                    <span>EN</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <ul class="language-options">
-                    <!-- Language options will be populated by JavaScript -->
+            <nav class="main-nav" id="main-nav">
+                <ul class="nav-menu">
+                    <li><a href="#hero" class="nav-link active">Home</a></li>
+                    <li><a href="#benefits" class="nav-link">Benefits</a></li>
+                    <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                    <li><a href="#events" class="nav-link">Events</a></li>
+                    <li><a href="#token" class="nav-link">Token</a></li>
+                    <li><a href="#faq" class="nav-link">FAQ</a></li>
                 </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="language-dropdown">
+                    <div class="selected-language">
+                        <span>EN</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <ul class="language-options">
+                        <!-- Language options will be populated by JavaScript -->
+                    </ul>
+                </div>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="hero">
         <div class="fitness-map-animation">
             <svg width="100%" height="100%" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice">
                 <!-- Map background with grid -->
@@ -282,17 +299,21 @@
         </div>
         <div class="container">
             <div class="hero-content">
-                <h2 data-i18n="hero_title">Create workouts, participate in events, and pay through TON blockchain</h2>
+                <h2 data-i18n="hero_title">Join the Future of Fitness on Blockchain</h2>
+                <p class="hero-subtitle" data-i18n="hero_subtitle">Connect with trainers, participate in events, and earn rewards through TON blockchain</p>
                 <div class="cta-buttons">
-                    <a href="#" class="btn primary" data-i18n="become_trainer">Become a Trainer</a>
-                    <a href="#" class="btn secondary" data-i18n="find_workout">Find a Workout</a>
+                    <a href="https://t.me/kinetraX" target="_blank" class="btn primary telegram-cta">
+                        <i class="fab fa-telegram"></i>
+                        <span data-i18n="join_telegram">Join Our Telegram</span>
+                    </a>
+                    <a href="#how-it-works" class="btn secondary" data-i18n="learn_more">Learn More</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Benefits Section -->
-    <section class="benefits">
+    <section class="benefits" id="benefits">
         <div class="container">
             <h2 class="section-title" data-i18n="platform_benefits">Platform Benefits</h2>
 
@@ -327,7 +348,7 @@
     </section>
 
     <!-- How It Works Section -->
-    <section class="how-it-works">
+    <section class="how-it-works" id="how-it-works">
         <div class="container">
             <h2 class="section-title" data-i18n="how_it_works">How It Works</h2>
 
@@ -500,7 +521,7 @@
     </section>
 
     <!-- Event Examples Section -->
-    <section class="event-examples">
+    <section class="event-examples" id="events">
         <div class="container">
             <h2 class="section-title" data-i18n="event_examples">Event Examples</h2>
 
@@ -554,7 +575,7 @@
     </section>
 
     <!-- Token Section -->
-    <section class="token">
+    <section class="token" id="token">
         <div class="container">
             <h2 class="section-title" data-i18n="kinetrax_token">KinetraX Token</h2>
 
@@ -563,19 +584,17 @@
                     <h3 data-i18n="ecosystem_role">Role in the Ecosystem</h3>
                     <ul>
                         <li><i class="fas fa-check-circle"></i> <span data-i18n="discounts">Discounts on platform services</span></li>
-<!--                        <li><i class="fas fa-check-circle"></i> <span data-i18n="staking_rewards">Staking for rewards</span></li>-->
-<!--                        <li><i class="fas fa-check-circle"></i> <span data-i18n="voting">Voting on platform development</span></li>-->
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="staking_rewards">Staking for rewards</span></li>
                     </ul>
 
                     <h3 data-i18n="token_distribution">Token Distribution</h3>
                     <ul>
                         <li><i class="fas fa-info-circle"></i> <span data-i18n="total_supply">Total Supply: 21 million</span></li>
-<!--                        <li><i class="fas fa-info-circle"></i> <span data-i18n="distribution_details">Distribution: 40% for users, 20% team</span></li>-->
                     </ul>
 
                     <a href="https://tonscan.org/jetton/EQBUMSTVkfi0GaAl1q8rGXIKmSnU3_Uyd6wsvP6UN_r9DiBc" target="_blank" class="btn secondary" data-i18n="view_explorer">View on Blockchain Explorer</a>
-                </div>
 
+                </div>
                 <div class="token-image">
                     <img src="assets/images/token.png" 
                          alt="KinetraX Token" 
@@ -583,6 +602,120 @@
                          decoding="async"
                          width="400" 
                          height="400">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Pricing Comparison Section -->
+    <section class="pricing-comparison">
+        <div class="container">
+            <h2 class="section-title" data-i18n="pricing_comparison">Value Comparison</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card traditional">
+                    <h3>Traditional Platforms</h3>
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <i class="fas fa-times"></i>
+                            <span>High commission fees (15-30%)</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-times"></i>
+                            <span>Delayed payments</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-times"></i>
+                            <span>Limited payment options</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-times"></i>
+                            <span>No token rewards</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-times"></i>
+                            <span>Centralized control</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pricing-card kinetrax">
+                    <h3>KinetraX</h3>
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Low fees (2-5%)</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Instant payments via smart contracts</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>TON & KinetraX token support</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Staking rewards & discounts</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Decentralized & transparent</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title" data-i18n="faq_title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faq_blockchain_q">How do blockchain payments work?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-i18n="faq_blockchain_a">Blockchain payments on KinetraX use smart contracts on the TON blockchain. When you book a session, funds are held in escrow and automatically released to the trainer after completion. This ensures security and transparency for both parties.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faq_verification_q">How does trainer verification work?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-i18n="faq_verification_a">Trainers submit their credentials and certifications through our platform. Our verification team reviews the documents and verifies them on the blockchain. Once verified, trainers receive a blockchain-verified badge that builds trust with athletes.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faq_staking_q">What are token staking and rewards?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-i18n="faq_staking_a">Staking KinetraX tokens allows you to lock your tokens for a period and earn rewards. The longer you stake, the higher the rewards. Stakers also receive discounts on platform fees and exclusive access to premium features.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faq_security_q">Is my data and money secure?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-i18n="faq_security_a">Yes! All transactions are secured by smart contracts on the TON blockchain, which is immutable and transparent. Your personal data is encrypted and stored securely. We never have access to your wallet or private keys.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3 data-i18n="faq_fees_q">What are the platform fees?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-i18n="faq_fees_a">KinetraX charges only 2-5% in platform fees, significantly lower than traditional booking platforms. If you pay with KinetraX tokens, you receive additional discounts. Stakers enjoy even lower fees.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -605,7 +738,6 @@
                     <h3 data-i18n="roadmap">Roadmap</h3>
                     <p data-i18n="roadmap_desc">Development plans and milestones</p>
                 </a>
-
 
                 <a href="#" class="doc-card">
                     <i class="fas fa-user-check"></i>

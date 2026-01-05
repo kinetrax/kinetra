@@ -1,4 +1,153 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Header scroll effect
+    const header = document.getElementById('header');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', function() {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        
+        lastScroll = currentScroll;
+    });
+
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+    const navLinks = document.querySelectorAll('.nav-link');
+    let menuBackdrop = null;
+
+    function createBackdrop() {
+        if (!menuBackdrop) {
+            menuBackdrop = document.createElement('div');
+            menuBackdrop.className = 'menu-backdrop';
+            menuBackdrop.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 998; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;';
+            document.body.appendChild(menuBackdrop);
+            menuBackdrop.addEventListener('click', closeMobileMenu);
+        }
+        return menuBackdrop;
+    }
+
+    function openMobileMenu() {
+        if (!mainNav || !mobileMenuToggle) return;
+        mobileMenuToggle.classList.add('active');
+        mainNav.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        const backdrop = createBackdrop();
+        backdrop.style.opacity = '1';
+        backdrop.style.visibility = 'visible';
+    }
+
+    function closeMobileMenu() {
+        if (!mainNav || !mobileMenuToggle) return;
+        mobileMenuToggle.classList.remove('active');
+        mainNav.classList.remove('active');
+        document.body.style.overflow = '';
+        if (menuBackdrop) {
+            menuBackdrop.style.opacity = '0';
+            menuBackdrop.style.visibility = 'hidden';
+        }
+    }
+
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            if (mainNav && mainNav.classList.contains('active')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+    }
+
+    // Close mobile menu when clicking on a link
+    if (navLinks.length > 0) {
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                closeMobileMenu();
+            });
+        });
+    }
+
+    // Close mobile menu on window resize if it's desktop size
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 992 && mainNav && mainNav.classList.contains('active')) {
+            closeMobileMenu();
+        }
+    });
+
+    // Active section highlighting in navigation
+    const sections = document.querySelectorAll('section[id]');
+    const navLinksArray = Array.from(navLinks);
+
+    function updateActiveNav() {
+        const scrollY = window.pageYOffset;
+
+        sections.forEach(section => {
+            const sectionHeight = section.offsetHeight;
+            const sectionTop = section.offsetTop - 100;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                navLinksArray.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+
+    // Smooth scroll for navigation links
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const targetId = href.substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = targetSection.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+
+
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', function() {
+            const isActive = item.classList.contains('active');
+            
+            // Close all FAQ items
+            faqItems.forEach(faqItem => {
+                faqItem.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+
     // Phone Mockup Interactivity
     const steps = document.querySelectorAll('.step');
     const appScreens = document.querySelectorAll('.app-screen');
@@ -296,27 +445,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Animation on scroll
-    // This is a simple implementation. In a production environment,
-    // you might want to use a library like AOS (Animate On Scroll)
-    const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.benefit-card, .step, .event-card, .doc-card');
-
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-
-            if (elementPosition < windowHeight - 100) {
-                element.classList.add('animated');
+    // Enhanced animation on scroll with Intersection Observer
+    const animatedElements = document.querySelectorAll('.benefit-card, .step, .event-card, .doc-card, .pricing-card, .faq-item');
+    
+    const animationObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('animated');
+                }, index * 100); // Stagger animation
+                animationObserver.unobserve(entry.target);
             }
         });
-    };
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
 
-    // Initial check on page load
-    animateOnScroll();
-
-    // Check on scroll
-    window.addEventListener('scroll', animateOnScroll);
+    animatedElements.forEach(element => {
+        animationObserver.observe(element);
+    });
 
     // Modal functionality
     const modal = document.getElementById('coming-soon-modal');
