@@ -1,19 +1,45 @@
+// Throttle function for performance
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
+}
+
+// RequestAnimationFrame throttle for scroll
+let ticking = false;
+function requestTick(fn) {
+    if (!ticking) {
+        requestAnimationFrame(fn);
+        ticking = true;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Header scroll effect
+    // Header scroll effect - optimized with RAF
     const header = document.getElementById('header');
     let lastScroll = 0;
 
-    window.addEventListener('scroll', function() {
+    function updateHeader() {
         const currentScroll = window.pageYOffset;
-        
         if (currentScroll > 100) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
-        
         lastScroll = currentScroll;
-    });
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+        requestTick(updateHeader);
+    }, { passive: true });
 
     // Mobile menu toggle
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
@@ -81,12 +107,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Active section highlighting in navigation
+    // Active section highlighting in navigation - optimized with throttling
     const sections = document.querySelectorAll('section[id]');
     const navLinksArray = Array.from(navLinks);
 
     function updateActiveNav() {
         const scrollY = window.pageYOffset;
+        let currentSection = '';
 
         sections.forEach(section => {
             const sectionHeight = section.offsetHeight;
@@ -94,17 +121,20 @@ document.addEventListener('DOMContentLoaded', function() {
             const sectionId = section.getAttribute('id');
 
             if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                navLinksArray.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
-                        link.classList.add('active');
-                    }
-                });
+                currentSection = sectionId;
             }
         });
+
+        if (currentSection) {
+            navLinksArray.forEach(link => {
+                const isActive = link.getAttribute('href') === `#${currentSection}`;
+                link.classList.toggle('active', isActive);
+            });
+        }
     }
 
-    window.addEventListener('scroll', updateActiveNav);
+    const throttledUpdateNav = throttle(updateActiveNav, 100);
+    window.addEventListener('scroll', throttledUpdateNav, { passive: true });
 
     // Smooth scroll for navigation links
     navLinks.forEach(link => {
@@ -445,26 +475,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Enhanced animation on scroll with Intersection Observer
+    // Enhanced animation on scroll with Intersection Observer - optimized
     const animatedElements = document.querySelectorAll('.benefit-card, .step, .event-card, .doc-card, .pricing-card, .faq-item');
     
-    const animationObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                setTimeout(() => {
+    if (animatedElements.length > 0 && 'IntersectionObserver' in window) {
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
                     entry.target.classList.add('animated');
-                }, index * 100); // Stagger animation
-                animationObserver.unobserve(entry.target);
-            }
+                    animationObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '50px'
         });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
 
-    animatedElements.forEach(element => {
-        animationObserver.observe(element);
-    });
+        animatedElements.forEach(element => {
+            animationObserver.observe(element);
+        });
+    } else {
+        // Fallback for browsers without IntersectionObserver
+        animatedElements.forEach(element => {
+            element.classList.add('animated');
+        });
+    }
 
     // Modal functionality
     const modal = document.getElementById('coming-soon-modal');
@@ -485,20 +520,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = ''; // Restore scrolling
     }
 
-    // Event listeners for buttons
-    if (becomeTrainerBtn) {
-        becomeTrainerBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            openModal();
-        });
-    }
-
-    if (findWorkoutBtn) {
-        findWorkoutBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            openModal();
-        });
-    }
 
     // Event listeners for documentation buttons
     if (docCardBtns.length > 0) {
