@@ -638,9 +638,6 @@ header a:hover {
     padding: 2rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease;
-}
-
-.benefit-card {
     will-change: transform;
 }
 
@@ -1139,9 +1136,6 @@ header a:hover {
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease;
-}
-
-.event-card {
     will-change: transform;
 }
 
@@ -1191,14 +1185,6 @@ header a:hover {
     gap: 3rem;
     flex-wrap: wrap;
 }
-
-
-.tokenomics-svg {
-    width: 200px;
-    height: 200px;
-    transform: rotate(-90deg);
-}
-
 
 .token-description {
     flex: 1;
@@ -1547,7 +1533,7 @@ footer {
 }
 
 /* Initially hide elements that will be animated */
-.benefit-card, .step, .event-card, .doc-card, .testimonial-card, .pricing-card, .faq-item {
+.benefit-card, .step, .event-card, .doc-card, .pricing-card, .faq-item {
     opacity: 0;
 }
 
@@ -1901,20 +1887,8 @@ footer {
         width: 100%;
     }
 
-    .hero-stats {
-        gap: 1.5rem;
-    }
-
-    .stat-number {
-        font-size: 2rem;
-    }
-
     .token-visualization {
         flex-direction: column;
-    }
-
-    .tokenomics-chart {
-        width: 100%;
     }
 
     /* Language dropdown adjustments */
