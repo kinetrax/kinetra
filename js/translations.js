@@ -5,6 +5,14 @@ const translations = {
         "title": "KinetraX - Blockchain Fitness Platform",
         "description": "Create workouts, participate in events, and pay through TON blockchain",
 
+        // Navigation Menu
+        "nav_home": "Home",
+        "nav_benefits": "Benefits",
+        "nav_how_it_works": "How It Works",
+        "nav_events": "Events",
+        "nav_token": "Token",
+        "nav_faq": "FAQ",
+
         // Whitepaper
         "wp_executive_summary": "Executive Summary",
         "wp_summary_p1": "KinetraX is a blockchain-based fitness platform that connects trainers and athletes using TON blockchain technology. Our platform enables secure verification of trainers, transparent payment processing, and incentivizes participation through the KinetraX token.",
@@ -342,6 +350,14 @@ const translations = {
         // Header
         "title": "KinetraX - Блокчейн-платформа для фитнеса",
         "description": "Создавайте тренировки, участвуйте в мероприятиях и платите через блокчейн TON",
+
+        // Navigation Menu
+        "nav_home": "Главная",
+        "nav_benefits": "Преимущества",
+        "nav_how_it_works": "Как это работает",
+        "nav_events": "События",
+        "nav_token": "Токен",
+        "nav_faq": "FAQ",
 
         // Whitepaper
         "wp_executive_summary": "Краткое содержание",
