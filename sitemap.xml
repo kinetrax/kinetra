@@ -2,32 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://kinetrax.io/</loc>
+    <loc>https://kinetra-x.com/</loc>
     <lastmod>2026-01-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kinetrax.io/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kinetra-x.com/"/>
   </url>
   <url>
-    <loc>https://kinetrax.io/whitepaper</loc>
+    <loc>https://kinetra-x.com/whitepaper</loc>
     <lastmod>2026-01-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kinetrax.io/whitepaper"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kinetra-x.com/whitepaper"/>
   </url>
   <url>
-    <loc>https://kinetrax.io/privacy-policy</loc>
+    <loc>https://kinetra-x.com/privacy-policy</loc>
     <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kinetrax.io/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kinetra-x.com/privacy-policy"/>
   </url>
   <url>
-    <loc>https://kinetrax.io/terms-of-use</loc>
+    <loc>https://kinetra-x.com/terms-of-use</loc>
     <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kinetrax.io/terms-of-use"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kinetra-x.com/terms-of-use"/>
   </url>
 </urlset>
 

@@ -228,7 +228,7 @@ const translations = {
         // Footer
         "privacy_policy": "Privacy Policy",
         "terms_of_use": "Terms of Use",
-        "contact_email": "contact@kinetrax.io",
+        "contact_email": "contact@kinetra-x.com",
         "copyright": "© 2025 KinetraX. All rights reserved.",
 
         // Privacy Policy Page
@@ -274,7 +274,7 @@ const translations = {
         "privacy_rights_correct": "Correct inaccurate data",
         "privacy_rights_delete": "Request deletion of your data (with blockchain limitations explained)",
         "privacy_rights_portability": "Data portability",
-        "privacy_rights_contact": "To exercise these rights, please contact us at privacy@kinetrax.io.",
+        "privacy_rights_contact": "To exercise these rights, please contact us at privacy@kinetra-x.com.",
         "privacy_security_title": "7. Security",
         "privacy_security_content": "We implement appropriate security measures to protect your personal information. However, no method of transmission over the Internet or electronic storage is 100% secure. We recommend using strong passwords for your wallet and following best practices for blockchain security.",
         "privacy_children_title": "8. Children's Privacy",
@@ -284,7 +284,7 @@ const translations = {
         "privacy_changes_date": "Last Updated: May 25, 2023",
         "privacy_contact_title": "10. Contact Us",
         "privacy_contact_p1": "If you have any questions about this Privacy Policy, please contact us at:",
-        "privacy_contact_email": "Email: privacy@kinetrax.io",
+        "privacy_contact_email": "Email: privacy@kinetra-x.com",
 
         // Terms of Use Page
         "terms_of_use_title": "Terms of Use",
@@ -344,7 +344,7 @@ const translations = {
         "terms_governing_law_p2": "Any disputes arising from these terms will be resolved through arbitration in accordance with the rules of [Arbitration Association].",
         "terms_contact_title": "12. Contact Information",
         "terms_contact_p1": "If you have any questions about these Terms of Use, please contact us at:",
-        "terms_contact_email": "Email: legal@kinetrax.io"
+        "terms_contact_email": "Email: legal@kinetra-x.com"
     },
     ru: {
         // Header
@@ -573,7 +573,7 @@ const translations = {
         // Footer
         "privacy_policy": "Политика конфиденциальности",
         "terms_of_use": "Условия использования",
-        "contact_email": "contact@kinetrax.io",
+        "contact_email": "contact@kinetra-x.com",
         "copyright": "© 2025 KinetraX. Все права защищены.",
 
         // Privacy Policy Page
@@ -619,7 +619,7 @@ const translations = {
         "privacy_rights_correct": "Исправить неточные данные",
         "privacy_rights_delete": "Запросить удаление ваших данных (с объяснением ограничений блокчейна)",
         "privacy_rights_portability": "Переносимость данных",
-        "privacy_rights_contact": "Для осуществления этих прав, пожалуйста, свяжитесь с нами по адресу privacy@kinetrax.io.",
+        "privacy_rights_contact": "Для осуществления этих прав, пожалуйста, свяжитесь с нами по адресу privacy@kinetra-x.com.",
         "privacy_security_title": "7. Безопасность",
         "privacy_security_content": "Мы применяем соответствующие меры безопасности для защиты вашей личной информации. Однако ни один метод передачи через Интернет или электронного хранения не является на 100% безопасным. Мы рекомендуем использовать надежные пароли для вашего кошелька и следовать лучшим практикам безопасности блокчейна.",
         "privacy_children_title": "8. Конфиденциальность детей",
@@ -629,7 +629,7 @@ const translations = {
         "privacy_changes_date": "Последнее обновление: 25 мая 2023 г.",
         "privacy_contact_title": "10. Свяжитесь с нами",
         "privacy_contact_p1": "Если у вас есть вопросы об этой Политике конфиденциальности, пожалуйста, свяжитесь с нами по адресу:",
-        "privacy_contact_email": "Email: privacy@kinetrax.io",
+        "privacy_contact_email": "Email: privacy@kinetra-x.com",
 
         // Terms of Use Page
         "terms_of_use_title": "Условия использования",
@@ -689,6 +689,6 @@ const translations = {
         "terms_governing_law_p2": "Любые споры, возникающие из этих условий, будут разрешаться через арбитраж в соответствии с правилами [Арбитражная ассоциация].",
         "terms_contact_title": "12. Контактная информация",
         "terms_contact_p1": "Если у вас есть вопросы об этих Условиях использования, пожалуйста, свяжитесь с нами по адресу:",
-        "terms_contact_email": "Email: legal@kinetrax.io"
+        "terms_contact_email": "Email: legal@kinetra-x.com"
     }
 };

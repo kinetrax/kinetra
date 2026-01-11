@@ -7,7 +7,7 @@ Allow: /
 # Disallow: /private/
 
 # Sitemap location
-Sitemap: https://kinetrax.io/sitemap.xml
+Sitemap: https://kinetra-x.com/sitemap.xml
 
 # Crawl-delay (optional, in seconds)
 # Crawl-delay: 1
