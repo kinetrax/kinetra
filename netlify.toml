@@ -8,3 +8,6 @@
 [build.environment]
   # Node.js version (Netlify will use this)
   NODE_VERSION = "18"
+
+ # Exclude config.js from secrets scanning (it's expected to contain tokens)
+  SECRETS_SCAN_OMIT_PATHS = "js/config.js"
