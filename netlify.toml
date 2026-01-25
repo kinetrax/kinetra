@@ -1,0 +1,10 @@
+[build]
+  # Build command - generates config.js from environment variables
+  command = "npm run config"
+  
+  # Publish directory - Netlify will serve files from root
+  publish = "."
+
+[build.environment]
+  # Node.js version (Netlify will use this)
+  NODE_VERSION = "18"

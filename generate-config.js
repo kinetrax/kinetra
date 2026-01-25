@@ -8,50 +8,59 @@ var path = require('path');
 var configPath = path.join(__dirname, 'js', 'config.js');
 var envPath = path.join(__dirname, '.env');
 
-// Check if .env file exists
-if (!fs.existsSync(envPath)) {
-    process.exit(1);
-}
+// Read values from environment variables (Netlify) or .env file (local)
+var telegramBotToken = '';
+var telegramChatId = '';
+var telegramChannelUrl = 'https://t.me/kinetraX';
+var twitterUrl = 'https://x.com/kinetrax';
 
-// Read and parse .env file manually (no dotenv dependency needed)
-function parseEnvFile(filePath) {
-    var envContent = fs.readFileSync(filePath, 'utf8');
-    var envVars = {};
-    var lines = envContent.split('\n');
-    
-    for (var i = 0; i < lines.length; i++) {
-        var line = lines[i].trim();
+// Check if running on Netlify (environment variables available)
+if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
+    // Use Netlify environment variables
+    telegramBotToken = process.env.TELEGRAM_BOT_TOKEN || '';
+    telegramChatId = process.env.TELEGRAM_CHAT_ID || '';
+    telegramChannelUrl = process.env.TELEGRAM_CHANNEL_URL || 'https://t.me/kinetraX';
+    twitterUrl = process.env.TWITTER_URL || 'https://x.com/kinetrax';
+} else if (fs.existsSync(envPath)) {
+    // Fallback to .env file for local development
+    function parseEnvFile(filePath) {
+        var envContent = fs.readFileSync(filePath, 'utf8');
+        var envVars = {};
+        var lines = envContent.split('\n');
         
-        // Remove comments and empty lines
-        if (!line || line.indexOf('#') === 0) {
-            continue;
-        }
-        
-        // Parse KEY=VALUE format
-        var equalIndex = line.indexOf('=');
-        if (equalIndex > 0) {
-            var key = line.substring(0, equalIndex).trim();
-            var value = line.substring(equalIndex + 1).trim();
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i].trim();
             
-            // Remove quotes if present
-            if ((value.indexOf('"') === 0 && value.lastIndexOf('"') === value.length - 1) ||
-                (value.indexOf("'") === 0 && value.lastIndexOf("'") === value.length - 1)) {
-                value = value.substring(1, value.length - 1);
+            // Remove comments and empty lines
+            if (!line || line.indexOf('#') === 0) {
+                continue;
             }
             
-            envVars[key] = value;
+            // Parse KEY=VALUE format
+            var equalIndex = line.indexOf('=');
+            if (equalIndex > 0) {
+                var key = line.substring(0, equalIndex).trim();
+                var value = line.substring(equalIndex + 1).trim();
+                
+                // Remove quotes if present
+                if ((value.indexOf('"') === 0 && value.lastIndexOf('"') === value.length - 1) ||
+                    (value.indexOf("'") === 0 && value.lastIndexOf("'") === value.length - 1)) {
+                    value = value.substring(1, value.length - 1);
+                }
+                
+                envVars[key] = value;
+            }
         }
+        
+        return envVars;
     }
     
-    return envVars;
+    var envVars = parseEnvFile(envPath);
+    telegramBotToken = envVars.TELEGRAM_BOT_TOKEN || '';
+    telegramChatId = envVars.TELEGRAM_CHAT_ID || '';
+    telegramChannelUrl = envVars.TELEGRAM_CHANNEL_URL || 'https://t.me/kinetraX';
+    twitterUrl = envVars.TWITTER_URL || 'https://x.com/kinetrax';
 }
-
-// Read values from .env
-var envVars = parseEnvFile(envPath);
-var telegramBotToken = envVars.TELEGRAM_BOT_TOKEN || '';
-var telegramChatId = envVars.TELEGRAM_CHAT_ID || '';
-var telegramChannelUrl = envVars.TELEGRAM_CHANNEL_URL || 'https://t.me/kinetraX';
-var twitterUrl = envVars.TWITTER_URL || 'https://x.com/kinetrax';
 
 // Validate required values
 if (!telegramBotToken || !telegramChatId) {
