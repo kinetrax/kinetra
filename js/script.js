@@ -161,22 +161,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // FAQ Accordion
     const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        question.addEventListener('click', function() {
-            const isActive = item.classList.contains('active');
-            
-            // Close all FAQ items
-            faqItems.forEach(faqItem => {
-                faqItem.classList.remove('active');
-            });
-            
-            // Open clicked item if it wasn't active
-            if (!isActive) {
-                item.classList.add('active');
+    if (faqItems.length > 0) {
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            if (question) {
+                question.addEventListener('click', function() {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all FAQ items
+                    faqItems.forEach(faqItem => {
+                        faqItem.classList.remove('active');
+                    });
+                    
+                    // Open clicked item if it wasn't active
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
             }
         });
-    });
+    }
 
     // Phone Mockup Interactivity
     const steps = document.querySelectorAll('.step');
@@ -184,13 +188,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to activate a specific step and show corresponding app screen
     function activateStep(stepIndex) {
+        if (!steps.length || !appScreens.length) {
+            return; // Skip if elements don't exist on this page
+        }
+        
         // Remove active class from all steps
         steps.forEach(step => {
             step.classList.remove('active-step');
         });
 
         // Add active class to the clicked step
-        steps[stepIndex].classList.add('active-step');
+        if (steps[stepIndex]) {
+            steps[stepIndex].classList.add('active-step');
+        }
 
         // Hide all app screens
         appScreens.forEach(screen => {
@@ -198,35 +208,42 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Show the corresponding app screen
-        appScreens[stepIndex].classList.add('active');
+        if (appScreens[stepIndex]) {
+            appScreens[stepIndex].classList.add('active');
+        }
     }
 
     // Add click event listeners to steps
-    steps.forEach((step, index) => {
-        step.addEventListener('click', function() {
-            activateStep(index);
+    if (steps.length > 0) {
+        steps.forEach((step, index) => {
+            step.addEventListener('click', function() {
+                activateStep(index);
+            });
+
+            // Add hover event listeners for desktop
+            step.addEventListener('mouseenter', function() {
+                activateStep(index);
+            });
         });
 
-        // Add hover event listeners for desktop
-        step.addEventListener('mouseenter', function() {
-            activateStep(index);
-        });
-    });
+        // Initialize with the first step active
+        activateStep(0);
 
-    // Initialize with the first step active
-    activateStep(0);
+        // Auto-rotate through steps every 3 seconds
+        let currentStepIndex = 0;
+        const autoRotateInterval = setInterval(() => {
+            currentStepIndex = (currentStepIndex + 1) % steps.length;
+            activateStep(currentStepIndex);
+        }, 3000);
 
-    // Auto-rotate through steps every 3 seconds
-    let currentStepIndex = 0;
-    const autoRotateInterval = setInterval(() => {
-        currentStepIndex = (currentStepIndex + 1) % steps.length;
-        activateStep(currentStepIndex);
-    }, 3000);
-
-    // Stop auto-rotation when user interacts with steps
-    document.querySelector('.steps').addEventListener('mouseenter', () => {
-        clearInterval(autoRotateInterval);
-    });
+        // Stop auto-rotation when user interacts with steps
+        const stepsContainer = document.querySelector('.steps');
+        if (stepsContainer) {
+            stepsContainer.addEventListener('mouseenter', () => {
+                clearInterval(autoRotateInterval);
+            });
+        }
+    }
     // Fitness Map Animation Interactivity
     const fitnessMapAnimation = document.querySelector('.fitness-map-animation');
     const particles = document.querySelectorAll('.particle');
@@ -365,17 +382,29 @@ document.addEventListener('DOMContentLoaded', function() {
         document.documentElement.lang = lang;
 
         // Update page title
-        document.title = translations[lang].title;
+        if (translations[lang].title) {
+            document.title = translations[lang].title;
+        }
 
-        // Update meta description
-        document.querySelector('meta[name="description"]').content = translations[lang].description;
+        // Update meta description if it exists
+        const metaDescription = document.querySelector('meta[name="description"]');
+        if (metaDescription && translations[lang].description) {
+            metaDescription.content = translations[lang].description;
+        }
 
         // Update all elements with data-i18n attribute
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
             if (translations[lang][key]) {
-                // Update text content for all elements with data-i18n attribute
-                element.textContent = translations[lang][key];
+                // For input elements and buttons, update value or textContent
+                if (element.tagName === 'INPUT' || element.tagName === 'BUTTON') {
+                    if (element.type === 'submit' || element.type === 'button') {
+                        element.textContent = translations[lang][key];
+                    }
+                } else {
+                    // For other elements, update textContent
+                    element.textContent = translations[lang][key];
+                }
             }
         });
         
@@ -392,73 +421,94 @@ document.addEventListener('DOMContentLoaded', function() {
         currentLanguage = lang;
     }
 
-    // Language dropdown functionality
-    const languageDropdown = document.querySelector('.language-dropdown');
-    const selectedLanguage = document.querySelector('.selected-language span');
-    const languageOptions = document.querySelector('.language-options');
+    // Language dropdown functionality - Initialize after a short delay to ensure DOM is ready
+    setTimeout(function() {
+        const languageDropdown = document.querySelector('.language-dropdown');
+        const selectedLanguage = document.querySelector('.selected-language span');
+        const languageOptions = document.querySelector('.language-options');
 
-    // Set the initial selected language
-    selectedLanguage.textContent = currentLanguage.toUpperCase();
+        if (languageDropdown && selectedLanguage && languageOptions) {
+            // Set the initial selected language
+            selectedLanguage.textContent = currentLanguage.toUpperCase();
 
-    // Toggle dropdown when clicking on the selected language or its children
-    document.querySelector('.selected-language').addEventListener('click', function(e) {
-        e.stopPropagation();
-        // Force the dropdown to open if it's closed, or close if it's open
-        if (languageDropdown.classList.contains('active')) {
-            languageDropdown.classList.remove('active');
-        } else {
-            languageDropdown.classList.add('active');
-        }
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function() {
-        languageDropdown.classList.remove('active');
-    });
-
-    // Prevent dropdown from closing when clicking inside it
-    languageOptions.addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
-
-    // Clear existing options
-    languageOptions.innerHTML = '';
-
-    // Add an option for each supported language
-    Object.keys(translations).forEach(lang => {
-        const option = document.createElement('li');
-        option.classList.add('language-option');
-        option.textContent = lang.toUpperCase();
-
-        if (lang === currentLanguage) {
-            option.classList.add('active');
-        }
-
-        // Add click event listener
-        option.addEventListener('click', function() {
-            const language = this.textContent.toLowerCase();
-
-            // Only proceed if this is a different language
-            if (language !== currentLanguage) {
-                // Remove active class from all options
-                languageOptions.querySelectorAll('.language-option').forEach(opt => opt.classList.remove('active'));
-
-                // Add active class to clicked option
-                this.classList.add('active');
-
-                // Update the selected language display
-                selectedLanguage.textContent = this.textContent;
-
-                // Update the language
-                updateLanguage(language);
-
-                // Close the dropdown
-                languageDropdown.classList.remove('active');
+            // Toggle dropdown when clicking on the selected language
+            const selectedLanguageElement = document.querySelector('.selected-language');
+            if (selectedLanguageElement) {
+                // Remove any existing listeners by cloning and replacing
+                const newElement = selectedLanguageElement.cloneNode(true);
+                const parent = selectedLanguageElement.parentNode;
+                if (parent) {
+                    parent.replaceChild(newElement, selectedLanguageElement);
+                }
+                
+                newElement.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    
+                    // Toggle active class
+                    if (languageDropdown.classList.contains('active')) {
+                        languageDropdown.classList.remove('active');
+                    } else {
+                        languageDropdown.classList.add('active');
+                    }
+                });
             }
-        });
 
-        languageOptions.appendChild(option);
-    });
+            // Prevent dropdown from closing when clicking inside it
+            languageDropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                // Check if click is outside the dropdown
+                if (languageDropdown && !languageDropdown.contains(e.target)) {
+                    languageDropdown.classList.remove('active');
+                }
+            });
+
+            // Clear existing options
+            languageOptions.innerHTML = '';
+
+            // Add an option for each supported language
+            Object.keys(translations).forEach(lang => {
+                const option = document.createElement('li');
+                option.classList.add('language-option');
+                option.textContent = lang.toUpperCase();
+
+                if (lang === currentLanguage) {
+                    option.classList.add('active');
+                }
+
+                // Add click event listener
+                option.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const language = this.textContent.toLowerCase();
+
+                    // Only proceed if this is a different language
+                    if (language !== currentLanguage) {
+                        // Remove active class from all options
+                        languageOptions.querySelectorAll('.language-option').forEach(opt => opt.classList.remove('active'));
+
+                        // Add active class to clicked option
+                        this.classList.add('active');
+
+                        // Update the selected language display
+                        selectedLanguage.textContent = this.textContent;
+
+                        // Update the language
+                        updateLanguage(language);
+
+                        // Close the dropdown
+                        languageDropdown.classList.remove('active');
+                    }
+                });
+
+                languageOptions.appendChild(option);
+            });
+        }
+    }, 100);
 
     // Initialize with the saved or detected language
     updateLanguage(currentLanguage);

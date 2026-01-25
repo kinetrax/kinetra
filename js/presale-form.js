@@ -47,28 +47,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const formMessage = document.getElementById('formMessage');
     
     if (!form) {
-        console.error('Form not found! Make sure the form has id="airdropForm"');
         return;
     }
     
     if (!submitBtn) {
-        console.error('Submit button not found!');
         return;
     }
     
     if (!formMessage) {
-        console.error('Form message element not found!');
         return;
     }
     
-    console.log('Form initialized. Config:', {
-        hasToken: !!PRESALE_CONFIG.telegramBotToken,
-        hasChatId: !!PRESALE_CONFIG.telegramChatId
-    });
-    
     // Add click handler to button as backup
     submitBtn.addEventListener('click', function(e) {
-        console.log('Button clicked!');
         e.preventDefault();
         e.stopPropagation();
         
@@ -84,8 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
         e.stopPropagation();
         e.stopImmediatePropagation();
         
-        console.log('Form submitted!');
-        
         // Use setTimeout to ensure async works
         setTimeout(function() {
             handleFormSubmit();
@@ -100,8 +89,6 @@ document.addEventListener('DOMContentLoaded', function() {
         formMessage.className = 'form-message';
         formMessage.style.display = 'none';
         
-        console.log('Getting form data...');
-        
         // Get form data
         const formData = {
             name: document.getElementById('name').value.trim(),
@@ -113,10 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         // Validate form data
-        console.log('Validating form data...', formData);
-        
         if (!formData.name || !formData.telegram || !formData.twitter || !formData.tonAddress) {
-            console.log('Validation failed: missing required fields');
             showMessage('error', getTranslation('presale_error_required') || 'Please fill in all required fields');
             submitBtn.disabled = false;
             submitBtn.textContent = getTranslation('presale_submit') || 'Submit Registration';
@@ -124,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         if (!formData.subscribedTelegram || !formData.subscribedTwitter) {
-            console.log('Validation failed: not subscribed');
             showMessage('error', getTranslation('presale_error_subscribed') || 'Please confirm that you are subscribed to both Telegram and Twitter');
             submitBtn.disabled = false;
             submitBtn.textContent = getTranslation('presale_submit') || 'Submit Registration';
@@ -146,30 +129,18 @@ document.addEventListener('DOMContentLoaded', function() {
         // They are typically 48 characters long after the prefix
         const tonAddressRegex = /^(EQ|UQ|0:)[a-zA-Z0-9_-]{24,48}$/;
         if (!tonAddressRegex.test(formData.tonAddress)) {
-            console.log('TON address validation failed:', formData.tonAddress);
             showMessage('error', getTranslation('presale_error_ton_address') || 'Please enter a valid TON wallet address (should start with EQ, UQ, or 0:)');
             submitBtn.disabled = false;
             submitBtn.textContent = getTranslation('presale_submit') || 'Submit Registration';
             return;
         }
         
-        console.log('All validations passed!');
-        
         // Send directly to Telegram
-        console.log('Sending to Telegram...', {
-            hasToken: !!PRESALE_CONFIG.telegramBotToken,
-            hasChatId: !!PRESALE_CONFIG.telegramChatId,
-            tokenLength: PRESALE_CONFIG.telegramBotToken ? PRESALE_CONFIG.telegramBotToken.length : 0
-        });
-        
         try {
-            console.log('Calling submitToTelegramBot...');
             await submitToTelegramBot(formData);
-            console.log('Success!');
             showMessage('success', getTranslation('presale_success') || 'Registration submitted successfully!');
             form.reset();
         } catch (telegramError) {
-            console.error('Telegram submission error:', telegramError);
             let errorMessage = getTranslation('presale_error_submit') || 'Failed to submit registration. Please try again later or contact support.';
             
             // Provide more specific error messages
@@ -198,18 +169,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     async function submitToTelegramBot(data) {
-        console.log('submitToTelegramBot called with data:', data);
-        
         // Check if configuration is available
         if (!PRESALE_CONFIG.telegramBotToken || !PRESALE_CONFIG.telegramChatId) {
-            console.error('Missing config:', {
-                hasToken: !!PRESALE_CONFIG.telegramBotToken,
-                hasChatId: !!PRESALE_CONFIG.telegramChatId
-            });
             throw new Error('Telegram bot configuration not available. Please configure config.js file.');
         }
-        
-        console.log('Config OK, preparing message...');
         
         // Escape special characters for Markdown
         const escapeMarkdown = (text) => {
@@ -231,9 +194,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const url = `https://api.telegram.org/bot${PRESALE_CONFIG.telegramBotToken}/sendMessage`;
         
-        console.log('Making fetch request to:', url.replace(PRESALE_CONFIG.telegramBotToken, 'TOKEN_HIDDEN'));
-        console.log('Chat ID:', PRESALE_CONFIG.telegramChatId);
-        
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -246,11 +206,8 @@ document.addEventListener('DOMContentLoaded', function() {
             })
         });
         
-        console.log('Response received:', response.status, response.statusText);
-        
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
-            console.error('Telegram API error response:', errorData);
             const errorMsg = errorData.description || errorData.error_code 
                 ? `Telegram API error: ${errorData.description || `Error code ${errorData.error_code}`}`
                 : 'Failed to send message to Telegram';
@@ -258,7 +215,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         const result = await response.json();
-        console.log('Success response:', result);
         return result;
     }
 });

@@ -10,8 +10,6 @@ var envPath = path.join(__dirname, '.env');
 
 // Check if .env file exists
 if (!fs.existsSync(envPath)) {
-    console.error('Error: .env file not found!');
-    console.log('Please copy env.template to .env and fill in your values.');
     process.exit(1);
 }
 
@@ -57,7 +55,6 @@ var twitterUrl = envVars.TWITTER_URL || 'https://x.com/kinetrax';
 
 // Validate required values
 if (!telegramBotToken || !telegramChatId) {
-    console.error('Error: TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID are required in .env file!');
     process.exit(1);
 }
 
@@ -85,9 +82,6 @@ var configContent = '// Auto-generated config file from .env\n' +
 // Write config.js
 try {
     fs.writeFileSync(configPath, configContent, 'utf8');
-    console.log('✅ Successfully generated js/config.js from .env file');
-    console.log('📝 Config file location:', configPath);
 } catch (error) {
-    console.error('Error writing config.js:', error);
     process.exit(1);
 }
