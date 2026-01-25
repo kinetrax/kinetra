@@ -11,6 +11,7 @@ const translations = {
         "nav_how_it_works": "How It Works",
         "nav_events": "Events",
         "nav_token": "Token",
+        "nav_presale": "Airdrop",
         "nav_faq": "FAQ",
 
         // Whitepaper
@@ -231,6 +232,32 @@ const translations = {
         "contact_email": "contact@kinetra-x.com",
         "copyright": "© 2025 KinetraX. All rights reserved.",
 
+        // Token Airdrop Registration Page
+        "presale_title": "Token Airdrop Registration",
+        "presale_subtitle": "Join the KinetraX token airdrop and be part of the future of fitness on blockchain",
+        "presale_note_title": "Important:",
+        "presale_note_text": "Please make sure you are subscribed to our",
+        "presale_telegram_link": "Telegram",
+        "presale_note_and": "and",
+        "presale_twitter_link": "Twitter",
+        "presale_note_unique": "accounts. Your accounts must be unique and active.",
+        "presale_name_label": "Name",
+        "presale_name_placeholder": "Enter your full name",
+        "presale_telegram_label": "Telegram Account Name",
+        "presale_twitter_label": "Twitter Account Name",
+        "presale_ton_address_label": "TON Wallet Address",
+        "presale_ton_address_placeholder": "EQ..., UQ..., or 0:...",
+        "presale_ton_address_hint": "Enter your TON wallet address (e.g., EQ..., UQ..., or 0:...)",
+        "presale_subscribed_tg": "I am subscribed to",
+        "presale_subscribed_tw": "I am subscribed to",
+        "presale_submit": "Submit Registration",
+        "presale_submitting": "Submitting...",
+        "presale_success": "Registration submitted successfully! We will contact you soon.",
+        "presale_error_required": "Please fill in all required fields",
+        "presale_error_subscribed": "Please confirm that you are subscribed to both Telegram and Twitter",
+        "presale_error_ton_address": "Please enter a valid TON wallet address (should start with EQ, UQ, or 0:)",
+        "presale_error_submit": "Failed to submit registration. Please try again later or contact support.",
+
         // Privacy Policy Page
         "privacy_policy_title": "Privacy Policy",
         "privacy_introduction_title": "1. Introduction",
@@ -357,6 +384,7 @@ const translations = {
         "nav_how_it_works": "Как это работает",
         "nav_events": "События",
         "nav_token": "Токен",
+        "nav_presale": "Аирдроп",
         "nav_faq": "FAQ",
 
         // Whitepaper
@@ -575,6 +603,32 @@ const translations = {
         "terms_of_use": "Условия использования",
         "contact_email": "contact@kinetra-x.com",
         "copyright": "© 2025 KinetraX. Все права защищены.",
+
+        // Token Airdrop Registration Page
+        "presale_title": "Регистрация на аирдроп токенов",
+        "presale_subtitle": "Присоединяйтесь к аирдропу токенов KinetraX и станьте частью будущего фитнеса на блокчейне",
+        "presale_note_title": "Важно:",
+        "presale_note_text": "Пожалуйста, убедитесь, что вы подписаны на наши",
+        "presale_telegram_link": "Telegram",
+        "presale_note_and": "и",
+        "presale_twitter_link": "Twitter",
+        "presale_note_unique": "аккаунты. Ваши аккаунты должны быть уникальными и активными.",
+        "presale_name_label": "Имя",
+        "presale_name_placeholder": "Введите ваше полное имя",
+        "presale_telegram_label": "Имя аккаунта Telegram",
+        "presale_twitter_label": "Имя аккаунта Twitter",
+        "presale_ton_address_label": "Адрес кошелька TON",
+        "presale_ton_address_placeholder": "EQ..., UQ... или 0:...",
+        "presale_ton_address_hint": "Введите адрес вашего TON кошелька (например, EQ..., UQ... или 0:...)",
+        "presale_subscribed_tg": "Я подписан на",
+        "presale_subscribed_tw": "Я подписан на",
+        "presale_submit": "Отправить регистрацию",
+        "presale_submitting": "Отправка...",
+        "presale_success": "Регистрация успешно отправлена! Мы свяжемся с вами в ближайшее время.",
+        "presale_error_required": "Пожалуйста, заполните все обязательные поля",
+        "presale_error_subscribed": "Пожалуйста, подтвердите, что вы подписаны на Telegram и Twitter",
+        "presale_error_ton_address": "Пожалуйста, введите действительный адрес TON кошелька (должен начинаться с EQ, UQ или 0:)",
+        "presale_error_submit": "Не удалось отправить регистрацию. Пожалуйста, попробуйте позже или свяжитесь с поддержкой.",
 
         // Privacy Policy Page
         "privacy_policy_title": "Политика конфиденциальности",

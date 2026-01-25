@@ -1,0 +1,11 @@
+{
+  "name": "kinetrax-website",
+  "version": "1.0.0",
+  "description": "KinetraX website",
+  "scripts": {
+    "config": "node generate-config.js"
+  },
+  "engines": {
+    "node": ">=2.0.0"
+  }
+}

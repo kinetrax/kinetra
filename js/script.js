@@ -378,6 +378,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.textContent = translations[lang][key];
             }
         });
+        
+        // Update placeholder attributes
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+            const key = element.getAttribute('data-i18n-placeholder');
+            if (translations[lang][key]) {
+                element.placeholder = translations[lang][key];
+            }
+        });
 
         // Store the language preference
         localStorage.setItem('language', lang);
