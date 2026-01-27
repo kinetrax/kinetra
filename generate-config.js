@@ -62,9 +62,12 @@ if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
     twitterUrl = envVars.TWITTER_URL || 'https://x.com/kinetrax';
 }
 
-// Validate required values
+// If required values are missing, use empty strings (build will succeed but functionality may be limited)
+// Note: Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID environment variables for full functionality
 if (!telegramBotToken || !telegramChatId) {
-    process.exit(1);
+    console.warn('Warning: TELEGRAM_BOT_TOKEN and/or TELEGRAM_CHAT_ID not set. Config will be generated with empty values.');
+    telegramBotToken = telegramBotToken || '';
+    telegramChatId = telegramChatId || '';
 }
 
 // Escape JavaScript string values to prevent injection
