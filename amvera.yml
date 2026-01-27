@@ -5,10 +5,9 @@ meta:
     version: "18"
 build:
   skip: false
-  additionalCommands: null
+  additionalCommands: npm run build
   artifacts:
     "*": /
-  command: npm run build
 run:
   scriptName: server.js
   scriptArguments: null
