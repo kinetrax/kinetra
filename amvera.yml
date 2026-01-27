@@ -1,7 +1,10 @@
 meta:
   environment: node
   toolchain:
-    name: browser
-    version: 18
+    name: npm
+    version: "18"
 build:
-  artifacts: {}
+  skip: false
+  additionalCommands: npm run build
+  artifacts:
+    "*": /
