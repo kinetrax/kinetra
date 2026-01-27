@@ -1,17 +1,7 @@
 meta:
   environment: node
   toolchain:
-    name: npm
-    version: "18"
+    name: browser
+    version: 18
 build:
-  skip: false
-  additionalCommands: npm run build
-  artifacts:
-    "*": /
-run:
-  scriptName: server.js
-  scriptArguments: null
-  nodeArguments: null
-  command: null
-  persistenceMount: /data
-  containerPort: "80"
+  artifacts: {}
