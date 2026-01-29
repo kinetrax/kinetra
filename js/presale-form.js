@@ -49,7 +49,19 @@ window.initializeRecaptcha = function() {
         // Only initialize if not already initialized
         if (!recaptchaContainer.hasAttribute('data-widget-id') && recaptchaWidgetId === null) {
             recaptchaWidgetId = grecaptcha.render(recaptchaContainer, {
-                'sitekey': PRESALE_CONFIG.recaptchaSiteKey
+                'sitekey': PRESALE_CONFIG.recaptchaSiteKey,
+                'callback': function() {
+                    // Called when CAPTCHA is completed
+                    if (window.validateForm) {
+                        window.validateForm();
+                    }
+                },
+                'expired-callback': function() {
+                    // Called when CAPTCHA expires
+                    if (window.validateForm) {
+                        window.validateForm();
+                    }
+                }
             });
         }
     }
@@ -87,6 +99,97 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!formMessage) {
         return;
     }
+    
+    // Get form fields
+    const nameInput = document.getElementById('name');
+    const telegramInput = document.getElementById('telegram');
+    const twitterInput = document.getElementById('twitter');
+    const tonAddressInput = document.getElementById('tonAddress');
+    const subscribedTelegramCheck = document.getElementById('subscribedTelegram');
+    const subscribedTwitterCheck = document.getElementById('subscribedTwitter');
+    const subscribedTgChatCheck = document.getElementById('subscribedTgChat');
+    
+    // Disable submit button initially
+    submitBtn.disabled = true;
+    
+    // Validation function
+    window.validateForm = function() {
+        // Get current form values
+        const name = nameInput ? nameInput.value.trim() : '';
+        const telegram = telegramInput ? telegramInput.value.trim() : '';
+        const twitter = twitterInput ? twitterInput.value.trim() : '';
+        const tonAddress = tonAddressInput ? tonAddressInput.value.trim() : '';
+        const subscribedTelegram = subscribedTelegramCheck ? subscribedTelegramCheck.checked : false;
+        const subscribedTwitter = subscribedTwitterCheck ? subscribedTwitterCheck.checked : false;
+        const subscribedTgChat = subscribedTgChatCheck ? subscribedTgChatCheck.checked : false;
+        
+        // Check required fields
+        if (!name || !telegram || !twitter || !tonAddress) {
+            submitBtn.disabled = true;
+            return false;
+        }
+        
+        // Check checkboxes
+        if (!subscribedTelegram || !subscribedTwitter || !subscribedTgChat) {
+            submitBtn.disabled = true;
+            return false;
+        }
+        
+        // Validate TON address format
+        const tonAddressRegex = /^(EQ|UQ|0:)[a-zA-Z0-9_-]{24,48}$/;
+        if (!tonAddressRegex.test(tonAddress)) {
+            submitBtn.disabled = true;
+            return false;
+        }
+        
+        // Check CAPTCHA
+        if (typeof grecaptcha === 'undefined') {
+            submitBtn.disabled = true;
+            return false;
+        }
+        
+        const captchaResponse = recaptchaWidgetId !== null 
+            ? grecaptcha.getResponse(recaptchaWidgetId)
+            : grecaptcha.getResponse();
+        if (!captchaResponse) {
+            submitBtn.disabled = true;
+            return false;
+        }
+        
+        // All validations passed
+        submitBtn.disabled = false;
+        return true;
+    };
+    
+    // Add event listeners to all form fields
+    if (nameInput) {
+        nameInput.addEventListener('input', window.validateForm);
+        nameInput.addEventListener('blur', window.validateForm);
+    }
+    if (telegramInput) {
+        telegramInput.addEventListener('input', window.validateForm);
+        telegramInput.addEventListener('blur', window.validateForm);
+    }
+    if (twitterInput) {
+        twitterInput.addEventListener('input', window.validateForm);
+        twitterInput.addEventListener('blur', window.validateForm);
+    }
+    if (tonAddressInput) {
+        tonAddressInput.addEventListener('input', window.validateForm);
+        tonAddressInput.addEventListener('blur', window.validateForm);
+    }
+    if (subscribedTelegramCheck) {
+        subscribedTelegramCheck.addEventListener('change', window.validateForm);
+    }
+    if (subscribedTwitterCheck) {
+        subscribedTwitterCheck.addEventListener('change', window.validateForm);
+    }
+    if (subscribedTgChatCheck) {
+        subscribedTgChatCheck.addEventListener('change', window.validateForm);
+    }
+    
+    // Initial validation
+    window.validateForm();
     
     // Add click handler to button as backup
     submitBtn.addEventListener('click', function(e) {
@@ -193,6 +296,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (typeof grecaptcha !== 'undefined' && recaptchaWidgetId !== null) {
                 grecaptcha.reset(recaptchaWidgetId);
             }
+            // Re-validate form to disable button after reset
+            if (window.validateForm) {
+                window.validateForm();
+            }
         } catch (telegramError) {
             let errorMessage = getTranslation('presale_error_submit') || 'Failed to submit registration. Please try again later or contact support.';
             
@@ -210,8 +317,17 @@ document.addEventListener('DOMContentLoaded', function() {
             if (typeof grecaptcha !== 'undefined' && recaptchaWidgetId !== null) {
                 grecaptcha.reset(recaptchaWidgetId);
             }
+            // Re-validate form after error
+            if (window.validateForm) {
+                window.validateForm();
+            }
         } finally {
-            submitBtn.disabled = false;
+            // Only re-enable if form is valid
+            if (window.validateForm) {
+                window.validateForm();
+            } else {
+                submitBtn.disabled = false;
+            }
             submitBtn.textContent = getTranslation('presale_submit') || 'Submit Registration';
         }
     }
