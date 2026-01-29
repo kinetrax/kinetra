@@ -96,7 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
             twitter: document.getElementById('twitter').value.trim(),
             tonAddress: document.getElementById('tonAddress').value.trim(),
             subscribedTelegram: document.getElementById('subscribedTelegram').checked,
-            subscribedTwitter: document.getElementById('subscribedTwitter').checked
+            subscribedTwitter: document.getElementById('subscribedTwitter').checked,
+            subscribedTgChat: document.getElementById('subscribedTgChat') ? document.getElementById('subscribedTgChat').checked : false
         };
         
         // Validate form data
@@ -188,6 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
 💼 *TON Address:* \`${escapeMarkdown(data.tonAddress)}\`
 ✅ *Subscribed to Telegram:* ${data.subscribedTelegram ? 'Yes' : 'No'}
 ✅ *Subscribed to Twitter:* ${data.subscribedTwitter ? 'Yes' : 'No'}
+💬 *Subscribed to TG Chat:* ${data.subscribedTgChat ? 'Yes' : 'No'}
 
 *Timestamp:* ${new Date().toISOString()}
         `.trim();
