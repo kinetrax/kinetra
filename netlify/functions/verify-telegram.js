@@ -72,9 +72,8 @@ exports.handler = async (event, context) => {
 
         // Telegram Bot API requires user_id (not username) to check membership
         // The userId should be obtained from:
-        // 1. Telegram Login Widget (recommended)
-        // 2. User interaction with the bot (bot sends /start command)
-        // 3. Bot admin access to channel/group (can check by username in some cases)
+        // 1. Telegram Login Widget (recommended - provides userId automatically)
+        // 2. Manual entry - user can get their ID from @userinfobot on Telegram
         
         let telegramUserId = userId;
         
@@ -82,8 +81,7 @@ exports.handler = async (event, context) => {
             // Note: Telegram Bot API requires user_id (not username) to check membership
             // The userId can be obtained from:
             // 1. Telegram Login Widget (recommended - provides userId automatically)
-            // 2. Bot interaction - user sends /start to bot, bot can then verify
-            // 3. Manual entry - user can get their ID from @userinfobot on Telegram
+            // 2. Manual entry - user can get their ID from @userinfobot on Telegram
             
             return {
                 statusCode: 400,
