@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tonAddress: document.getElementById('tonAddress').value.trim(),
             subscribedTelegram: document.getElementById('subscribedTelegram').checked,
             subscribedTwitter: document.getElementById('subscribedTwitter').checked,
-            subscribedTgChat: document.getElementById('subscribedTgChat') ? document.getElementById('subscribedTgChat').checked : false
+            subscribedTgChat: document.getElementById('subscribedTgChat').checked
         };
         
         // Validate form data
