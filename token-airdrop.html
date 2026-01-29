@@ -38,6 +38,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="assets/logos/kinetra-logo.svg">
     
+    <!-- Define reCAPTCHA callback before loading the script -->
+    <script>
+        // Global callback for reCAPTCHA - will be properly initialized in presale-form.js
+        window.onRecaptchaLoad = function() {
+            // This will be called when reCAPTCHA loads
+            // The actual initialization will happen in presale-form.js after config loads
+            // Store a flag that reCAPTCHA is ready
+            window.recaptchaReady = true;
+            
+            // Try to initialize immediately if presale-form.js has loaded
+            if (window.initializeRecaptcha && typeof window.initializeRecaptcha === 'function') {
+                window.initializeRecaptcha();
+            }
+            // Otherwise, presale-form.js will check window.recaptchaReady and initialize
+        };
+    </script>
     <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
     
     <style>

@@ -42,23 +42,25 @@ function loadConfig() {
 // Global variable to track reCAPTCHA widget ID
 let recaptchaWidgetId = null;
 
-// Callback function for reCAPTCHA onload
-window.onRecaptchaLoad = function() {
-    // Initialize reCAPTCHA after it's loaded and config is available
-    initializeRecaptcha();
-};
-
-// Function to initialize reCAPTCHA
-function initializeRecaptcha() {
+// Function to initialize reCAPTCHA - exposed globally
+window.initializeRecaptcha = function() {
     const recaptchaContainer = document.querySelector('.g-recaptcha');
     if (recaptchaContainer && PRESALE_CONFIG.recaptchaSiteKey && typeof grecaptcha !== 'undefined') {
         // Only initialize if not already initialized
-        if (!recaptchaContainer.hasAttribute('data-widget-id')) {
+        if (!recaptchaContainer.hasAttribute('data-widget-id') && recaptchaWidgetId === null) {
             recaptchaWidgetId = grecaptcha.render(recaptchaContainer, {
                 'sitekey': PRESALE_CONFIG.recaptchaSiteKey
             });
         }
     }
+};
+
+// Update the global callback to use the proper initialization
+if (typeof window.onRecaptchaLoad === 'undefined') {
+    window.onRecaptchaLoad = function() {
+        // Initialize reCAPTCHA after it's loaded and config is available
+        window.initializeRecaptcha();
+    };
 }
 
 // Initialize when DOM is ready
@@ -66,8 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
     loadConfig();
     
     // Initialize reCAPTCHA if it's already loaded, otherwise wait for onload callback
-    if (typeof grecaptcha !== 'undefined') {
-        initializeRecaptcha();
+    if (typeof grecaptcha !== 'undefined' || window.recaptchaReady) {
+        window.initializeRecaptcha();
     }
     
     const form = document.getElementById('airdropForm');
