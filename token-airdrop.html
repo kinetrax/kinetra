@@ -38,7 +38,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="assets/logos/kinetra-logo.svg">
     
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
     
     <style>
         .presale-section {
@@ -347,7 +347,6 @@
                             <label for="subscribedTgChat">
                                 <span data-i18n="presale_subscribed_tg_chat">I am subscribed to</span>
                                 <a href="https://t.me/kinetrax_chat" id="telegramChatLink" target="_blank" data-i18n="presale_tg_chat_link">TG Chat</a>
-                                <span data-i18n="presale_tg_chat_note"> (increases win chances)</span>
                                 <span class="required">*</span>
                             </label>
                         </div>

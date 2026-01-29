@@ -39,14 +39,35 @@ function loadConfig() {
     if (twitterCheckLink) twitterCheckLink.href = PRESALE_CONFIG.twitterUrl;
 }
 
+// Global variable to track reCAPTCHA widget ID
+let recaptchaWidgetId = null;
+
+// Callback function for reCAPTCHA onload
+window.onRecaptchaLoad = function() {
+    // Initialize reCAPTCHA after it's loaded and config is available
+    initializeRecaptcha();
+};
+
+// Function to initialize reCAPTCHA
+function initializeRecaptcha() {
+    const recaptchaContainer = document.querySelector('.g-recaptcha');
+    if (recaptchaContainer && PRESALE_CONFIG.recaptchaSiteKey && typeof grecaptcha !== 'undefined') {
+        // Only initialize if not already initialized
+        if (!recaptchaContainer.hasAttribute('data-widget-id')) {
+            recaptchaWidgetId = grecaptcha.render(recaptchaContainer, {
+                'sitekey': PRESALE_CONFIG.recaptchaSiteKey
+            });
+        }
+    }
+}
+
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     loadConfig();
     
-    // Initialize reCAPTCHA with site key from config
-    const recaptchaContainer = document.querySelector('.g-recaptcha');
-    if (recaptchaContainer && PRESALE_CONFIG.recaptchaSiteKey) {
-        recaptchaContainer.setAttribute('data-sitekey', PRESALE_CONFIG.recaptchaSiteKey);
+    // Initialize reCAPTCHA if it's already loaded, otherwise wait for onload callback
+    if (typeof grecaptcha !== 'undefined') {
+        initializeRecaptcha();
     }
     
     const form = document.getElementById('airdropForm');
@@ -151,7 +172,9 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        const captchaResponse = grecaptcha.getResponse();
+        const captchaResponse = recaptchaWidgetId !== null 
+            ? grecaptcha.getResponse(recaptchaWidgetId)
+            : grecaptcha.getResponse();
         if (!captchaResponse) {
             showMessage('error', getTranslation('presale_error_captcha') || 'Please complete the CAPTCHA verification');
             submitBtn.disabled = false;
@@ -165,8 +188,8 @@ document.addEventListener('DOMContentLoaded', function() {
             showMessage('success', getTranslation('presale_success') || 'Registration submitted successfully!');
             form.reset();
             // Reset CAPTCHA after successful submission
-            if (typeof grecaptcha !== 'undefined') {
-                grecaptcha.reset();
+            if (typeof grecaptcha !== 'undefined' && recaptchaWidgetId !== null) {
+                grecaptcha.reset(recaptchaWidgetId);
             }
         } catch (telegramError) {
             let errorMessage = getTranslation('presale_error_submit') || 'Failed to submit registration. Please try again later or contact support.';
@@ -182,8 +205,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             showMessage('error', errorMessage);
             // Reset CAPTCHA on error so user can try again
-            if (typeof grecaptcha !== 'undefined') {
-                grecaptcha.reset();
+            if (typeof grecaptcha !== 'undefined' && recaptchaWidgetId !== null) {
+                grecaptcha.reset(recaptchaWidgetId);
             }
         } finally {
             submitBtn.disabled = false;
