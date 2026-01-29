@@ -13,6 +13,7 @@ var telegramBotToken = '';
 var telegramChatId = '';
 var telegramChannelUrl = 'https://t.me/kinetraX';
 var twitterUrl = 'https://x.com/kinetrax';
+var recaptchaSiteKey = '';
 
 // Check if running on Netlify (environment variables available)
 if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
@@ -21,6 +22,7 @@ if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
     telegramChatId = process.env.TELEGRAM_CHAT_ID || '';
     telegramChannelUrl = process.env.TELEGRAM_CHANNEL_URL || 'https://t.me/kinetraX';
     twitterUrl = process.env.TWITTER_URL || 'https://x.com/kinetrax';
+    recaptchaSiteKey = process.env.RECAPTCHA_SITE_KEY || '';
 } else if (fs.existsSync(envPath)) {
     // Fallback to .env file for local development
     function parseEnvFile(filePath) {
@@ -60,6 +62,7 @@ if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
     telegramChatId = envVars.TELEGRAM_CHAT_ID || '';
     telegramChannelUrl = envVars.TELEGRAM_CHANNEL_URL || 'https://t.me/kinetraX';
     twitterUrl = envVars.TWITTER_URL || 'https://x.com/kinetrax';
+    recaptchaSiteKey = envVars.RECAPTCHA_SITE_KEY || '';
 }
 
 // If required values are missing, use empty strings (build will succeed but functionality may be limited)
@@ -88,7 +91,8 @@ var configContent = '// Auto-generated config file from .env\n' +
     '    telegramBotToken: \'' + escapeJsString(telegramBotToken) + '\',\n' +
     '    telegramChatId: \'' + escapeJsString(telegramChatId) + '\',\n' +
     '    telegramChannelUrl: \'' + escapeJsString(telegramChannelUrl) + '\',\n' +
-    '    twitterUrl: \'' + escapeJsString(twitterUrl) + '\'\n' +
+    '    twitterUrl: \'' + escapeJsString(twitterUrl) + '\',\n' +
+    '    recaptchaSiteKey: \'' + escapeJsString(recaptchaSiteKey) + '\'\n' +
     '};\n';
 
 // Write config.js

@@ -16,7 +16,8 @@ const PRESALE_CONFIG = {
     telegramBotToken: '', // Will be loaded from config.js
     telegramChatId: '', // Will be loaded from config.js
     telegramChannelUrl: 'https://t.me/kinetraX',
-    twitterUrl: 'https://x.com/kinetrax'
+    twitterUrl: 'https://x.com/kinetrax',
+    recaptchaSiteKey: '' // Will be loaded from config.js
 };
 
 // Load configuration from config.js (if available)
@@ -41,6 +42,12 @@ function loadConfig() {
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     loadConfig();
+    
+    // Initialize reCAPTCHA with site key from config
+    const recaptchaContainer = document.querySelector('.g-recaptcha');
+    if (recaptchaContainer && PRESALE_CONFIG.recaptchaSiteKey) {
+        recaptchaContainer.setAttribute('data-sitekey', PRESALE_CONFIG.recaptchaSiteKey);
+    }
     
     const form = document.getElementById('airdropForm');
     const submitBtn = document.getElementById('submitBtn');
@@ -108,8 +115,8 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        if (!formData.subscribedTelegram || !formData.subscribedTwitter) {
-            showMessage('error', getTranslation('presale_error_subscribed') || 'Please confirm that you are subscribed to both Telegram and Twitter');
+        if (!formData.subscribedTelegram || !formData.subscribedTwitter || !formData.subscribedTgChat) {
+            showMessage('error', getTranslation('presale_error_subscribed') || 'Please confirm that you are subscribed to Telegram, Twitter, and TG Chat');
             submitBtn.disabled = false;
             submitBtn.textContent = getTranslation('presale_submit') || 'Submit Registration';
             return;
@@ -136,11 +143,31 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
+        // Verify CAPTCHA
+        if (typeof grecaptcha === 'undefined') {
+            showMessage('error', getTranslation('presale_error_captcha_load') || 'CAPTCHA is loading. Please wait a moment and try again.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = getTranslation('presale_submit') || 'Submit Registration';
+            return;
+        }
+        
+        const captchaResponse = grecaptcha.getResponse();
+        if (!captchaResponse) {
+            showMessage('error', getTranslation('presale_error_captcha') || 'Please complete the CAPTCHA verification');
+            submitBtn.disabled = false;
+            submitBtn.textContent = getTranslation('presale_submit') || 'Submit Registration';
+            return;
+        }
+        
         // Send directly to Telegram
         try {
             await submitToTelegramBot(formData);
             showMessage('success', getTranslation('presale_success') || 'Registration submitted successfully!');
             form.reset();
+            // Reset CAPTCHA after successful submission
+            if (typeof grecaptcha !== 'undefined') {
+                grecaptcha.reset();
+            }
         } catch (telegramError) {
             let errorMessage = getTranslation('presale_error_submit') || 'Failed to submit registration. Please try again later or contact support.';
             
@@ -154,6 +181,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             showMessage('error', errorMessage);
+            // Reset CAPTCHA on error so user can try again
+            if (typeof grecaptcha !== 'undefined') {
+                grecaptcha.reset();
+            }
         } finally {
             submitBtn.disabled = false;
             submitBtn.textContent = getTranslation('presale_submit') || 'Submit Registration';
