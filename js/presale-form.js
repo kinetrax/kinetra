@@ -42,29 +42,22 @@ function loadConfig() {
 // Global variable to track reCAPTCHA widget ID
 let recaptchaWidgetId = null;
 
-// Function to initialize reCAPTCHA - exposed globally
-window.initializeRecaptcha = function() {
+// Function to initialize reCAPTCHA
+function initializeRecaptcha() {
     const recaptchaContainer = document.querySelector('.g-recaptcha');
     
-    // Check if reCAPTCHA is properly loaded and has the render method
+    // Check if container exists and site key is available
     if (!recaptchaContainer || !PRESALE_CONFIG.recaptchaSiteKey) {
         return;
     }
     
-    // Check if grecaptcha exists and has the render method
-    if (typeof grecaptcha === 'undefined' || typeof grecaptcha.render !== 'function') {
-        // If not ready yet, try again after a short delay
-        if (typeof grecaptcha === 'undefined') {
-            console.warn('reCAPTCHA script not loaded yet, retrying...');
-            setTimeout(window.initializeRecaptcha, 500);
-        } else {
-            console.error('reCAPTCHA render method not available. The script may have failed to load.');
-        }
+    // Only initialize if not already initialized
+    if (recaptchaContainer.hasAttribute('data-widget-id') || recaptchaWidgetId !== null) {
         return;
     }
     
-    // Only initialize if not already initialized
-    if (!recaptchaContainer.hasAttribute('data-widget-id') && recaptchaWidgetId === null) {
+    // Use grecaptcha.ready() to ensure reCAPTCHA is loaded before rendering
+    grecaptcha.ready(function() {
         try {
             recaptchaWidgetId = grecaptcha.render(recaptchaContainer, {
                 'sitekey': PRESALE_CONFIG.recaptchaSiteKey,
@@ -86,35 +79,16 @@ window.initializeRecaptcha = function() {
         } catch (error) {
             console.error('Error initializing reCAPTCHA:', error);
         }
-    }
-};
-
-// Update the global callback to use the proper initialization
-// This will be called when reCAPTCHA script loads
-if (typeof window.onRecaptchaLoad === 'undefined') {
-    window.onRecaptchaLoad = function() {
-        // Mark that reCAPTCHA is ready
-        window.recaptchaReady = true;
-        // Initialize reCAPTCHA after it's loaded and config is available
-        // Add a small delay to ensure everything is ready
-        setTimeout(function() {
-            window.initializeRecaptcha();
-        }, 100);
-    };
+    });
 }
 
     // Initialize when DOM is ready
     document.addEventListener('DOMContentLoaded', function() {
         loadConfig();
         
-        // Initialize reCAPTCHA if it's already loaded, otherwise wait for onload callback
-        // Check both that grecaptcha exists AND has the render method
-        if (typeof grecaptcha !== 'undefined' && typeof grecaptcha.render === 'function') {
-            window.initializeRecaptcha();
-        } else if (window.recaptchaReady) {
-            // If marked as ready but render not available, try after a delay
-            setTimeout(window.initializeRecaptcha, 200);
-        }
+        // Initialize reCAPTCHA using grecaptcha.ready() pattern
+        // This will work whether reCAPTCHA is already loaded or still loading
+        initializeRecaptcha();
     
     const form = document.getElementById('airdropForm');
     const submitBtn = document.getElementById('submitBtn');
