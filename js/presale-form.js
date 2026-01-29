@@ -96,14 +96,17 @@ function handleTelegramAuth(user) {
     // Store user ID globally
     telegramUserId = user.id;
     
-    // Store username in hidden field
+    // Store username globally and in input field
     const telegramInput = document.getElementById('telegram');
     if (telegramInput) {
         if (user.username) {
-            telegramInput.value = '@' + user.username;
+            telegramUsername = '@' + user.username;
+            telegramInput.value = telegramUsername;
         } else {
             // If no username, use first_name and last_name or id
-            telegramInput.value = user.first_name || ('user_' + user.id);
+            const fallbackName = user.first_name || ('user_' + user.id);
+            telegramUsername = fallbackName;
+            telegramInput.value = fallbackName;
         }
     }
     
@@ -129,6 +132,7 @@ let recaptchaWidgetId = null;
 // Global variable to track Telegram verification status
 let telegramVerified = false;
 let telegramUserId = null;
+let telegramUsername = null;
 let telegramVerificationInProgress = false;
 
 // Function to initialize reCAPTCHA
@@ -335,9 +339,13 @@ function initializeRecaptcha() {
         formMessage.style.display = 'none';
         
         // Get form data
+        // Use stored Telegram username if available, otherwise get from input field
+        const telegramInput = document.getElementById('telegram');
+        const telegramValue = telegramUsername || (telegramInput ? telegramInput.value.trim() : '');
+        
         const formData = {
             name: document.getElementById('name').value.trim(),
-            telegram: document.getElementById('telegram').value.trim(),
+            telegram: telegramValue,
             twitter: document.getElementById('twitter').value.trim(),
             tonAddress: document.getElementById('tonAddress').value.trim(),
             subscribedTelegram: document.getElementById('subscribedTelegram').checked,
@@ -513,6 +521,10 @@ function initializeRecaptcha() {
                     telegramUserId = result.userId;
                 }
                 showTelegramVerifyStatus('success', getTranslation('presale_telegram_verify_success') || '✓ Telegram subscription verified!');
+                // Immediately validate form to enable submit button
+                if (window.validateForm) {
+                    window.validateForm();
+                }
             } else {
                 telegramVerified = false;
                 let errorMsg = result.message || getTranslation('presale_telegram_verify_not_subscribed') || 'You are not subscribed to the required Telegram channel/group.';
