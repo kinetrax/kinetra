@@ -256,7 +256,64 @@
             margin: 1rem 0;
         }
         
+        .telegram-verify-btn {
+            padding: 12px 20px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            white-space: nowrap;
+        }
+        
+        .telegram-verify-btn:hover:not(:disabled) {
+            background-color: #25a8b3;
+            transform: translateY(-1px);
+        }
+        
+        .telegram-verify-btn:disabled {
+            background-color: var(--gray);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        .telegram-verify-status {
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .telegram-verify-status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .telegram-verify-status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .telegram-verify-status.info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
         @media (max-width: 768px) {
+            .form-group > div[style*="display: flex"] {
+                flex-direction: column;
+            }
+            
+            .telegram-verify-btn {
+                width: 100%;
+            }
             .presale-header h1 {
                 font-size: 2rem;
             }
@@ -330,7 +387,12 @@
                     
                     <div class="form-group">
                         <label for="telegram" data-i18n="presale_telegram_label">Telegram Account Name <span class="required">*</span></label>
-                        <input type="text" id="telegram" name="telegram" placeholder="@username" required>
+                        <div style="display: flex; gap: 0.5rem; align-items: flex-start;">
+                            <input type="text" id="telegram" name="telegram" placeholder="@username" required style="flex: 1;">
+                            <button type="button" id="telegramVerifyBtn" class="telegram-verify-btn" data-i18n="presale_telegram_verify_btn">Verify</button>
+                        </div>
+                        <div id="telegramVerifyStatus" class="telegram-verify-status" style="display: none; margin-top: 0.5rem; padding: 0.5rem; border-radius: 4px; font-size: 0.9rem;"></div>
+                        <small style="display: block; margin-top: 0.5rem; color: var(--gray); font-size: 0.85rem;" data-i18n="presale_telegram_verify_hint">Enter your Telegram username. To verify, you need to interact with our bot first. <a href="#" id="telegramBotLink" target="_blank" style="color: var(--primary-color); text-decoration: underline;">Click here to open the bot</a> and send /start, then return and click "Verify".</small>
                     </div>
                     
                     <div class="form-group">

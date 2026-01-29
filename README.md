@@ -21,7 +21,12 @@ npm install
    ```env
    TELEGRAM_BOT_TOKEN=your_bot_token_here
    TELEGRAM_CHAT_ID=your_chat_id_here
+   TELEGRAM_BOT_USERNAME=your_bot_username
+   TELEGRAM_CHANNEL_ID=your_channel_id
+   TELEGRAM_GROUP_ID=your_group_id
    ```
+   
+   **Security Note:** `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` are now used server-side only via Netlify functions. They are NOT exposed in the frontend `config.js` file for security.
 
 3. Generate config file:
    ```bash
@@ -58,8 +63,16 @@ See [CONFIG_SETUP.md](CONFIG_SETUP.md) for detailed configuration instructions.
 ## Deployment
 
 1. Make sure `config.js` is generated: `npm run config`
-2. Deploy all files (including `config.js`)
-3. **Never deploy `.env` file** - keep it local only
+2. Set environment variables in Netlify (Site settings > Environment variables):
+   - `TELEGRAM_BOT_TOKEN`
+   - `TELEGRAM_CHAT_ID`
+   - `TELEGRAM_BOT_USERNAME`
+   - `TELEGRAM_CHANNEL_ID`
+   - `TELEGRAM_GROUP_ID`
+   - `RECAPTCHA_SITE_KEY` (and optionally `RECAPTCHA_SECRET_KEY`)
+3. Deploy all files (including `config.js`)
+4. **Never deploy `.env` file** - keep it local only
+5. **Never commit `config.js` with tokens** - bot token is now server-side only
 
 ## License
 
