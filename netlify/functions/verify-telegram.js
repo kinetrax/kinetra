@@ -1,5 +1,64 @@
 // Netlify serverless function to verify Telegram channel and group subscription
 // This function uses Telegram Bot API to check if a user is subscribed to the channel and group
+// The bot must be an administrator of both the channel and group to verify membership
+
+// Helper function to resolve username to user_id
+// Since Telegram Bot API doesn't directly support username lookup, we try to get user_id
+// by checking chat administrators (requires bot to be admin)
+// Note: This only works if the user is an administrator. For regular members, 
+// we cannot resolve username to user_id without the user interacting with the bot first.
+async function resolveUsernameToUserId(botToken, username, channelId, groupId) {
+    const cleanUsername = username.replace('@', '').trim().toLowerCase();
+    
+    // Try to find user in channel administrators
+    if (channelId) {
+        try {
+            const adminsUrl = `https://api.telegram.org/bot${botToken}/getChatAdministrators?chat_id=${channelId}`;
+            const adminsResponse = await fetch(adminsUrl);
+            
+            if (adminsResponse.ok) {
+                const adminsData = await adminsResponse.json();
+                if (adminsData.ok && adminsData.result) {
+                    for (const admin of adminsData.result) {
+                        const user = admin.user;
+                        if (user.username && user.username.toLowerCase() === cleanUsername) {
+                            return user.id;
+                        }
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error checking channel admins:', error);
+        }
+    }
+    
+    // Try to find user in group administrators
+    if (groupId) {
+        try {
+            const adminsUrl = `https://api.telegram.org/bot${botToken}/getChatAdministrators?chat_id=${groupId}`;
+            const adminsResponse = await fetch(adminsUrl);
+            
+            if (adminsResponse.ok) {
+                const adminsData = await adminsResponse.json();
+                if (adminsData.ok && adminsData.result) {
+                    for (const admin of adminsData.result) {
+                        const user = admin.user;
+                        if (user.username && user.username.toLowerCase() === cleanUsername) {
+                            return user.id;
+                        }
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error checking group admins:', error);
+        }
+    }
+    
+    // Unfortunately, Telegram Bot API doesn't provide a way to get user_id from username
+    // for regular members. The bot can only check administrators or use getChatMember
+    // which requires user_id. This is a limitation of the Telegram Bot API.
+    return null;
+}
 
 exports.handler = async (event, context) => {
     // Only allow POST requests
@@ -32,13 +91,13 @@ exports.handler = async (event, context) => {
         const body = JSON.parse(event.body || '{}');
         const { userId, username } = body;
 
-        // Validate input
-        if (!userId && !username) {
+        // Validate input - username is now the primary method
+        if (!username && !userId) {
             return {
                 statusCode: 400,
                 headers,
                 body: JSON.stringify({
-                    error: 'Missing required parameter: userId or username'
+                    error: 'Missing required parameter: username'
                 })
             };
         }
@@ -70,28 +129,32 @@ exports.handler = async (event, context) => {
             };
         }
 
-        // Telegram Bot API requires user_id (not username) to check membership
-        // The userId should be obtained from:
-        // 1. Telegram Login Widget (recommended - provides userId automatically)
-        // 2. Manual entry - user can get their ID from @userinfobot on Telegram
+        // Clean username (remove @ if present)
+        const cleanUsername = username ? username.replace('@', '').trim() : null;
         
+        // If userId is provided, use it directly
+        // Otherwise, we'll need to resolve username to user_id
+        // Note: Telegram Bot API's getChatMember requires user_id, not username
+        // We can only resolve username to user_id if the user is an administrator
         let telegramUserId = userId;
         
+        // If we only have username, try to resolve it to user_id
+        // This only works if the user is an admin of the channel/group
+        if (!telegramUserId && cleanUsername) {
+            telegramUserId = await resolveUsernameToUserId(botToken, cleanUsername, channelId, groupId);
+        }
+        
+        // If we still don't have user_id, we cannot verify membership
+        // Telegram Bot API limitation: getChatMember requires user_id, not username
         if (!telegramUserId) {
-            // Note: Telegram Bot API requires user_id (not username) to check membership
-            // The userId can be obtained from:
-            // 1. Telegram Login Widget (recommended - provides userId automatically)
-            // 2. Manual entry - user can get their ID from @userinfobot on Telegram
-            
             return {
                 statusCode: 400,
                 headers,
                 body: JSON.stringify({
-                    error: 'User ID is required for verification.',
-                    message: 'To verify your subscription, you need to provide your Telegram user ID. You can get it by messaging @userinfobot on Telegram, or by using the Telegram Login Widget.',
+                    error: 'Unable to verify by username alone.',
+                    message: 'Telegram Bot API requires a user ID to check membership. The username could not be resolved to a user ID. This typically works only if the user is an administrator. Please provide your Telegram user ID (you can get it from @userinfobot) or use the Telegram Login Widget.',
                     requiresUserId: true,
-                    verified: false,
-                    help: 'Get your user ID: 1) Message @userinfobot on Telegram, or 2) Use Telegram Login Widget below'
+                    verified: false
                 })
             };
         }
