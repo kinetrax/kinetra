@@ -47,6 +47,80 @@ function loadConfig() {
         // Hide the link if bot username is not configured
         telegramBotLink.style.display = 'none';
     }
+    
+    // Initialize Telegram Login Widget
+    initializeTelegramLoginWidget();
+}
+
+// Function to initialize Telegram Login Widget
+function initializeTelegramLoginWidget() {
+    const widgetContainer = document.getElementById('telegramLoginWidget');
+    if (!widgetContainer || !PRESALE_CONFIG.telegramBotUsername) {
+        if (widgetContainer) {
+            widgetContainer.innerHTML = '<p style="color: var(--gray);">Telegram bot not configured</p>';
+        }
+        return;
+    }
+    
+    const botUsername = PRESALE_CONFIG.telegramBotUsername.replace('@', '');
+    const callbackName = 'onTelegramAuth';
+    
+    // Create callback function on window object (must be global for widget to call it)
+    window[callbackName] = function(user) {
+        handleTelegramAuth(user);
+    };
+    
+    // Clear container and create the widget script
+    // The Telegram widget library will render a button when this script loads
+    widgetContainer.innerHTML = '';
+    
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://telegram.org/js/telegram-widget.js?22';
+    script.setAttribute('data-telegram-login', botUsername);
+    script.setAttribute('data-size', 'large');
+    script.setAttribute('data-onauth', callbackName + '(user)');
+    script.setAttribute('data-request-access', 'write');
+    
+    // Append script to container - Telegram widget will render the button
+    widgetContainer.appendChild(script);
+}
+
+// Handle Telegram Login Widget authentication
+function handleTelegramAuth(user) {
+    if (!user || !user.id) {
+        console.error('Invalid user data from Telegram Login Widget');
+        return;
+    }
+    
+    // Store user ID globally
+    telegramUserId = user.id;
+    
+    // Store username in hidden field
+    const telegramInput = document.getElementById('telegram');
+    if (telegramInput) {
+        if (user.username) {
+            telegramInput.value = '@' + user.username;
+        } else {
+            // If no username, use first_name and last_name or id
+            telegramInput.value = user.first_name || ('user_' + user.id);
+        }
+    }
+    
+    // Show success message
+    const telegramVerifyStatus = document.getElementById('telegramVerifyStatus');
+    if (telegramVerifyStatus) {
+        telegramVerifyStatus.className = 'telegram-verify-status success';
+        telegramVerifyStatus.textContent = getTranslation('presale_telegram_login_success') || '✓ Logged in with Telegram! Verifying subscription...';
+        telegramVerifyStatus.style.display = 'block';
+    }
+    
+    // Auto-verify subscription
+    setTimeout(() => {
+        if (typeof window.verifyTelegramSubscription === 'function') {
+            window.verifyTelegramSubscription();
+        }
+    }, 500);
 }
 
 // Global variable to track reCAPTCHA widget ID
@@ -129,7 +203,6 @@ function initializeRecaptcha() {
     const subscribedTelegramCheck = document.getElementById('subscribedTelegram');
     const subscribedTwitterCheck = document.getElementById('subscribedTwitter');
     const subscribedTgChatCheck = document.getElementById('subscribedTgChat');
-    const telegramVerifyBtn = document.getElementById('telegramVerifyBtn');
     const telegramVerifyStatus = document.getElementById('telegramVerifyStatus');
     
     // Disable submit button initially
@@ -225,24 +298,7 @@ function initializeRecaptcha() {
         subscribedTgChatCheck.addEventListener('change', window.validateForm);
     }
     
-    // Telegram verification handler
-    if (telegramVerifyBtn) {
-        telegramVerifyBtn.addEventListener('click', async function(e) {
-            e.preventDefault();
-            await verifyTelegramSubscription();
-        });
-    }
-    
-    // Auto-verify when Telegram username changes (if user has already verified)
-    if (telegramInput) {
-        telegramInput.addEventListener('blur', async function() {
-            const telegram = telegramInput.value.trim();
-            if (telegram && telegramVerified && telegramUserId) {
-                // Re-verify if username changed
-                await verifyTelegramSubscription();
-            }
-        });
-    }
+    // Telegram verification happens automatically after login via widget
     
     // Initial validation
     window.validateForm();
@@ -412,35 +468,29 @@ function initializeRecaptcha() {
     }
     
     // Function to verify Telegram subscription
-    async function verifyTelegramSubscription() {
+    window.verifyTelegramSubscription = async function verifyTelegramSubscription() {
         if (telegramVerificationInProgress) {
             return;
         }
 
+        const telegramInput = document.getElementById('telegram');
         const telegram = telegramInput ? telegramInput.value.trim() : '';
-        if (!telegram) {
-            showTelegramVerifyStatus('error', getTranslation('presale_telegram_verify_enter_username') || 'Please enter your Telegram username first');
-            return;
-        }
-
+        
         // Clean username (remove @ if present)
-        const cleanTelegram = telegram.replace('@', '');
+        const cleanTelegram = telegram ? telegram.replace('@', '') : '';
 
         telegramVerificationInProgress = true;
-        if (telegramVerifyBtn) {
-            telegramVerifyBtn.disabled = true;
-            telegramVerifyBtn.textContent = getTranslation('presale_telegram_verify_verifying') || 'Verifying...';
-        }
         showTelegramVerifyStatus('info', getTranslation('presale_telegram_verify_checking') || 'Checking subscription...');
 
         try {
-            // First, try to get user ID using Telegram Login Widget if available
-            // If Telegram Web App is available, use it to get user ID
+            // Get user ID from Telegram Login Widget
             let userId = telegramUserId;
             
-            if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user) {
-                userId = window.Telegram.WebApp.initDataUnsafe.user.id;
-                telegramUserId = userId;
+            // Check if user has logged in via Telegram Login Widget
+            if (!userId) {
+                showTelegramVerifyStatus('error', getTranslation('presale_telegram_verify_login_first') || 'Please login with Telegram using the button above first.');
+                telegramVerificationInProgress = false;
+                return;
             }
 
             // Call verification endpoint
@@ -463,16 +513,12 @@ function initializeRecaptcha() {
                     telegramUserId = result.userId;
                 }
                 showTelegramVerifyStatus('success', getTranslation('presale_telegram_verify_success') || '✓ Telegram subscription verified!');
-                if (telegramVerifyBtn) {
-                    telegramVerifyBtn.textContent = getTranslation('presale_telegram_verify_verified') || 'Verified';
-                    telegramVerifyBtn.style.backgroundColor = '#28a745';
-                }
             } else {
                 telegramVerified = false;
                 let errorMsg = result.message || getTranslation('presale_telegram_verify_not_subscribed') || 'You are not subscribed to the required Telegram channel/group.';
                 
                 if (result.requiresUserId) {
-                    errorMsg = result.message || getTranslation('presale_telegram_verify_use_widget') || 'Please use the Telegram Login Widget below to verify your account.';
+                    errorMsg = result.message || getTranslation('presale_telegram_verify_use_widget') || 'Please use the Telegram Login Widget above to verify your account.';
                 } else if (result.channelError || result.groupError) {
                     // Show specific API errors
                     const errors = [];
@@ -490,28 +536,19 @@ function initializeRecaptcha() {
                 }
                 
                 showTelegramVerifyStatus('error', errorMsg);
-                if (telegramVerifyBtn) {
-                    telegramVerifyBtn.textContent = getTranslation('presale_telegram_verify_retry') || 'Verify Again';
-                }
             }
         } catch (error) {
             console.error('Error verifying Telegram subscription:', error);
             telegramVerified = false;
             showTelegramVerifyStatus('error', getTranslation('presale_telegram_verify_error') || 'Error verifying subscription. Please try again.');
-            if (telegramVerifyBtn) {
-                telegramVerifyBtn.textContent = getTranslation('presale_telegram_verify_retry') || 'Verify Again';
-            }
         } finally {
             telegramVerificationInProgress = false;
-            if (telegramVerifyBtn) {
-                telegramVerifyBtn.disabled = false;
-            }
             // Re-validate form
             if (window.validateForm) {
                 window.validateForm();
             }
         }
-    }
+    };
 
     // Function to show Telegram verification status
     function showTelegramVerifyStatus(type, message) {
