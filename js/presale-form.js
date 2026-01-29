@@ -45,9 +45,27 @@ let recaptchaWidgetId = null;
 // Function to initialize reCAPTCHA - exposed globally
 window.initializeRecaptcha = function() {
     const recaptchaContainer = document.querySelector('.g-recaptcha');
-    if (recaptchaContainer && PRESALE_CONFIG.recaptchaSiteKey && typeof grecaptcha !== 'undefined') {
-        // Only initialize if not already initialized
-        if (!recaptchaContainer.hasAttribute('data-widget-id') && recaptchaWidgetId === null) {
+    
+    // Check if reCAPTCHA is properly loaded and has the render method
+    if (!recaptchaContainer || !PRESALE_CONFIG.recaptchaSiteKey) {
+        return;
+    }
+    
+    // Check if grecaptcha exists and has the render method
+    if (typeof grecaptcha === 'undefined' || typeof grecaptcha.render !== 'function') {
+        // If not ready yet, try again after a short delay
+        if (typeof grecaptcha === 'undefined') {
+            console.warn('reCAPTCHA script not loaded yet, retrying...');
+            setTimeout(window.initializeRecaptcha, 500);
+        } else {
+            console.error('reCAPTCHA render method not available. The script may have failed to load.');
+        }
+        return;
+    }
+    
+    // Only initialize if not already initialized
+    if (!recaptchaContainer.hasAttribute('data-widget-id') && recaptchaWidgetId === null) {
+        try {
             recaptchaWidgetId = grecaptcha.render(recaptchaContainer, {
                 'sitekey': PRESALE_CONFIG.recaptchaSiteKey,
                 'callback': function() {
@@ -63,26 +81,40 @@ window.initializeRecaptcha = function() {
                     }
                 }
             });
+            // Mark container as initialized
+            recaptchaContainer.setAttribute('data-widget-id', recaptchaWidgetId);
+        } catch (error) {
+            console.error('Error initializing reCAPTCHA:', error);
         }
     }
 };
 
 // Update the global callback to use the proper initialization
+// This will be called when reCAPTCHA script loads
 if (typeof window.onRecaptchaLoad === 'undefined') {
     window.onRecaptchaLoad = function() {
+        // Mark that reCAPTCHA is ready
+        window.recaptchaReady = true;
         // Initialize reCAPTCHA after it's loaded and config is available
-        window.initializeRecaptcha();
+        // Add a small delay to ensure everything is ready
+        setTimeout(function() {
+            window.initializeRecaptcha();
+        }, 100);
     };
 }
 
-// Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-    loadConfig();
-    
-    // Initialize reCAPTCHA if it's already loaded, otherwise wait for onload callback
-    if (typeof grecaptcha !== 'undefined' || window.recaptchaReady) {
-        window.initializeRecaptcha();
-    }
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        loadConfig();
+        
+        // Initialize reCAPTCHA if it's already loaded, otherwise wait for onload callback
+        // Check both that grecaptcha exists AND has the render method
+        if (typeof grecaptcha !== 'undefined' && typeof grecaptcha.render === 'function') {
+            window.initializeRecaptcha();
+        } else if (window.recaptchaReady) {
+            // If marked as ready but render not available, try after a delay
+            setTimeout(window.initializeRecaptcha, 200);
+        }
     
     const form = document.getElementById('airdropForm');
     const submitBtn = document.getElementById('submitBtn');
@@ -143,14 +175,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Check CAPTCHA
-        if (typeof grecaptcha === 'undefined') {
+        if (typeof grecaptcha === 'undefined' || typeof grecaptcha.getResponse !== 'function') {
             submitBtn.disabled = true;
             return false;
         }
         
-        const captchaResponse = recaptchaWidgetId !== null 
-            ? grecaptcha.getResponse(recaptchaWidgetId)
-            : grecaptcha.getResponse();
+        let captchaResponse = '';
+        try {
+            captchaResponse = recaptchaWidgetId !== null 
+                ? grecaptcha.getResponse(recaptchaWidgetId)
+                : grecaptcha.getResponse();
+        } catch (error) {
+            console.error('Error getting reCAPTCHA response:', error);
+            submitBtn.disabled = true;
+            return false;
+        }
+        
         if (!captchaResponse) {
             submitBtn.disabled = true;
             return false;
@@ -270,16 +310,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Verify CAPTCHA
-        if (typeof grecaptcha === 'undefined') {
+        if (typeof grecaptcha === 'undefined' || typeof grecaptcha.getResponse !== 'function') {
             showMessage('error', getTranslation('presale_error_captcha_load') || 'CAPTCHA is loading. Please wait a moment and try again.');
             submitBtn.disabled = false;
             submitBtn.textContent = getTranslation('presale_submit') || 'Submit Registration';
             return;
         }
         
-        const captchaResponse = recaptchaWidgetId !== null 
-            ? grecaptcha.getResponse(recaptchaWidgetId)
-            : grecaptcha.getResponse();
+        let captchaResponse = '';
+        try {
+            captchaResponse = recaptchaWidgetId !== null 
+                ? grecaptcha.getResponse(recaptchaWidgetId)
+                : grecaptcha.getResponse();
+        } catch (error) {
+            console.error('Error getting reCAPTCHA response:', error);
+            showMessage('error', getTranslation('presale_error_captcha_load') || 'CAPTCHA error. Please refresh the page and try again.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = getTranslation('presale_submit') || 'Submit Registration';
+            return;
+        }
+        
         if (!captchaResponse) {
             showMessage('error', getTranslation('presale_error_captcha') || 'Please complete the CAPTCHA verification');
             submitBtn.disabled = false;
