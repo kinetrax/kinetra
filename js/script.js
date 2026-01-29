@@ -244,16 +244,16 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-    // Fitness Map Animation Interactivity
-    const fitnessMapAnimation = document.querySelector('.fitness-map-animation');
+    // Sport Map Animation Interactivity
+    const sportMapAnimation = document.querySelector('.sport-map-animation');
     const particles = document.querySelectorAll('.particle');
     const pins = document.querySelectorAll('.pin');
     const dataPackets = document.querySelectorAll('.data-packet');
     const gridLines = document.querySelectorAll('.grid-line');
 
-    if (fitnessMapAnimation) {
+    if (sportMapAnimation) {
         // Add mouse move effect
-        fitnessMapAnimation.addEventListener('mousemove', function(e) {
+        sportMapAnimation.addEventListener('mousemove', function(e) {
             const rect = this.getBoundingClientRect();
             const x = e.clientX - rect.left; // x position within the element
             const y = e.clientY - rect.top;  // y position within the element
@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Reset transforms when mouse leaves
-        fitnessMapAnimation.addEventListener('mouseleave', function() {
+        sportMapAnimation.addEventListener('mouseleave', function() {
             particles.forEach(particle => {
                 particle.style.transform = '';
             });

@@ -1,6 +1,6 @@
 # KinetraX Website
 
-Blockchain-powered fitness platform website with token airdrop registration.
+Blockchain-powered sport platform website with token airdrop registration.
 
 ## Setup
 
