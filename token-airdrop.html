@@ -15,8 +15,8 @@
     <meta property="og:url" content="https://kinetra-x.com/token-airdrop.html">
     <meta property="og:title" content="Token Airdrop Registration - KinetraX">
     <meta property="og:description" content="KinetraX Token Airdrop Registration - Join the airdrop and be part of the future of sport">
-    <meta property="og:image" content="https://kinetra-x.com/assets/images/logo-web.jpg">
-    <meta property="og:image:secure_url" content="https://kinetra-x.com/assets/images/logo-web.jpg">
+    <meta property="og:image" content="https://kinetra-x.com/assets/images/logo-web.jpg?x=x">
+    <meta property="og:image:secure_url" content="https://kinetra-x.com/assets/images/logo-web.jpg?x=x">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -29,7 +29,7 @@
     <meta name="twitter:url" content="https://kinetra-x.com/token-airdrop">
     <meta name="twitter:title" content="Token Airdrop Registration - KinetraX">
     <meta name="twitter:description" content="KinetraX Token Airdrop Registration - Join the airdrop and be part of the future of sport">
-    <meta name="twitter:image" content="https://kinetra-x.com/assets/images/logo-web.jpg">
+    <meta name="twitter:image" content="https://kinetra-x.com/assets/images/logo-web.jpg?x=x">
     <meta name="twitter:image:alt" content="KinetraX - Token Airdrop Registration">
     <meta name="twitter:site" content="@kinetrax">
     <meta name="twitter:creator" content="@kinetrax">
@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="https://kinetra-x.com/assets/images/logo-web.jpg">
+    <link rel="icon" type="image/svg+xml" href="https://kinetra-x.com/assets/images/logo-web.jpg?x=x">
     
     <!-- Resource hints for reCAPTCHA -->
     <link rel="preconnect" href="https://www.google.com">
@@ -90,6 +90,81 @@
         .presale-header p {
             font-size: 1.1rem;
             opacity: 0.95;
+        }
+        
+        .countdown-container {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .countdown-label {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            text-align: center;
+            opacity: 0.9;
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 70px;
+        }
+        
+        .countdown-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--white);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 0.5rem;
+        }
+        
+        .countdown-label-small {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .countdown-separator {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+            opacity: 0.8;
+            margin: 0 0.25rem;
+            line-height: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .countdown-value {
+                font-size: 2rem;
+            }
+            
+            .countdown-separator {
+                font-size: 1.5rem;
+            }
+            
+            .countdown-item {
+                min-width: 60px;
+            }
+            
+            .countdown-label-small {
+                font-size: 0.75rem;
+            }
         }
         
         .presale-form {
@@ -373,6 +448,31 @@
                 <div class="presale-header">
                     <h1 data-i18n="presale_title">Token Airdrop Registration</h1>
                     <p data-i18n="presale_subtitle">Join the KinetraX token airdrop and be part of the future of sport on blockchain</p>
+                    
+                    <div class="countdown-container">
+                        <div class="countdown-label">Airdrop ends in:</div>
+                        <div class="countdown-timer" id="countdownTimer">
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="days">00</span>
+                                <span class="countdown-label-small">Days</span>
+                            </div>
+                            <div class="countdown-separator">:</div>
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="hours">00</span>
+                                <span class="countdown-label-small">Hours</span>
+                            </div>
+                            <div class="countdown-separator">:</div>
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="minutes">00</span>
+                                <span class="countdown-label-small">Minutes</span>
+                            </div>
+                            <div class="countdown-separator">:</div>
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="seconds">00</span>
+                                <span class="countdown-label-small">Seconds</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <form class="presale-form" id="airdropForm">
@@ -492,5 +592,61 @@
     <!-- Load config.js if it exists (optional - create from config.example.js) -->
     <script src="js/config.js"></script>
     <script src="js/presale-form.js"></script>
+    
+    <script>
+        // Countdown timer for airdrop end date: February 12, 2026 at 23:59 UTC
+        (function() {
+            const endDate = new Date('2026-02-12T23:59:59Z');
+            const airdropForm = document.getElementById('airdropForm');
+            let formRemoved = false;
+            
+            function updateCountdown() {
+                const now = new Date();
+                const timeLeft = endDate - now;
+                
+                if (timeLeft <= 0) {
+                    // Airdrop has ended
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    
+                    // Remove the form if it hasn't been removed yet
+                    if (!formRemoved && airdropForm) {
+                        airdropForm.style.display = 'none';
+                        formRemoved = true;
+                        
+                        // Optionally show a message that the airdrop has ended
+                        const endedMessage = document.createElement('div');
+                        endedMessage.className = 'airdrop-ended-message';
+                        endedMessage.style.cssText = 'background-color: var(--white); border-radius: 15px; padding: 2.5rem; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); text-align: center;';
+                        endedMessage.innerHTML = '<h2 style="color: var(--primary-color); margin-bottom: 1rem;">Airdrop Registration Closed</h2><p style="color: var(--text-color); font-size: 1.1rem;">The airdrop registration period has ended. Thank you for your interest!</p>';
+                        
+                        // Insert the message after the header
+                        const presaleContainer = airdropForm.parentElement;
+                        presaleContainer.insertBefore(endedMessage, airdropForm);
+                    }
+                    
+                    return;
+                }
+                
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            }
+            
+            // Update immediately
+            updateCountdown();
+            
+            // Update every second
+            setInterval(updateCountdown, 1000);
+        })();
+    </script>
 </body>
 </html>
