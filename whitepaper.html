@@ -371,60 +371,90 @@
                 <p>The KinetraX token distribution is designed to ensure fair allocation, community engagement, and long-term sustainability of the platform. The total token supply is distributed across key stakeholders and purposes as follows:</p>
                 
                 <div style="overflow-x: auto; margin: 2rem 0;">
-                    <table style="width: 100%; border-collapse: collapse; background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <table style="width: 100%; border-collapse: collapse; background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); font-size: 0.9rem;">
                         <thead>
                             <tr style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: var(--white);">
-                                <th style="padding: 1rem; text-align: left; font-weight: 600;">Category</th>
-                                <th style="padding: 1rem; text-align: center; font-weight: 600;">Percentage</th>
-                                <th style="padding: 1rem; text-align: left; font-weight: 600;">Description</th>
+                                <th style="padding: 1rem; text-align: left; font-weight: 600;">Allocation Name</th>
+                                <th style="padding: 1rem; text-align: center; font-weight: 600;">Percentage of Allocation (%)</th>
+                                <th style="padding: 1rem; text-align: center; font-weight: 600;">Token Generation Event Percentage (%)</th>
+                                <th style="padding: 1rem; text-align: center; font-weight: 600;">Cliff Period (Month)</th>
+                                <th style="padding: 1rem; text-align: center; font-weight: 600;">Vesting Period (Month)</th>
+                                <th style="padding: 1rem; text-align: left; font-weight: 600;">Release Schedule (Frequency)</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr style="border-bottom: 1px solid var(--light-gray);">
                                 <td style="padding: 1rem; font-weight: 500;">Team</td>
-                                <td style="padding: 1rem; text-align: center; color: var(--primary-color); font-weight: 600;">20%</td>
-                                <td style="padding: 1rem; color: var(--gray);">Tokens reserved for team members, advisors, and contributors</td>
+                                <td style="padding: 1rem; text-align: center; color: var(--primary-color); font-weight: 600;">25</td>
+                                <td style="padding: 1rem; text-align: center;">5</td>
+                                <td style="padding: 1rem; text-align: center;">12</td>
+                                <td style="padding: 1rem; text-align: center;">36</td>
+                                <td style="padding: 1rem; color: var(--gray);">Monthly linear vesting</td>
                             </tr>
                             <tr style="border-bottom: 1px solid var(--light-gray); background: var(--light-bg);">
                                 <td style="padding: 1rem; font-weight: 500;">Presale</td>
-                                <td style="padding: 1rem; text-align: center; color: var(--primary-color); font-weight: 600;">10%</td>
-                                <td style="padding: 1rem; color: var(--gray);">Tokens allocated for presale participants and early investors</td>
+                                <td style="padding: 1rem; text-align: center; color: var(--primary-color); font-weight: 600;">10</td>
+                                <td style="padding: 1rem; text-align: center;">20</td>
+                                <td style="padding: 1rem; text-align: center;">12</td>
+                                <td style="padding: 1rem; text-align: center;">24</td>
+                                <td style="padding: 1rem; color: var(--gray);">Monthly linear vesting</td>
                             </tr>
                             <tr style="border-bottom: 1px solid var(--light-gray);">
                                 <td style="padding: 1rem; font-weight: 500;">Airdrop</td>
-                                <td style="padding: 1rem; text-align: center; color: var(--primary-color); font-weight: 600;">5%</td>
-                                <td style="padding: 1rem; color: var(--gray);">Tokens distributed through community airdrop campaigns</td>
+                                <td style="padding: 1rem; text-align: center; color: var(--primary-color); font-weight: 600;">5</td>
+                                <td style="padding: 1rem; text-align: center;">100</td>
+                                <td style="padding: 1rem; text-align: center;">0</td>
+                                <td style="padding: 1rem; text-align: center;">0</td>
+                                <td style="padding: 1rem; color: var(--gray);">One time</td>
                             </tr>
                             <tr style="border-bottom: 1px solid var(--light-gray); background: var(--light-bg);">
                                 <td style="padding: 1rem; font-weight: 500;">Ecosystem Development</td>
-                                <td style="padding: 1rem; text-align: center; color: var(--primary-color); font-weight: 600;">25%</td>
-                                <td style="padding: 1rem; color: var(--gray);">Tokens allocated for ecosystem development, platform growth, and technical infrastructure</td>
+                                <td style="padding: 1rem; text-align: center; color: var(--primary-color); font-weight: 600;">25</td>
+                                <td style="padding: 1rem; text-align: center;">0</td>
+                                <td style="padding: 1rem; text-align: center;">6</td>
+                                <td style="padding: 1rem; text-align: center;">36</td>
+                                <td style="padding: 1rem; color: var(--gray);">Monthly linear vesting</td>
                             </tr>
                             <tr style="border-bottom: 1px solid var(--light-gray);">
                                 <td style="padding: 1rem; font-weight: 500;">Community Rewards</td>
-                                <td style="padding: 1rem; text-align: center; color: var(--primary-color); font-weight: 600;">10%</td>
-                                <td style="padding: 1rem; color: var(--gray);">Tokens allocated for community rewards, staking incentives, and user engagement programs</td>
+                                <td style="padding: 1rem; text-align: center; color: var(--primary-color); font-weight: 600;">10</td>
+                                <td style="padding: 1rem; text-align: center;">0</td>
+                                <td style="padding: 1rem; text-align: center;">0</td>
+                                <td style="padding: 1rem; text-align: center;">12</td>
+                                <td style="padding: 1rem; color: var(--gray);">On time</td>
                             </tr>
                             <tr style="border-bottom: 1px solid var(--light-gray); background: var(--light-bg);">
                                 <td style="padding: 1rem; font-weight: 500;">Liquidity Pool</td>
-                                <td style="padding: 1rem; text-align: center; color: var(--primary-color); font-weight: 600;">10%</td>
-                                <td style="padding: 1rem; color: var(--gray);">Tokens allocated for liquidity pools and market making</td>
+                                <td style="padding: 1rem; text-align: center; color: var(--primary-color); font-weight: 600;">10</td>
+                                <td style="padding: 1rem; text-align: center;">100</td>
+                                <td style="padding: 1rem; text-align: center;">0</td>
+                                <td style="padding: 1rem; text-align: center;">0</td>
+                                <td style="padding: 1rem; color: var(--gray);">Immediate allocation at TGE</td>
                             </tr>
                             <tr style="border-bottom: 1px solid var(--light-gray);">
                                 <td style="padding: 1rem; font-weight: 500;">Marketing and Promotions</td>
-                                <td style="padding: 1rem; text-align: center; color: var(--primary-color); font-weight: 600;">5%</td>
-                                <td style="padding: 1rem; color: var(--gray);">Tokens allocated for marketing campaigns and promotional activities</td>
+                                <td style="padding: 1rem; text-align: center; color: var(--primary-color); font-weight: 600;">5</td>
+                                <td style="padding: 1rem; text-align: center;">0</td>
+                                <td style="padding: 1rem; text-align: center;">3</td>
+                                <td style="padding: 1rem; text-align: center;">18</td>
+                                <td style="padding: 1rem; color: var(--gray);">Monthly linear vesting</td>
                             </tr>
                             <tr style="background: var(--light-bg);">
                                 <td style="padding: 1rem; font-weight: 500;">Reserve Fund</td>
-                                <td style="padding: 1rem; text-align: center; color: var(--primary-color); font-weight: 600;">5%</td>
-                                <td style="padding: 1rem; color: var(--gray);">Tokens held in reserve for future strategic initiatives and emergency funds</td>
+                                <td style="padding: 1rem; text-align: center; color: var(--primary-color); font-weight: 600;">10</td>
+                                <td style="padding: 1rem; text-align: center;">100</td>
+                                <td style="padding: 1rem; text-align: center;">0</td>
+                                <td style="padding: 1rem; text-align: center;">0</td>
+                                <td style="padding: 1rem; color: var(--gray);">-</td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr style="background: var(--dark); color: var(--white);">
                                 <td style="padding: 1rem; font-weight: 700;">Total</td>
                                 <td style="padding: 1rem; text-align: center; font-weight: 700;">100%</td>
+                                <td style="padding: 1rem; text-align: center; font-weight: 700;">-</td>
+                                <td style="padding: 1rem; text-align: center; font-weight: 700;">-</td>
+                                <td style="padding: 1rem; text-align: center; font-weight: 700;">-</td>
                                 <td style="padding: 1rem;"></td>
                             </tr>
                         </tfoot>
@@ -432,7 +462,7 @@
                 </div>
                 
                 <p style="margin-top: 1.5rem; color: var(--gray); font-size: 0.95rem;">
-                    <strong>Note:</strong> Token distribution percentages are subject to vesting schedules and lock-up periods as defined in the tokenomics model. Detailed vesting information will be provided in the token sale documentation.
+                    <strong>Note:</strong> Token distribution percentages are subject to vesting schedules and lock-up periods as defined in the tokenomics model above. The Token Generation Event (TGE) percentage indicates the portion of each allocation that will be released at the token launch, with the remaining tokens subject to the vesting schedule specified.
                 </p>
             </div>
 
