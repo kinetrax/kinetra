@@ -41,29 +41,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <!-- Resource hints for reCAPTCHA -->
-    <link rel="preconnect" href="https://www.google.com">
-    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
-    
-    <!-- Load reCAPTCHA asynchronously -->
-    <script async src="https://www.google.com/recaptcha/api.js?render=explicit"></script>
-    <script>
-        // Ensure grecaptcha.ready() can be safely called at any time
-        // This prevents race conditions when reCAPTCHA is still loading
-        if(typeof grecaptcha === 'undefined') {
-            grecaptcha = {
-                ready: function(cb) {
-                    // window.__grecaptcha_cfg is a global variable that stores reCAPTCHA's
-                    // configuration. By default, any functions listed in its 'fns' property
-                    // are automatically executed when reCAPTCHA loads.
-                    const c = '___grecaptcha_cfg';
-                    window[c] = window[c] || {};
-                    (window[c]['fns'] = window[c]['fns'] || []).push(cb);
-                }
-            };
-        }
-    </script>
-    
     <style>
         .presale-section {
             padding-top: 8rem;
@@ -101,6 +78,53 @@
             backdrop-filter: blur(10px);
             border-radius: 15px;
             border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .airdrop-ended-message {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .airdrop-ended-message h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        
+        .airdrop-ended-message p {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        
+        .airdrop-ended-message .icon {
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .airdrop-ended-message {
+                padding: 2rem 1.5rem;
+            }
+            
+            .airdrop-ended-message h2 {
+                font-size: 1.5rem;
+            }
+            
+            .airdrop-ended-message p {
+                font-size: 1rem;
+            }
+            
+            .airdrop-ended-message .icon {
+                font-size: 3rem;
+            }
         }
         
         .countdown-label {
@@ -460,7 +484,6 @@
                 <ul class="nav-menu">
                     <li><a href="./" class="nav-link" data-i18n="nav_home">Home</a></li>
                     <li><a href="./#token" class="nav-link" data-i18n="nav_token">Token</a></li>
-                    <li><a href="token-airdrop.html" class="nav-link active" data-i18n="nav_presale">Airdrop</a></li>
                     <li><a href="./#faq" class="nav-link" data-i18n="nav_faq">FAQ</a></li>
                 </ul>
             </nav>
@@ -490,111 +513,18 @@
                 <div class="presale-header">
                     <h1 data-i18n="presale_title">Token Airdrop Registration</h1>
                     <p data-i18n="presale_subtitle">Join the KinetraX token airdrop and be part of the future of sport on blockchain</p>
-                    
-                    <div class="countdown-container">
-                        <div class="countdown-label">Airdrop ends in:</div>
-                        <div class="countdown-timer" id="countdownTimer">
-                            <div class="countdown-item">
-                                <span class="countdown-value" id="days">00</span>
-                                <span class="countdown-label-small">Days</span>
-                            </div>
-                            <div class="countdown-separator">:</div>
-                            <div class="countdown-item">
-                                <span class="countdown-value" id="hours">00</span>
-                                <span class="countdown-label-small">Hours</span>
-                            </div>
-                            <div class="countdown-separator">:</div>
-                            <div class="countdown-item">
-                                <span class="countdown-value" id="minutes">00</span>
-                                <span class="countdown-label-small">Minutes</span>
-                            </div>
-                            <div class="countdown-separator">:</div>
-                            <div class="countdown-item">
-                                <span class="countdown-value" id="seconds">00</span>
-                                <span class="countdown-label-small">Seconds</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 
-                <form class="presale-form" id="airdropForm">
-                    <div class="social-links-note">
-                        <strong data-i18n="presale_note_title">Important:</strong>
-                        <span data-i18n="presale_note_text">Please make sure you are subscribed to our</span>
-                        <a href="https://t.me/kinetraX" id="telegramLink" target="_blank" data-i18n="presale_telegram_link">Telegram</a>
-                        <span data-i18n="presale_note_and">and</span>
-                        <a href="https://x.com/kinetrax" id="twitterLink" target="_blank" data-i18n="presale_twitter_link">Twitter</a>
-                        <span data-i18n="presale_note_unique">accounts. Your accounts must be unique and active.</span>
+                <div class="airdrop-ended-message">
+                    <div class="icon">
+                        <i class="fas fa-clock"></i>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="name" data-i18n="presale_name_label">Name <span class="required">*</span></label>
-                        <input type="text" id="name" name="name" required placeholder="" data-i18n-placeholder="presale_name_placeholder">
-                    </div>
-                    
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="subscribedTelegram" name="subscribedTelegram" required>
-                            <label for="subscribedTelegram">
-                                <span data-i18n="presale_subscribed_tg">I am subscribed to</span>
-                                <a href="https://t.me/kinetraX" id="telegramCheckLink" target="_blank" data-i18n="presale_telegram_link">Telegram</a>
-                                <span class="required">*</span>
-                            </label>
-                        </div>
-                        
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="subscribedTgChat" name="subscribedTgChat" required>
-                            <label for="subscribedTgChat">
-                                <span data-i18n="presale_subscribed_tg_chat">I am subscribed to</span>
-                                <a href="https://t.me/kinetrax_chat" id="telegramChatLink" target="_blank" data-i18n="presale_tg_chat_link">TG Chat</a>
-                                <span class="required">*</span>
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label data-i18n="presale_telegram_label">Telegram Account <span class="required">*</span></label>
-                        <div style="margin-bottom: 1rem; padding: 1.5rem; background-color: var(--light-bg); border-radius: 8px; text-align: center;">
-                            <div id="telegramLoginWidget" style="margin-bottom: 1rem; display: flex; justify-content: center; align-items: center; min-height: 50px;">
-                                <!-- Telegram Login Widget will be inserted here -->
-                            </div>
-                            <small style="display: block; margin-bottom: 0.5rem; color: var(--gray); font-size: 0.85rem;" data-i18n="presale_telegram_login_hint">Click the button above to login with Telegram. This will automatically verify your subscription to the channel and group.</small>
-                        </div>
-                        <input type="hidden" id="telegram" name="telegram" required>
-                        <div id="telegramVerifyStatus" class="telegram-verify-status" style="display: none; margin-top: 0.5rem; padding: 0.5rem; border-radius: 4px; font-size: 0.9rem;"></div>
-                    </div>
-                    
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="subscribedTwitter" name="subscribedTwitter" required>
-                            <label for="subscribedTwitter">
-                                <span data-i18n="presale_subscribed_tw">I am subscribed to</span>
-                                <a href="https://x.com/kinetrax" id="twitterCheckLink" target="_blank" data-i18n="presale_twitter_link">Twitter</a>
-                                <span class="required">*</span>
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="twitter" data-i18n="presale_twitter_label">Twitter Account Name <span class="required">*</span></label>
-                        <input type="text" id="twitter" name="twitter" placeholder="@username" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="tonAddress" data-i18n="presale_ton_address_label">TON Wallet Address <span class="required">*</span></label>
-                        <input type="text" id="tonAddress" name="tonAddress" placeholder="" data-i18n-placeholder="presale_ton_address_placeholder" required>
-                        <small style="display: block; margin-top: 0.5rem; color: var(--gray); font-size: 0.85rem;" data-i18n="presale_ton_address_hint">Enter your TON wallet address (e.g., EQ... or 0:...)</small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <div class="g-recaptcha"></div>
-                        <small style="display: block; margin-top: 0.5rem; color: var(--gray); font-size: 0.85rem;" data-i18n="presale_captcha_hint">Please complete the CAPTCHA verification</small>
-                    </div>
-                    
-                    <div class="form-message" id="formMessage"></div>
-                    
-                    <button type="submit" class="submit-btn" id="submitBtn" data-i18n="presale_submit">Submit Registration</button>
-                </form>
+                    <h2>Airdrop Has Ended</h2>
+                    <p>The airdrop registration period has ended.</p>
+                    <p><strong>The winners list will be announced soon.</strong></p>
+                    <p>Please wait for updates on future opportunities.</p>
+                </div>
+                
             </div>
         </div>
     </section>
@@ -633,62 +563,5 @@
     <script src="js/script.js"></script>
     <!-- Load config.js if it exists (optional - create from config.example.js) -->
     <script src="js/config.js"></script>
-    <script src="js/presale-form.js"></script>
-    
-    <script>
-        // Countdown timer for airdrop end date: February 12, 2026 at 23:59 UTC
-        (function() {
-            const endDate = new Date('2026-02-12T23:59:59Z');
-            const airdropForm = document.getElementById('airdropForm');
-            let formRemoved = false;
-            
-            function updateCountdown() {
-                const now = new Date();
-                const timeLeft = endDate - now;
-                
-                if (timeLeft <= 0) {
-                    // Airdrop has ended
-                    document.getElementById('days').textContent = '00';
-                    document.getElementById('hours').textContent = '00';
-                    document.getElementById('minutes').textContent = '00';
-                    document.getElementById('seconds').textContent = '00';
-                    
-                    // Remove the form if it hasn't been removed yet
-                    if (!formRemoved && airdropForm) {
-                        airdropForm.style.display = 'none';
-                        formRemoved = true;
-                        
-                        // Optionally show a message that the airdrop has ended
-                        const endedMessage = document.createElement('div');
-                        endedMessage.className = 'airdrop-ended-message';
-                        endedMessage.style.cssText = 'background-color: var(--white); border-radius: 15px; padding: 2.5rem; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); text-align: center;';
-                        endedMessage.innerHTML = '<h2 style="color: var(--primary-color); margin-bottom: 1rem;">Airdrop Registration Closed</h2><p style="color: var(--text-color); font-size: 1.1rem;">The airdrop registration period has ended. Thank you for your interest!</p>';
-                        
-                        // Insert the message after the header
-                        const presaleContainer = airdropForm.parentElement;
-                        presaleContainer.insertBefore(endedMessage, airdropForm);
-                    }
-                    
-                    return;
-                }
-                
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                
-                document.getElementById('days').textContent = String(days).padStart(2, '0');
-                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-            }
-            
-            // Update immediately
-            updateCountdown();
-            
-            // Update every second
-            setInterval(updateCountdown, 1000);
-        })();
-    </script>
 </body>
 </html>
