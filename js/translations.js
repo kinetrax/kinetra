@@ -261,6 +261,22 @@ const translations = {
         "presale_error_ton_address": "Please enter a valid TON wallet address (should start with EQ, UQ, or 0:)",
         "presale_error_submit": "Failed to submit registration. Please try again later or contact support.",
 
+        // Airdrop Results Page
+        "airdrop_ended_title": "Airdrop Has Ended",
+        "airdrop_ended_p1": "The airdrop registration period has ended.",
+        "airdrop_ended_winners": "The winners list has been published!",
+        "airdrop_view_results": "View Results",
+        "airdrop_results_title": "Airdrop Results",
+        "airdrop_results_subtitle": "Congratulations to all winners! Check if your wallet is in the list below.",
+        "airdrop_results_total": "Total Winners",
+        "airdrop_results_search_label": "Check if your wallet won",
+        "airdrop_results_search_placeholder": "UQ... or EQ...",
+        "airdrop_results_search_btn": "Check",
+        "airdrop_results_found": "✓ Congratulations! Your wallet is a winner (#{rank})",
+        "airdrop_results_not_found": "This wallet is not in the winners list.",
+        "airdrop_results_list_title": "Winning Wallet Addresses",
+        "airdrop_results_back": "← Back to Airdrop",
+
         // Privacy Policy Page
         "privacy_policy_title": "Privacy Policy",
         "privacy_introduction_title": "1. Introduction",
@@ -635,6 +651,22 @@ const translations = {
         "presale_error_subscribed": "Пожалуйста, подтвердите, что вы подписаны на Telegram и Twitter",
         "presale_error_ton_address": "Пожалуйста, введите действительный адрес TON кошелька (должен начинаться с EQ, UQ или 0:)",
         "presale_error_submit": "Не удалось отправить регистрацию. Пожалуйста, попробуйте позже или свяжитесь с поддержкой.",
+
+        // Airdrop Results Page
+        "airdrop_ended_title": "Аирдроп завершён",
+        "airdrop_ended_p1": "Период регистрации на аирдроп завершён.",
+        "airdrop_ended_winners": "Список победителей опубликован!",
+        "airdrop_view_results": "Смотреть результаты",
+        "airdrop_results_title": "Результаты аирдропа",
+        "airdrop_results_subtitle": "Поздравляем всех победителей! Проверьте, есть ли ваш кошелёк в списке.",
+        "airdrop_results_total": "Всего победителей",
+        "airdrop_results_search_label": "Проверить, выиграл ли ваш кошелёк",
+        "airdrop_results_search_placeholder": "UQ... или EQ...",
+        "airdrop_results_search_btn": "Проверить",
+        "airdrop_results_found": "✓ Поздравляем! Ваш кошелёк в списке победителей (#{rank})",
+        "airdrop_results_not_found": "Этот кошелёк не в списке победителей.",
+        "airdrop_results_list_title": "Адреса кошельков победителей",
+        "airdrop_results_back": "← Назад к аирдропу",
 
         // Privacy Policy Page
         "privacy_policy_title": "Политика конфиденциальности",

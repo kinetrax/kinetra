@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="KinetraX Airdrop Results - View the list of winning wallet addresses">
+    <title>Airdrop Results - KinetraX</title>
+    
+    <link rel="canonical" href="https://kinetra-x.com/airdrop-results.html">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kinetra-x.com/airdrop-results.html">
+    <meta property="og:title" content="Airdrop Results - KinetraX">
+    <meta property="og:description" content="KinetraX Airdrop Results - View the list of winning wallet addresses">
+    <meta property="og:image" content="https://kinetra-x.com/assets/images/logo-web.jpg?y=y?x=x">
+    <meta property="og:site_name" content="KinetraX">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Airdrop Results - KinetraX">
+    <meta name="twitter:description" content="KinetraX Airdrop Results - View the list of winning wallet addresses">
+    
+    <link rel="icon" type="image/svg+xml" href="assets/logos/kinetra-logo.svg">
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .results-section {
+            padding-top: 8rem;
+            padding-bottom: 4rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #25a8b3 100%);
+            min-height: 100vh;
+        }
+        
+        .results-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .results-header {
+            text-align: center;
+            color: var(--white);
+            margin-bottom: 2rem;
+        }
+        
+        .results-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--white);
+        }
+        
+        .results-header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+        
+        .results-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+        
+        .wallets-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .wallets-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .wallet-list {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .wallet-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--light-gray);
+            font-family: 'Inter', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .wallet-item:last-child {
+            border-bottom: none;
+        }
+        
+        .wallet-item .rank {
+            color: var(--gray);
+            min-width: 2.5rem;
+            font-weight: 600;
+        }
+        
+        .wallet-item .address {
+            flex: 1;
+            word-break: break-all;
+            color: var(--text-color);
+        }
+        
+        .wallet-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        
+        .wallet-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .wallet-item.highlight {
+            background: rgba(45, 201, 214, 0.1);
+            border-radius: 6px;
+            margin: 0 -0.5rem;
+            padding: 0.75rem 0.5rem;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            margin-top: 2rem;
+            text-decoration: none;
+            font-weight: 500;
+            opacity: 0.95;
+        }
+        
+        .back-link:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .results-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .wallet-item {
+                flex-wrap: wrap;
+            }
+            
+            .wallet-item .address {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <a href="./">
+                <div class="logo">
+                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo" width="40" height="40">
+                    <h1>KinetraX</h1>
+                </div>
+            </a>
+            <nav class="main-nav" id="main-nav">
+                <ul class="nav-menu">
+                    <li><a href="./" class="nav-link" data-i18n="nav_home">Home</a></li>
+                    <li><a href="./#token" class="nav-link" data-i18n="nav_token">Token</a></li>
+                    <li><a href="token-airdrop.html" class="nav-link" data-i18n="nav_presale">Airdrop</a></li>
+                    <li><a href="./#faq" class="nav-link" data-i18n="nav_faq">FAQ</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <div class="language-dropdown">
+                    <div class="selected-language">
+                        <span>EN</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <ul class="language-options"></ul>
+                </div>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="results-section">
+        <div class="container">
+            <div class="results-container">
+                <div class="results-header">
+                    <h1 data-i18n="airdrop_results_title">Airdrop Results</h1>
+                    <p data-i18n="airdrop_results_subtitle">Congratulations to all winners! Check if your wallet is in the list below.</p>
+                </div>
+                
+                <div class="results-stats">
+                    <div class="stat-badge">
+                        <span data-i18n="airdrop_results_total">Total Winners</span>: <span id="total-count">250</span>
+                    </div>
+                </div>
+
+                <div class="wallets-card">
+                    <h3 data-i18n="airdrop_results_list_title">Winning Wallet Addresses</h3>
+                    <div class="wallet-list" id="wallet-list"></div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <a href="token-airdrop.html" class="back-link" data-i18n="airdrop_results_back">← Back to Airdrop</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/logos/kinetra-logo.svg" alt="KinetraX Logo" width="40" height="40" loading="lazy">
+                    <h2>KinetraX</h2>
+                </div>
+                <div class="social-links">
+                    <a href="https://x.com/kinetrax" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://t.me/kinetraX" target="_blank"><i class="fab fa-telegram"></i></a>
+                </div>
+                <div class="footer-links">
+                    <a href="privacy-policy" data-i18n="privacy_policy">Privacy Policy</a>
+                    <a href="terms-of-use" data-i18n="terms_of_use">Terms of Use</a>
+                </div>
+                <div class="partners">
+                    <img src="assets/images/ton-logo.svg" alt="TON Logo" loading="lazy" width="100" height="100">
+                </div>
+            </div>
+            <div class="copyright">
+                <p data-i18n="copyright">&copy; 2025 KinetraX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/translations.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/config.js"></script>
+    <script>
+        const TON_EXPLORER = 'https://tonscan.org/address/';
+        const wallets = [
+            "UQCiy6d3nJJ4jpY5iC-IgJD8jisNHeNtK6p2Vie66ZOWH8jq",
+            "UQD2RUzeV2Bzww3I9MJ_O9q8Hjd1NgjdfbWeSKB7IgvZGz5A",
+            "UQBrt3-E4c-5k85x0Z2NGKSAqG_rowjFPyx3pDkSxGYoKP_L",
+            "UQC3_i7AyLg0_GztskKCYDhLyKqvLnHHpJLACeFsj1U2hsfe",
+            "UQByQzvAsuN9sJB418RNftZY9sPM8iWpi6ys9zVt01icIxvc",
+            "UQAdOZjL5jj25M5wvXiOfz8lAgN4QdZoDlvJWN2H6onmFOCS",
+            "UQD8JS1VeOjMc8CKAbzfzP2JokDbBKnFz_ZVm4RzOWWj9eRE",
+            "UQBTg3D-TQXIZhoWu38uYzendf7FUpa8QgzL0WFyPvcoZK1B",
+            "UQCkIjCPrpYTSPiYCPJQLGKUD-tCP1Jasqmmsf-Yw8pxv5L1",
+            "UQCOXi1P3BJM31IrywAUS45SERVDDArwX7zf88nYrtxW97KH",
+            "UQDYI-8HEs-I_aTOBiEYecBivSuIgBc_1z3pz40zH_mLCY5h",
+            "UQDaGoC9u8uwll4Eh5La0PxX1lFNNb9q5xFubBLbNqxCSVJ3",
+            "UQA3u9a523trNYYoTd7hHR6jZLJx9mk9srTL69M-U5yPDbp3",
+            "UQCcmTXoROamZ2_a0aaK_wIDuHGQUk5psW5xpddu3atfPCVF",
+            "UQBbS7WWpUsJrU9lMK7BcRtovZKhecnJbAyOuM0phsjtkbFj",
+            "UQC_Zx0Gakze9rnvvbYVPBd5wqjkMgpFRTA92KhOas-TMp4e",
+            "UQATEbCVQqyCXlZRzdGfEHsjvhhB2Jeu13l2CxKDMXjUPn64",
+            "UQDsHw22-EWjzyTDZ9hGHSQnjsrJKkSxbW8sMdWCp3gSiGeL",
+            "UQBgDUzcKBSDhwvU0QLlNzNjk6s14bywrwwvRVd4oBQr7-IM",
+            "UQAusuucy5m6xsswgTcM2Yqo42Fy2f-PsieqOyegiuFabKIO",
+            "UQBKHMWLzetiMBMavTtXUXHRs-KpZUyZeSzy0UQ1nx8Mg8-D",
+            "UQA1mU006BR3SZV75W8FMoXX-DmILEIXKp-22674181B2c6_",
+            "UQCuV8weC9J-QLshPJXn7AoXLOM04MDIF5kXBT7kxHbVdx--",
+            "UQDTMmi37Bgfa3SaNrSmdZMtgbK7v9iNvly8gS8VTPQ5fjxT",
+            "UQAzSFswXT88J8SzFA_E-8WshL4drjO9O04Ngg4I0XWnouQv",
+            "UQBKR6Jl8E9yZdQGkAHlk4FUCN1NkHP_UE9Y313icPyuy8ho",
+            "UQCphuPRpBmVbpYzwIKdmxoYO1O2jY509aFKe7nnHPgEHAUk",
+            "UQCSyY2t2pApc_CcxmBHm9j9A_Xw0OCAfAALAFSClRZvUyXo",
+            "UQAXzRx-LKFRVPmLDZnDnqvXWEuTLROw1numa4KtHGdNu9uB",
+            "UQAFV-sxPQIZmaMrN4m-brgV7Efd2ylmyLUKKFYiiZYFGShs",
+            "UQDd_nvYWhVgakx6oIVElDFkvCByuFwPBgSneMtOD7VlVAKA",
+            "UQC8OcVLPqhc9k6KhN8mMZ4RUjKBzA3v57_VGcuMo7kaxmPt",
+            "UQDRG-zuXrJ8i4M8MTmoeDnjmcslV28kB3zMtbky-S50c6TX",
+            "UQA_6bSjt4ULl51ZTTz_CrwsQqQWduWqJDcx6qAl8-qIQrA8",
+            "UQDelyZHEzz-Jwt_xdmQv_MY1BiJYdVqPxDbfzJL4TbN2eTc",
+            "UQBW7RkAxdWJvF1-f9ghwmGjiL5LKt88DoTNivsuCCAhhfxT",
+            "UQAHt5sdzlZnjAgCUPNJJzvp494yXmRkj9ZDJQfRqvrc91nl",
+            "UQBDGkylcptI--JrxZQxMxTAqRYTtYqgSqTQH_ANOg22Ddya",
+            "UQChNLDZg5najLQAoagfckkV53JYepS6BvJSIWuH3TkM-WqN",
+            "UQDBgTo4xOJSdhAaqXTaV817ELnpzJmyKn_mEqxeXb2S9mQj",
+            "UQDct8b4aQ90obyy_RwnqI3Sdg2rZsEWLV1u4OORlffZXYU8",
+            "UQAjoSCiTSEbG-2EPWSOXTWOiEpnOhh1TfU-mS3ilMm5uVZX",
+            "UQApE0i3LwPRFf7-tNS7pJVy8934agGnY2JtvRySFhUP5CxZ",
+            "UQACfj1jK-1OIH9K7Y9cYiY9jy7bHfofadTEtIw55ixzVTkQ",
+            "UQBzwjrI8KxDxw_lpYrcu7MzQ8yMabe2wAQ5emQVtLlpdSuG",
+            "UQDSxjtsJO_bfuZZe8p1MS69yyfpGOt80d4-hprPJsvwni02",
+            "UQCOxL1jPTJAKc0N-rDOmnxEOh-atrW_oKhpZ2FjuldaE4gQ",
+            "UQAL-CzRILr1ylz5iyjLRZELBK56JW2_-G2iVtBSDUn6YUpD",
+            "UQCv0FBliUs3zYDLV4xJnoz6r8UDzZYBdJMvdhDiD2tlTEv9",
+            "UQB4vHfD1u1plJZfwT6XYs_9Iy5_9ogyzk2_KegR5zGOz26o",
+            "UQDlw5OiC2SxPuqSoUjIeA5hJZs8xYf6r_td08AXAzMK45M1",
+            "UQDxrQhylpxh-UG6ZGi6w9vP3h9LJoqfSxpnO29bkC0z2mh0",
+            "UQAj-XB-8OnGwgzCcryM8ZJlHniVOGw5YzmIfEN39JwGTfx9",
+            "UQD1kQp-Yt1dR-a7mEUdyfJ2461zEHj-fVk4h885v0XZzp41",
+            "UQCeRgLnUllt9y0gOuhcxzzvjgX9Bqh1_pJuNL1ZUENVxSwg",
+            "UQDhNpVAmyLPHYj8AwJJc5KoPtaBsC6gYjUFHPyhnA6dVmtk",
+            "UQAY-LTtggAVxRfwWTgT0Jd6KPA_beCdHG5F2w88PveZ8d49",
+            "UQBaxJFjwwoHuu3MPRQDKZRL-M5OgGTx0vRDMDuqkBnVOL4Q",
+            "UQDNT1Ae3FF0PK9vaKXWMGNj-83iLyT-4zY7M6CEiZ8d7DlD",
+            "UQDomwAxLF8tGCCKMXB-cjHQO2vcuzIHpT7miH9Lz38UrWFd",
+            "UQBJUuGbsjr994VvV9EVUDWrHXrguRnTs0ANnMvOnDTqRa5y",
+            "UQC0o_dpNDLjPL-NWbTcIiL2y3RSyeJNd0yXjZeI8SbhyzVh",
+            "UQBnSd0aHBFv_72Qne4LdTCQKkS8u_oZJUQCiZfZvJiTt-1E",
+            "UQAY97quBVbn1NUASjJXFtdzPWBBC9MsIeG_E6Mt7fnojYOY",
+            "UQA0yeMwZaYYgQKexl4EiqwDaTP944mRjDQaNlWZjdvA-aQ1",
+            "UQBNGxqxKIXOYbByf0W0k2B95ZX_7xQYn9OR5P8Ya4BhJ9sp",
+            "UQCf1nl_MP5W6rMByHymjRzyC90aAkPHDzmXV-YAgmCI7GDB",
+            "UQBR46__YR1lyCyG8nrGozts9-QfsCRptHOn8ir8OkgrfSu5",
+            "UQDa1jw9mj5lhQ3lYRmM_G2BB2zGCBnvDxCSl-WScw8LGAVJ",
+            "UQDkYVwcnfR4tSMau-9hF7QiaUl-F03M7lA1rDBIfp6_HBYB",
+            "UQCBuhnw1_o_cBrUBzTGUL6P3YBXDdXSAYraUn8fR_UG8f3M",
+            "UQA6H1RsTtdZdN2c-4frJbHnuYvCu1P3awzZNnv4HAgOPxbm",
+            "UQDWE4QeLlpihMGYzxDWVtHtN_kp-JJV3_7vj4HqEzFSUmCb",
+            "UQAH5zhGl1jsshwp5Jfe6WRfaVEIoWfT0GEsLh3ZwyLqLTnn",
+            "UQAbQ-cbI5MtiGmBE1zhCUDk84SAHSI15pDyXWoDbUhZ7NLf",
+            "UQD3Cu6xZx1zUUlq5DrfQUJ5LsuzFV9ZcX-pNPwgONt2wMR_",
+            "UQAOpSOK4OoZcsVHOMu3k-5Ey9Bihwp5zQ1kJe3PwruzBWAy",
+            "UQAAaWw9kZXibZxbX2zvte68S_nzv-BNL5bEuFdCaYT74NVc",
+            "EQDsehqeG8STAtPFgroPW29rzq1_doMQlJrEKYQ1bAnbpc_y",
+            "UQCISRHKnuDEQlndM8kNLxfntbNsOF3f9d5qhn1vc7emgqqs",
+            "UQBQlU8YLn-bTYGh5u3ROvBJ7jAh4U3XdDtrpSf5BSjVPe9Z",
+            "UQDH1CSpUSW-wC375h7i7J0a_6ZbsfF7QBpg1qgzze_WdtDk",
+            "UQDqOZxD4xPC8e4Jhd7H_BTkiqYbQOZL8CoHHKya3q_cNH4Z",
+            "UQDwubWuCWL2v7AGFg7zTET5wLPBOVeQqXzRL_PSI6oqNft7",
+            "UQBfpebnAZj5rr4Opp2CGEahGZlKm6X1Cnk_AsaoXhauQbyu",
+            "UQAJQJfXiOEO4ynBZh9KHN5I-fPbTr_aWlW0rwcLG01tpUeF",
+            "UQBEqlnBXBQZ2ZCbQrFj_6YzulhkCCiC2Wq3NhRBFTNBpkAS",
+            "UQDhxDgrCYt2bNuqDVZXY7doaypaKhoRpia6CNn-jNEWxV8u",
+            "UQBHHA6i_2X-4OLr5dUJEoUAsfjNMYJO6k3oq0kK14qpxNkS",
+            "UQCZgcdR9CHsGJ8BI5C2UooLCEX7f9RfxEP96Ie0v7Depa0H",
+            "UQCImlv3vSYmYUUGKgdbRiX1WKL2w7hthGOHqdCwLBYZEmTO",
+            "UQDN0VlINpuTfOA3EvPuiaLKfCpE6FynALvn5ExbEQ1uLdOL",
+            "UQBND2Tr8qh6JegJOa8nfcvZ0JDQ2jR2v8VZvyOk_pbbRsAL",
+            "UQBPM6xzxzyz6HHFXYJv4-MS0h0ABAVfKId5YP1ViQgrBHP3",
+            "UQDYe_FZGQIrZxVMSN4zilwf5ifDU8RSN77v1de0bfnfsf4i",
+            "UQCm6dRKT1LF4DlLgbLYT448kJF6yHJZHeOKWMPydfp3y22t",
+            "UQBNOdBf-8G5UF5THw11CCWaf5G71FTI8JiNGGhC5rsOTYYD",
+            "UQBQY3vPFGzT3IHerWdia-En_pHgvx5aiUs9SgAZyjmQ5Acz",
+            "UQAtv6jNZBIz_WpaMGC5lDqoQBiHeI1sOC_aH53bqOPmf5fK",
+            "UQBEZNVAgj1mbiZyBrPM7JOuI_og2cqANy5Vp6sEYh-PsO7X",
+            "UQBaZOdPWY4nV2zhcZOIcsvgybVIuHvk_-hqA_NerPEiiJKE",
+            "UQCnqhsIWqHYKqJzWpwBJyvJjuXT4uSDLZJpuou37f1HptpU",
+            "UQAcQVilwHjUg6txrOQl0eG_LpWfrLB79EeXv1VguULUubgL",
+            "UQCAzAvQ3-axTMiP6FVlupbYLaUx7t_-6VsyJbBaNCmmqTeK",
+            "UQB0AD3QPAuTpZkdGayhguD7vGnJQYvsuE6xRRvJxfcbA4CM",
+            "UQD9DfNY4QpEaRkDaqGgARYfo67XLRGUlwUoqb9ywC2pItzS",
+            "UQC9fpX5sy-pu14c9oa3xiH1k1iQu_9eWpBfJd0epoFR5e1o",
+            "UQDWyKXbTtHARzNZVqJU-AId5MHsXUbq84IhGdYRQnhPw3Xw",
+            "UQAm4gK_mKrzxx4oRYH-Kw784-S0rVrz-hjpdz_PCSyAScxA",
+            "UQARVceQhZf3IVtH4RIPKLA8sNmfbBnfQmjTGA1bI__q4ffA",
+            "UQCNYTVaG1UO1soZdaE7h3Ea-gwYQhkzCD-evjC0cQYmSNnz",
+            "UQCPSlPUL2huPlDzLDBwsoJ8Ryz_aYcOryYAtJ6dXkSQo6_2",
+            "UQBM9kCH2YcWB-ZOrtIgq70S5pjOB_ZlAq4MRZlLyGAgo2SW",
+            "UQCOxL1jPTJAKc0N-rDOmnxEOh-atrW_oKhpZ2FjuldaE4gQ",
+            "UQCmTynraCRVCVD1XgqoVdUNLVE17tzgrMv3nB5x7lqELHda",
+            "UQBoHr_fckINAeNwbgxnfEgO_jvcRpEqO76egl993elRYOcr",
+            "UQCEPvaJj87wrLf6Y6HItfiHMuQud0UTDVrv78uwVp_rI4nB",
+            "UQDQkqV4sy2tuyf1mvZhA9btD2vZFKeBvoshQ2E3PbsLieSq",
+            "UQCpkY0qU7gTaP8Lc1WePeJS2D9NkhvXLQm6_dy7-9dSXwS2",
+            "UQD5FnHx64bAjByf-B9OIM8mq8MtSm5NKXDqIi-t3SfQXJ7z",
+            "UQBtzzE9fWKZahYGLHPLVPMqMzj10TKt_tVkXJy5UBGPY7kh",
+            "UQDiCHtSOknREVDNos7pEo-HqJfEyDAcu02Q_qTGkFuSAbAP",
+            "UQBjLxa4QAl-NtOA-SHgA4SBiTbReRuAcbFP_TReP6sFpCQb",
+            "UQCjLhREK6XSqHq9FBDKXUcfSb2SdOt3_r4MVgaAHPv8N9SA",
+            "UQCNVvNFoMKgPQyQWr6z8Jmr0Ch3Su32qkRfl_Fq5hQM_5pY",
+            "UQD3Qc9Kr8I30GfWNSkGwlk56wBys6_BTZl4mgJXO00srnBZ",
+            "UQDvnp141axpJ-e46_MR0RGHtkhdZ6STDzekP0-m-zyBEXsE",
+            "UQAID-qAjZUyhN7S6lTF7dc7ZclmaI5vgWHR5vYvMiOnm_PX",
+            "UQBuOZBdlCseEFRZCOawRn9LLVJYVYj-4c-AmLMAzwdnOc5C",
+            "UQDIXcw5wXUNGPeaZ9F31-l2sdiBcgJAJuij38fZuN2r7ZiQ",
+            "UQCszv3oQPVItUOdiJGmnErTSSZHlMFFUxUF-DfeHhvdmx4V",
+            "UQA26no_VIMkSWAs3iVUR4GiN0kMwYc5ccqj8azai1SQUShi",
+            "UQBWCkdacsvN8IDq0pl0tQvhoQpt16cU39hMwxDVG7fbXZol",
+            "UQCh6ALEuaO4nEbn9aSKip2QqW_DLFdSw11qHkykRO4qRJ1O",
+            "UQAg8CLTg7-v8rpBFuG4tZFWgx78lQVNY-_JdpTIatiMeGjv",
+            "UQA5DCYTSt1jU4wTW4-aayU_1jiF-ijcfKau467x36ICUz8w",
+            "UQBtktcMEpCar99eG4Y48N5k2wrVc_INpV_hFdcKCALHGhas",
+            "UQBE6CwusH3XNMlr5jF4P2otwXL8oaLtOgbuMUZ92Q81Qgxw",
+            "UQDzyiBvOWrxVWk0D8zx579Ag_QKrMjhcrsL6jLlTjwQ5J_3",
+            "UQDRonTk1kyPpZtx0pIegLm1Q2BaF7w0IkrFeTtN5bXplw52",
+            "UQCFm6_pMCyruM8z7cpOifaqBE9aVnZ869pVT-fTu05WbY6K",
+            "UQDL2lKpTzLC6EDHLGCrh3-Idqkshi9PYZAjw9vqWFT72IMh",
+            "UQCfGTyGCavIwSbXJxasm8-BRDDj7MaeFgJsilOBmMMmO9Kc",
+            "UQC2LTldSDHMBvbhwg3byS-Ac0Zj5iUnTZNByJhOGMid17h4",
+            "UQDh7jhaWSxPkaU6FDrVAxAEwT1zc41BKzfLxTpgXa_CJ3Wu",
+            "UQBUN4d-YGUNfm_4c-JzSUgo3TfiHN0xKErvKNoXARrhRCWu",
+            "UQClHKaYf_HUOZOMuL2GamHwMHbfaU8Fv3Wqt7EVc1VHSCMK",
+            "UQD4TIWkbHfNsuiJX903SyzYsVr9ThX6dYt2B6RUdFMDd5Wg",
+            "UQBQvgdnkkbiCIZq4ietE_5BUUBqbTOHGacqsQDct6s1kNuH",
+            "UQBEl3YKtNs5ZLySLuvHbU3GJchYfOa0uKFKGgejzyHIM0FH",
+            "UQBwk6Fmjaqq-Lei18pVykDokTUKKc8SoPGH7L8wSi4yK-ze",
+            "UQAnYtMG9FsBZz40IrSolvfugjpA6gRMquiwm58ihOoIfjtO",
+            "UQAoVcpN_rTVi77D7poj6zWxcfqcc-R114Jb5vTBZskunACq",
+            "UQDdljEX9SXobPwrI0pgxy1yjNhvUDiMK9DEVow1kx5r1PLS",
+            "UQCN2j_8C_Ujk2AOH55Anq37OcR1H4vrrPg_AJAM2lFU96YW",
+            "UQDpCOtScSHx6d_CbDnhOPWoz8vJfC1ej-kTjo3A57eLyYkT",
+            "UQBF0jwdtxlardOPZS0yMT-yvsS-jpD3tKi3gB8LKFana2FA",
+            "UQDwGipvZz6TvbC_84EM8yCuXZjTgGoPW6WtpAP5BN_z-GrN",
+            "UQCUMIP3E2nYLiES6sOK651K18EcT3KqYCuDRR736WY2KC-U",
+            "UQC1hO5bvq7wVPX0tg4SfsnwzOzpWK3lpkiNBYh38B0Cbtj-",
+            "UQDLJvZZacT-b_NPVx1nHnM8Ine7Byx5IfgOV12dQsSxLwGm",
+            "UQCBJ8sd5tc3gVdAFIEIt8V2nUZoXKdvPAayB6jI8xZ0gzC5",
+            "UQAxVhEu8Ox8O59Qzv_8v6-kcXlwUC9drH3VLEqKWQU7wdZ1",
+            "UQDzLtSNe7MVTRYvgxMQQIXONnAaOxiShtJYgAmCJ6ShUIgb",
+            "UQB_ZAtp52WSMFePVOIHEf2H4o-M6lWVFcxePTz3SZ94CMVK",
+            "UQCVf4K5L2ozvG-vBUZwogYuByuJLua861bciSgkuk2wTSHD",
+            "UQAhOBjM3fSS23Dy2213Hng7vPAmnpPj5JCRqDtQwFc7YvYh",
+            "UQBY8m974F2rC0Dhedvg9uQjy7szhbQUeGIXXHczbfkfsbuc",
+            "UQCY8_3FLs1RAnMWyQhj_hjujYVnkz25v-dZY3wigb624JrP",
+            "UQA0yeMwZaYYgQKexl4EiqwDaTP944mRjDQaNlWZjdvA-aQ1",
+            "UQCygIw8jvxywNf7JvmAAXW2bXh7v_kViiavARH5RJ8dGPbH",
+            "UQDm2gE7jM2qy7Kam7IktF-zxTbB0QYZLVyjU4_1X5ALxOcB",
+            "UQDIqRdB6cihS_tDtORu_Ayo0I27Ez20g5Z1BNzuSuq7ghLn",
+            "UQAT1zTb5-DWQKxZ_Y0_3BuN_pbA1eU9TcCjjAuF0CSh3WHD",
+            "UQDaFhgUzJh79qVpnI0p70-YsxpR-BonQWuGF6TvN9vJK1Ai",
+            "UQBwrw7JaqcB56-MbAzKyopYT3WifQqrcqVwxsWkGEx4tYFE",
+            "UQC602u83sD1OX-3oElvmBs1xldghcxxYKTy-3iXwnwlxio2",
+            "UQBxx95NN9NaZs4Uw_KLa84jIKIf0tMH7bkLv1X-AWK6-KZB",
+            "UQDd-bLxVI5ct66oPH-leraD5VFbF3v_B5_ouwlY3CZJCNvd",
+            "UQDyDV2SzqTuhFrpoC7R5QrRkr-aaVmJQEqeLltgHhnc-4cj",
+            "UQBh-9FDqgf2SX_gYUZI2aQtM-V-NPb3jz2fVJannglwL3J0",
+            "UQCmvFyNe2Fb60Ur18xZ-T-l_6v7yLB0ZzMe0QcLtBuuddeC",
+            "UQBoHr_fckINAeNwbgxnfEgO_jvcRpEqO76egl993elRYOcr",
+            "UQAL0D9W5-e4oVCLNosTBV4aZSfMVTCRMlvsj-MGog3dPlAn",
+            "UQALnC_yv986ldSiDakLsddwsZEmGjqhe1i8F2VhUV3cwSlN",
+            "UQAIoTRJ5mI-9d3D8To5a4zTsSyeDnLWGuyVmYxT4TgSH3Z3",
+            "UQBe5aSBVHkuMXIVbBrwPrw3cM9ALXpJoi1Cl0hhE_8KfbL1",
+            "UQBHBpR_946yYArBqtIpba1UC4IaZ3eJ9031r7F8_klz9BVE",
+            "UQC_-Sv8QIDT5h45Y2VYB8Aj1obOvJjULcCK7z3F4869XshR",
+            "UQCRkmYgdblhWoRWX-Ted5cjNhdxjU2Ej-AUmesaPwpwqYQp",
+            "UQDjFdI9Dqkje1QdFg2-tiX4d0XbKWC-Z1Efry4QKxcXXPgm",
+            "UQBdYbmMpNzyDmf2AiweEV9g_QjoTXMnER4knjH7vqAwwD6G",
+            "UQCGvh9bvRoUWuKzvtwI6A9hUgMXu5BCM41Faadrd9RLR25a",
+            "UQCOJ8Ovw5Ku40C76A0k6gp2SgEe6hknYIpWGlBqp3wr3Wr1",
+            "UQCTe4L7CPDaxcgwJ5BnE1pSQW397ugx2ZvfdJ0pb-x1PvSl",
+            "UQA5lugIdOofjLU55PEvBDxxUxDTVzpNEDBNNGHxxilZ7xbv",
+            "UQBKRLnbzhp-ODjZKhVxrof-ICe2brHTNNHXs5CD8jXGg8sU",
+            "UQByj-Ntd8H_Asd1jSblCSVnyQofqCyFLA6ZQ7sU7YYdn5Gk",
+            "UQCaVwE9FxvGudbZohhFbbhMkB43YSmnEOaB8OA0RKt3l8pJ",
+            "UQDXU5GFyqGuO_NMCSGRpMQcUXvYMkhqnNsZTp-70ei_Mgiu",
+            "UQCVihD0I80vYaTv0Z45UVPCJPCiCSPGO8wxkvvXW4n_NB8H",
+            "UQATDCdbASiVoiPxzoweedERieXByC9YIYerbkdoA3I2kvx7",
+            "UQBvuSJm1WG0Jh6NeWhWwOjHNF46S4mSSl68-BenFOiIP5uf",
+            "UQA13NswVm5hawGWZI-WgXWqXo3YpQUaS-Y5r4uc6IzJrBfL",
+            "UQB-N_K6u-OdoLXEY7582G0jHqGKxY1H369pqbLUL04IBWFK",
+            "UQBRV9S1dyfWwILTVn6wzLCTDldq_V_eAb20KzvUmJCnuMHd",
+            "UQBFOJDFwuH7D7-vpUntuml2CJBXpIRbeeQORDgfJfQD2qLg",
+            "UQB-njzJWGD0PUNUB9VkanYyhB3PRmuJgQyyFiQlu3QN9H0Z",
+            "UQBRdNjKbYGasv8hAJAdKLDYdgmz3s-kqBsPQiT8aovmxnCl",
+            "UQD9VXBIHF6io-F40iVvlp6lz5nJwJlSOzz3eurgGs_Huqnq",
+            "UQD18-Et21AKzuWISxnmNkvu2pBQHUZ_D2rvvvwcBBEKrsmV",
+            "UQB844iD_S65aqAk8PUIb0NWGDKCVlY4Tf-iDNXBd75I20OQ",
+            "UQCDQg2xrGCqIR3Mq2j_EnCxP2GVLUrhAExm2qhWe4jR3plF",
+            "UQDHtse6bKmdrK2dx7mYPrMqUhUJ3oXAP-panll7haLUJXA0",
+            "UQCTn0YlKOJUvxU93SUZP-ICsAfBy1OIniqMRzCMP9bb0BDO",
+            "UQDAwxfxlea6pXLoiDLf1fd-3o8QGnHNRpV3ahqX0KvDBExP",
+            "UQD4StUo-Izx3IzmwPqIEtQGkUi_o7tjcYQxMmWgEhdWI-Mo",
+            "UQDRXMM8OiJA2vMngy4IoT_Gp-wT81WYhoKQGBXJ0KvOla5N",
+            "UQBdg-R_3KBJBGu6vloM_xF0UptjH4EfSXXWpN0Mjniq-6bF",
+            "UQBfDV8YaZwKxSjS_PdFD_GB55Ky_TNpVBFksvo4ujBy8JRa",
+            "UQCHo1GUyA669KIVe5ML6Ck4VP9ZyvLDK8XF9KSVsx_TuTki",
+            "UQA64POGculiJaX5gB8Xex26hWYogCb4Ar5k7E6aHCKqUImC",
+            "UQCXBKh_SFemM2qzrqDlUD5U5yOpwWN_WmmBqAgxy1w8FKj0",
+            "UQAaxM529Papn3xfSHvYIbRzvPBQ8c1HWaYcswfUSAVjhtO9",
+            "UQBSi9gKK76GfjqaWd9TW3hEB9ihJBR_BSULnf91cPRU7Otp",
+            "UQAV0s3vRDMf0B202hhcI2rVv-NUiPtmtFbIlsjCR--Qmu_M",
+            "UQDXY_ofjL80kQpykbrAJ9b8zMtdxyknUlVbepe1KtcAVOCu",
+            "UQCAqQjcLGGe0cRoC5L7gHnpGCnwlZCwrFh6Fvn3xOscLC_y",
+            "UQDOAdK7p8PWyxYCmjIdTCq8Ql7ZjK6lPqvCw1cN-loDGVYt",
+            "UQAj13ASFVjQHrS-CN_8HPwLUdqcqQb38ukpH6-vUnJ12f6o",
+            "UQD9_yN2xILL30ciNdOrJqdb5rKp_kmlLLgiGcKO7gPq9WWn",
+            "UQCUbsxbkIkVAMvVlNOkK4VvS6nJioLnsTURLnCMWXE6RqR8",
+            "UQCfYEIE9TFB_7dQfCJvlfbwYIXShSaSf6H4dZpoycP-5fJQ",
+            "UQC_x7QWGz36UtM5APPw7UMi8nkL34QcQv9CIAr5DGI-CyE9",
+            "UQDYYnHQKoSpcC3VBn1keYpMt1BX7aRuvMRwpjwtYlzX1l66",
+            "UQCVT1UyR_PZBQWDC_w76MkmpyvBpv-GbHf_zQEox5P6olwQ",
+            "UQBTJi2qtV3vGA1fTkKaltT1xqW9u6J0aLWPmGVYu93Df7SA",
+            "UQDuvZdrnk38p2fsIaDK3a-vTBX3fOXhU-GN4TqL6RYl7qFN",
+            "UQBqjlgX0rDMbzQy1PpPTvDUU043TBPz82WEl22hIrHgeBiM",
+            "UQD9YEQ1SmIvxK5hBnbyD3oBez6cABit0uF4pyTBh6LQvgu1",
+            "UQCXGg_bZn1uRcrGcpY7m7Rha8pspcIBngenU964fQojTsHX",
+            "UQDQHFeALKlFNnwEgEHi1is5vS709cC7Mln4zY4hel3IT0m0",
+            "UQDuBlD1eXjOe0Oh0Q2jjbd26xqSY6yLLuFqBK_PYn-tuGeB",
+            "UQCLk5ZVd6InB0_AAmAy6nUS-zebi20Hc-tDoWhdJdvsEgdK",
+            "UQD6hl6lmv2-UBVIPGKt70TEfxDGvcO-JdUqSZcfkC6mJtSs",
+            "UQAPAfTQVsiVIgem4T9TMNunS-RuPbYGoT9Qv4ONH16xjkw_",
+            "UQDtHxTg--7mJ0K9mOQDrzH4suUE2NoYijJ5tbc7CrSHi7jb",
+            "UQCnzAtZ4mlNgYAVQt0CdUz1ioQF2FwFjwIXajozMlhhxJD0",
+            "UQDBMIy81JTk9tbZRqrbAXhtbMwJ4uvAsfZSTdI96slKWjSt",
+            "UQAS531Oz9YJsUtrVUib3Ag6NgjioT8Y58-DBCaKgJge7hdy"
+        ];
+
+        function renderWalletList() {
+            const list = document.getElementById('wallet-list');
+            list.innerHTML = wallets.map((addr, i) => {
+                const rank = i + 1;
+                const explorerUrl = TON_EXPLORER + encodeURIComponent(addr);
+                return `<div class="wallet-item" data-address="${addr.toLowerCase()}">
+                    <span class="rank">#${rank}</span>
+                    <span class="address">${addr}</span>
+                    <a href="${explorerUrl}" target="_blank" rel="noopener" title="View on TON Explorer"><i class="fas fa-external-link-alt"></i></a>
+                </div>`;
+            }).join('');
+        }
+
+        document.getElementById('total-count').textContent = wallets.length;
+        renderWalletList();
+    </script>
+</body>
+</html>
