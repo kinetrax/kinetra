@@ -668,7 +668,9 @@ header a:hover {
 .partner-item {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
+    text-align: center;
 }
 
 .partner-label {
@@ -700,6 +702,12 @@ header a:hover {
     width: 1px;
     height: 32px;
     background: var(--border);
+}
+
+@media (max-width: 640px) {
+    .partner-divider {
+        display: none;
+    }
 }
 
 /* ===== ABOUT / WHAT IS KINETRAX ===== */
