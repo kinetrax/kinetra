@@ -584,7 +584,7 @@ header a:hover {
 
 .hero-subtitle {
     font-size: clamp(1rem, 1.3vw, 1.15rem);
-    color: var(--text-secondary);
+    color: #ffffff;
     line-height: 1.75;
     margin-bottom: 2rem;
     max-width: 560px;
@@ -626,8 +626,8 @@ header a:hover {
 
 .stat-label {
     font-size: 0.8rem;
-    color: var(--text-muted);
-    font-weight: 500;
+    color: #ffffff;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-top: 0.15rem;
