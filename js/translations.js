@@ -16,7 +16,7 @@ const translations = {
 
         // Hero
         "hero_badge": "Built on TON Blockchain",
-        "hero_title": "The Marketplace for Sport Training Sessions",
+        "hero_title": "Blockchain Sport Training Marketplace on TON",
         "hero_subtitle": "KinetraX connects coaches and athletes through a Telegram Mini App. Book sessions, pay with crypto, earn rewards — with zero intermediaries.",
         "hero_stat_supply_value": "21M",
         "hero_stat_supply_label": "KTX Total Supply",
@@ -436,7 +436,7 @@ const translations = {
 
         // Hero
         "hero_badge": "На блокчейне TON",
-        "hero_title": "Маркетплейс спортивных тренировок",
+        "hero_title": "Блокчейн-маркетплейс спортивных тренировок на TON",
         "hero_subtitle": "KinetraX соединяет тренеров и спортсменов через Telegram Mini App. Бронируйте тренировки, платите криптовалютой, зарабатывайте награды — без посредников.",
         "hero_stat_supply_value": "21M",
         "hero_stat_supply_label": "Эмиссия KTX",
