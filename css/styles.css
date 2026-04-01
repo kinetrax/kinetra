@@ -2464,9 +2464,7 @@ footer {
 
     .flow-showcase {
         width: min(100%, 560px);
-        box-shadow:
-            0 14px 30px rgba(8, 14, 24, 0.38),
-            inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        box-shadow: none;
     }
 
     .flow-node {
@@ -2527,9 +2525,7 @@ footer {
         height: 460px;
         display: flex;
         flex-direction: column;
-        box-shadow:
-            0 10px 22px rgba(8, 14, 24, 0.32),
-            inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        box-shadow: none;
     }
 
     .flow-track {
