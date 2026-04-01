@@ -882,6 +882,7 @@ header a:hover {
     gap: 1.25rem;
     margin-bottom: 3rem;
     align-items: stretch;
+    touch-action: pan-y;
 }
 
 .steps-scroll-hint {
@@ -1000,6 +1001,7 @@ header a:hover {
     backdrop-filter: blur(8px);
     position: relative;
     overflow: hidden;
+    touch-action: pan-y;
 }
 
 .flow-showcase::after {

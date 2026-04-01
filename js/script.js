@@ -222,10 +222,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Add click event listeners to steps
+    // Add click/touch/swipe interactions to "How It Works"
     if (steps.length > 0) {
         let currentStepIndex = 0;
         let autoRotateInterval = null;
+        let touchStartX = null;
+        let touchStartY = null;
+        const SWIPE_THRESHOLD = 40;
 
         function stopAutoRotate() {
             if (autoRotateInterval) {
@@ -234,22 +237,70 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
+        function activateAndSync(stepIndex) {
+            const boundedIndex = Math.max(0, Math.min(stepIndex, steps.length - 1));
+            activateStep(boundedIndex);
+            currentStepIndex = boundedIndex;
+
+            if (steps[boundedIndex] && window.matchMedia('(max-width: 992px)').matches) {
+                steps[boundedIndex].scrollIntoView({
+                    behavior: 'smooth',
+                    inline: 'start',
+                    block: 'nearest'
+                });
+            }
+        }
+
+        function goToNextStep() {
+            activateAndSync((currentStepIndex + 1) % steps.length);
+        }
+
+        function goToPrevStep() {
+            activateAndSync((currentStepIndex - 1 + steps.length) % steps.length);
+        }
+
+        function handleSwipeStart(clientX, clientY) {
+            touchStartX = clientX;
+            touchStartY = clientY;
+        }
+
+        function handleSwipeEnd(clientX, clientY) {
+            if (touchStartX === null || touchStartY === null) {
+                return;
+            }
+
+            const deltaX = clientX - touchStartX;
+            const deltaY = clientY - touchStartY;
+            const isHorizontalSwipe = Math.abs(deltaX) > Math.abs(deltaY);
+
+            touchStartX = null;
+            touchStartY = null;
+
+            if (!isHorizontalSwipe || Math.abs(deltaX) < SWIPE_THRESHOLD) {
+                return;
+            }
+
+            stopAutoRotate();
+            if (deltaX < 0) {
+                goToNextStep();
+            } else {
+                goToPrevStep();
+            }
+        }
+
         steps.forEach((step, index) => {
             step.addEventListener('click', function() {
-                activateStep(index);
-                currentStepIndex = index;
+                activateAndSync(index);
                 stopAutoRotate();
             });
 
             // Add hover event listeners for desktop
             step.addEventListener('mouseenter', function() {
-                activateStep(index);
-                currentStepIndex = index;
+                activateAndSync(index);
             });
 
             step.addEventListener('touchstart', function() {
-                activateStep(index);
-                currentStepIndex = index;
+                activateAndSync(index);
                 stopAutoRotate();
             }, { passive: true });
         });
@@ -257,26 +308,49 @@ document.addEventListener('DOMContentLoaded', function() {
         // Allow interacting directly with the journey nodes (mobile-friendly controls)
         flowNodes.forEach((node, index) => {
             node.addEventListener('click', function() {
-                activateStep(index);
-                currentStepIndex = index;
+                activateAndSync(index);
                 stopAutoRotate();
             });
         });
 
+        const flowShowcase = document.querySelector('.flow-showcase');
+        if (flowShowcase) {
+            flowShowcase.addEventListener('touchstart', function(event) {
+                const touch = event.changedTouches[0];
+                handleSwipeStart(touch.clientX, touch.clientY);
+            }, { passive: true });
+
+            flowShowcase.addEventListener('touchend', function(event) {
+                const touch = event.changedTouches[0];
+                handleSwipeEnd(touch.clientX, touch.clientY);
+            }, { passive: true });
+        }
+
+        const stepsContainer = document.querySelector('.steps');
+        if (stepsContainer) {
+            stepsContainer.addEventListener('touchstart', function(event) {
+                const touch = event.changedTouches[0];
+                handleSwipeStart(touch.clientX, touch.clientY);
+            }, { passive: true });
+
+            stepsContainer.addEventListener('touchend', function(event) {
+                const touch = event.changedTouches[0];
+                handleSwipeEnd(touch.clientX, touch.clientY);
+            }, { passive: true });
+        }
+
         // Initialize with the first step active
-        activateStep(0);
+        activateAndSync(0);
 
         // Auto-rotate through steps on larger screens only
         const isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
         if (!isMobileViewport) {
             autoRotateInterval = setInterval(() => {
-                currentStepIndex = (currentStepIndex + 1) % steps.length;
-                activateStep(currentStepIndex);
+                goToNextStep();
             }, 3000);
         }
 
         // Stop auto-rotation when user interacts with steps
-        const stepsContainer = document.querySelector('.steps');
         if (stepsContainer) {
             stepsContainer.addEventListener('mouseenter', () => {
                 stopAutoRotate();
