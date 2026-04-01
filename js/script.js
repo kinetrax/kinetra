@@ -224,32 +224,62 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add click event listeners to steps
     if (steps.length > 0) {
+        let currentStepIndex = 0;
+        let autoRotateInterval = null;
+
+        function stopAutoRotate() {
+            if (autoRotateInterval) {
+                clearInterval(autoRotateInterval);
+                autoRotateInterval = null;
+            }
+        }
+
         steps.forEach((step, index) => {
             step.addEventListener('click', function() {
                 activateStep(index);
+                currentStepIndex = index;
+                stopAutoRotate();
             });
 
             // Add hover event listeners for desktop
             step.addEventListener('mouseenter', function() {
                 activateStep(index);
+                currentStepIndex = index;
+            });
+
+            step.addEventListener('touchstart', function() {
+                activateStep(index);
+                currentStepIndex = index;
+                stopAutoRotate();
+            }, { passive: true });
+        });
+
+        // Allow interacting directly with the journey nodes (mobile-friendly controls)
+        flowNodes.forEach((node, index) => {
+            node.addEventListener('click', function() {
+                activateStep(index);
+                currentStepIndex = index;
+                stopAutoRotate();
             });
         });
 
         // Initialize with the first step active
         activateStep(0);
 
-        // Auto-rotate through steps every 3 seconds
-        let currentStepIndex = 0;
-        const autoRotateInterval = setInterval(() => {
-            currentStepIndex = (currentStepIndex + 1) % steps.length;
-            activateStep(currentStepIndex);
-        }, 3000);
+        // Auto-rotate through steps on larger screens only
+        const isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
+        if (!isMobileViewport) {
+            autoRotateInterval = setInterval(() => {
+                currentStepIndex = (currentStepIndex + 1) % steps.length;
+                activateStep(currentStepIndex);
+            }, 3000);
+        }
 
         // Stop auto-rotation when user interacts with steps
         const stepsContainer = document.querySelector('.steps');
         if (stepsContainer) {
             stepsContainer.addEventListener('mouseenter', () => {
-                clearInterval(autoRotateInterval);
+                stopAutoRotate();
             });
         }
     }

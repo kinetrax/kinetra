@@ -864,14 +864,27 @@ header a:hover {
     background: var(--bg-body);
 }
 
+.steps-scroll-area {
+    position: relative;
+}
+
 .steps {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
     margin-bottom: 3rem;
+    align-items: stretch;
+}
+
+.steps-scroll-hint {
+    display: none;
 }
 
 .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
     text-align: center;
     padding: 2rem 1.5rem;
     border-radius: var(--radius-lg);
@@ -918,6 +931,7 @@ header a:hover {
     color: var(--text-secondary);
     font-size: 0.875rem;
     line-height: 1.6;
+    flex-grow: 1;
 }
 
 /* ===== How It Works Showcase ===== */
@@ -1060,11 +1074,13 @@ header a:hover {
 
 .flow-panels {
     position: relative;
-    min-height: 230px;
+    height: clamp(250px, 34vw, 300px);
 }
 
 .app-screen {
     display: none;
+    height: 100%;
+    overflow: hidden;
     padding: 1.25rem;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.12);
@@ -2346,8 +2362,83 @@ footer {
         width: 100%;
     }
 
+    .steps-scroll-area::before,
+    .steps-scroll-area::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 2.1rem;
+        width: 24px;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    .steps-scroll-area::before {
+        left: 0;
+        background: linear-gradient(90deg, var(--bg-body), rgba(10, 10, 20, 0));
+    }
+
+    .steps-scroll-area::after {
+        right: 0;
+        background: linear-gradient(270deg, var(--bg-body), rgba(10, 10, 20, 0));
+    }
+
     .steps {
-        grid-template-columns: 1fr;
+        display: flex;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: 0.1rem 0.1rem 0.45rem;
+    }
+
+    .steps::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .steps::-webkit-scrollbar-thumb {
+        background: linear-gradient(90deg, rgba(45, 201, 214, 0.6), rgba(255, 169, 144, 0.6));
+        border-radius: 999px;
+    }
+
+    .steps::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 999px;
+    }
+
+    .step {
+        min-width: min(82vw, 320px);
+        padding: 1rem;
+        text-align: left;
+        align-items: flex-start;
+        scroll-snap-align: start;
+    }
+
+    .step-number {
+        margin: 0 0 0.65rem;
+    }
+
+    .step h3 {
+        font-size: 0.95rem;
+        margin-bottom: 0;
+    }
+
+    .step p {
+        display: none;
+    }
+
+    .steps-scroll-hint {
+        display: block;
+        margin-top: 0.5rem;
+        text-align: center;
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        letter-spacing: 0.01em;
+    }
+
+    .phone-mockup {
+        margin-top: 1.5rem;
     }
 
     .roadmap-phases {
@@ -2356,6 +2447,12 @@ footer {
 
     .flow-showcase {
         width: min(100%, 560px);
+    }
+
+    .flow-node {
+        width: 34px;
+        height: 34px;
+        cursor: pointer;
     }
 
     .footer-content {
@@ -2407,6 +2504,9 @@ footer {
     .flow-showcase {
         padding: 1rem;
         border-radius: 24px;
+        height: 460px;
+        display: flex;
+        flex-direction: column;
     }
 
     .flow-track {
@@ -2417,13 +2517,86 @@ footer {
         font-size: 1rem;
     }
 
+    .phone-mockup {
+        min-height: 460px;
+    }
+
     .flow-panels {
-        min-height: 250px;
+        flex: 1;
+        height: auto;
+        min-height: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .app-screen {
+        width: 100%;
+        height: auto;
+        max-height: 100%;
+        padding: 0.95rem;
+    }
+
+    .flow-description {
+        font-size: 0.84rem;
+        line-height: 1.45;
+    }
+
+    .flow-stat {
+        padding: 0.6rem 0.65rem;
+    }
+
+    .flow-chip {
+        font-size: 0.74rem;
+        padding: 0.3rem 0.55rem;
     }
 
     .flow-stats,
-    .flow-split {
+    .flow-chip-row,
+    .flow-wallet,
+    .flow-split,
+    .flow-success {
+        margin-top: 0.7rem;
+    }
+
+    .flow-bar {
+        margin-top: 0.65rem;
+    }
+
+    .flow-success {
+        padding: 0.45rem 0.7rem;
+        font-size: 0.78rem;
+    }
+
+    .flow-stats {
         grid-template-columns: 1fr;
+    }
+
+    .flow-split {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.45rem;
+    }
+
+    .app-screen[data-step="4"] .flow-description {
+        line-height: 1.35;
+    }
+
+    .app-screen[data-step="4"] .flow-split {
+        margin-top: 0.55rem;
+    }
+
+    .app-screen[data-step="4"] .split-item {
+        padding: 0.5rem 0.55rem;
+    }
+
+    .app-screen[data-step="4"] .split-item strong {
+        font-size: 0.84rem;
+    }
+
+    .app-screen[data-step="4"] .flow-success {
+        margin-top: 0.45rem;
+        padding: 0.3rem 0.55rem;
+        font-size: 0.72rem;
     }
 
     .selected-language {

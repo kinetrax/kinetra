@@ -72,6 +72,7 @@ const translations = {
         // How It Works
         "how_it_works_title": "How It Works",
         "how_it_works_subtitle": "Four simple steps from discovery to completed training session.",
+        "how_it_works_swipe_hint": "Swipe left/right to view all steps",
         "step1_title": "Coach Gets Verified",
         "step1_desc": "Trainers submit credentials and certifications. After review, they receive a blockchain-verified badge.",
         "step2_title": "Session Goes Live",
@@ -492,6 +493,7 @@ const translations = {
         // How It Works
         "how_it_works_title": "Как это работает",
         "how_it_works_subtitle": "Четыре простых шага от поиска до завершённой тренировки.",
+        "how_it_works_swipe_hint": "Свайпните влево/вправо, чтобы увидеть все шаги",
         "step1_title": "Тренер проходит верификацию",
         "step1_desc": "Тренеры предоставляют документы и сертификаты. После проверки получают верифицированный значок на блокчейне.",
         "step2_title": "Тренировка появляется на карте",
