@@ -185,6 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Phone Mockup Interactivity
     const steps = document.querySelectorAll('.step');
     const appScreens = document.querySelectorAll('.app-screen');
+    const flowNodes = document.querySelectorAll('.flow-node');
 
     // Function to activate a specific step and show corresponding app screen
     function activateStep(stepIndex) {
@@ -210,6 +211,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show the corresponding app screen
         if (appScreens[stepIndex]) {
             appScreens[stepIndex].classList.add('active');
+        }
+
+        // Keep flow progress nodes in sync with active step
+        if (flowNodes.length) {
+            flowNodes.forEach(node => node.classList.remove('active'));
+            if (flowNodes[stepIndex]) {
+                flowNodes[stepIndex].classList.add('active');
+            }
         }
     }
 
@@ -244,110 +253,18 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-    // Sport Map Animation Interactivity
-    const sportMapAnimation = document.querySelector('.sport-map-animation');
-    const particles = document.querySelectorAll('.particle');
-    const pins = document.querySelectorAll('.pin');
-    const dataPackets = document.querySelectorAll('.data-packet');
-    const gridLines = document.querySelectorAll('.grid-line');
-
-    if (sportMapAnimation) {
-        // Add mouse move effect
-        sportMapAnimation.addEventListener('mousemove', function(e) {
+    // Hero parallax-like subtle mouse effect
+    const heroBg = document.querySelector('.hero-bg');
+    if (heroBg) {
+        const hero = document.querySelector('.hero');
+        hero.addEventListener('mousemove', function(e) {
             const rect = this.getBoundingClientRect();
-            const x = e.clientX - rect.left; // x position within the element
-            const y = e.clientY - rect.top;  // y position within the element
-
-            // Move particles slightly based on mouse position
-            particles.forEach((particle, index) => {
-                const factor = (index + 1) * 0.03;
-                const translateX = (x - rect.width / 2) * factor;
-                const translateY = (y - rect.height / 2) * factor;
-
-                particle.style.transform = `translate(${translateX}px, ${translateY}px)`;
-            });
-
-            // Make pins react to mouse position
-            pins.forEach((pin, index) => {
-                const pinRect = pin.getBoundingClientRect();
-                const pinCenterX = pinRect.left + pinRect.width / 2 - rect.left;
-                const pinCenterY = pinRect.top + pinRect.height / 2 - rect.top;
-
-                // Calculate distance from mouse to pin
-                const dx = x - pinCenterX;
-                const dy = y - pinCenterY;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                // If mouse is close to pin, make it "attract" slightly
-                if (distance < 100) {
-                    const attractFactor = (100 - distance) / 500;
-                    const attractX = dx * attractFactor;
-                    const attractY = dy * attractFactor;
-
-                    pin.style.transform = `translate(${attractX}px, ${attractY}px)`;
-                } else {
-                    pin.style.transform = '';
-                }
-            });
-
-            // Make data packets move faster when mouse is near
-            dataPackets.forEach((packet, index) => {
-                const packetRect = packet.getBoundingClientRect();
-                const packetCenterX = packetRect.left + packetRect.width / 2 - rect.left;
-                const packetCenterY = packetRect.top + packetRect.height / 2 - rect.top;
-
-                // Calculate distance from mouse to packet
-                const dx = x - packetCenterX;
-                const dy = y - packetCenterY;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                // If mouse is close to packet, make it pulse
-                if (distance < 150) {
-                    packet.style.animationDuration = '5s';
-                } else {
-                    packet.style.animationDuration = '10s';
-                }
-            });
-
-            // Make grid lines glow when mouse is near
-            gridLines.forEach((line, index) => {
-                const lineRect = line.getBoundingClientRect();
-                const lineCenterX = lineRect.left + lineRect.width / 2 - rect.left;
-                const lineCenterY = lineRect.top + lineRect.height / 2 - rect.top;
-
-                // Calculate distance from mouse to line
-                const dx = x - lineCenterX;
-                const dy = y - lineCenterY;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                // If mouse is close to line, increase opacity
-                if (distance < 100) {
-                    line.style.opacity = '0.5';
-                    line.style.strokeWidth = '2';
-                } else {
-                    line.style.opacity = '';
-                    line.style.strokeWidth = '';
-                }
-            });
-        });
-
-        // Reset transforms when mouse leaves
-        sportMapAnimation.addEventListener('mouseleave', function() {
-            particles.forEach(particle => {
-                particle.style.transform = '';
-            });
-
-            pins.forEach(pin => {
-                pin.style.transform = '';
-            });
-
-            dataPackets.forEach(packet => {
-                packet.style.animationDuration = '';
-            });
-
-            gridLines.forEach(line => {
-                line.style.opacity = '';
-                line.style.strokeWidth = '';
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            const glows = heroBg.querySelectorAll('.hero-glow');
+            glows.forEach((glow, i) => {
+                const factor = (i + 1) * 15;
+                glow.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
             });
         });
     }
@@ -534,7 +451,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Enhanced animation on scroll with Intersection Observer - optimized
-    const animatedElements = document.querySelectorAll('.benefit-card, .step, .event-card, .doc-card, .pricing-card, .faq-item');
+    const animatedElements = document.querySelectorAll('.about-card, .audience-card, .step, .tech-card, .pricing-card, .faq-item, .utility-item, .dist-item, .roadmap-phase, .benefit-card, .event-card, .doc-card');
     
     if (animatedElements.length > 0 && 'IntersectionObserver' in window) {
         const animationObserver = new IntersectionObserver((entries) => {

@@ -29,20 +29,6 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://kinetra-x.com/terms-of-use"/>
   </url>
-  <url>
-    <loc>https://kinetra-x.com/token-airdrop</loc>
-    <lastmod>2026-03-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kinetra-x.com/token-airdrop"/>
-  </url>
-  <url>
-    <loc>https://kinetra-x.com/airdrop-results</loc>
-    <lastmod>2026-03-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kinetra-x.com/airdrop-results"/>
-  </url>
 </urlset>
 
 

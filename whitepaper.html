@@ -38,7 +38,7 @@
     
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
@@ -67,36 +67,36 @@
         <div class="container">
             <div style="text-align: center; margin-bottom: 3rem;">
                 <h1 class="section-title">KinetraX Whitepaper</h1>
-                <p style="color: var(--gray); font-size: 1.1rem;"><strong>Version 1.0</strong></p>
-                <p style="color: var(--gray);">Last Updated: February 2026</p>
+                <p style="color: var(--gray); font-size: 1.1rem;"><strong>Version 1.1</strong></p>
+                <p style="color: var(--gray);">Last Updated: April 2026</p>
             </div>
 
             <div class="whitepaper-section">
                 <h2>Executive Summary</h2>
-                <p>KinetraX is a decentralized sport platform that connects trainers with athletes through the TON (The Open Network) blockchain. Built as a Telegram Mini App, KinetraX enables seamless session booking, transparent payments, and automatic revenue distribution using smart contracts. The platform eliminates intermediaries, reduces transaction costs, and provides a trustless environment for sport professionals and participants.</p>
+                <p>KinetraX is a sport marketplace built as a Telegram Mini App and powered by TON. The platform helps trainers publish paid sessions, allows athletes to discover and book those sessions, and processes payments through smart contracts. Our goal is practical: reduce friction in booking and payouts, keep fees transparent, and make participation simple for both sides.</p>
             </div>
 
             <div class="whitepaper-section">
                 <h2>1. Introduction</h2>
                 
                 <h3>1.1 The Problem</h3>
-                <p>The sport industry faces several challenges:</p>
+                <p>Independent trainers and sport communities still rely on tools that were not designed for local session commerce. This creates several operational problems:</p>
                 <ul>
-                    <li><strong>High Transaction Fees</strong>: Traditional payment processors charge 2.5-3.5% per transaction, reducing trainer earnings</li>
-                    <li><strong>Payment Delays</strong>: Coaches often wait days or weeks to receive payments</li>
-                    <li><strong>Lack of Transparency</strong>: Complex fee structures and unclear commission models</li>
-                    <li><strong>Limited Accessibility</strong>: Geographic barriers and platform lock-ins restrict trainer-audience connections</li>
-                    <li><strong>Trust Issues</strong>: No automated verification of bookings and attendance</li>
+                    <li><strong>Fragmented Workflow</strong>: Session discovery, communication, booking, and payment often happen across multiple tools.</li>
+                    <li><strong>Fee Opacity</strong>: Platform and processing costs are not always clear to trainers and athletes.</li>
+                    <li><strong>Delayed Settlement</strong>: Payout delays reduce cash flow for trainers who run sessions regularly.</li>
+                    <li><strong>Manual Verification</strong>: Attendance and booking confirmations are frequently handled by message threads and screenshots.</li>
+                    <li><strong>High Coordination Overhead</strong>: Organizers spend time on administration instead of coaching.</li>
                 </ul>
 
                 <h3>1.2 Our Solution</h3>
-                <p>KinetraX leverages blockchain technology to create a transparent, efficient, and cost-effective marketplace for sport sessions. By using TON blockchain smart contracts, we enable:</p>
+                <p>KinetraX combines a familiar Telegram interface with on-chain settlement on TON. This lets us offer a simpler operational model:</p>
                 <ul>
-                    <li><strong>Instant Payments</strong>: Automated payment processing with minimal fees</li>
-                    <li><strong>Transparent Revenue Sharing</strong>: Smart contracts automatically distribute payments between trainers and the platform</li>
-                    <li><strong>Trustless Bookings</strong>: Blockchain-verified registrations and participant verification</li>
-                    <li><strong>Global Accessibility</strong>: Telegram Mini App format enables worldwide access</li>
-                    <li><strong>Low Transaction Costs</strong>: TON blockchain's efficiency keeps costs minimal</li>
+                    <li><strong>Unified Experience</strong>: Discovery, booking, and payment are handled in one product flow.</li>
+                    <li><strong>Transparent Settlement</strong>: Smart contracts apply distribution logic consistently and visibly.</li>
+                    <li><strong>Fast Payout Logic</strong>: Funds move according to contract rules once payment is confirmed.</li>
+                    <li><strong>Verification Layer</strong>: Participant codes support trainer-side attendance checks.</li>
+                    <li><strong>Global Access</strong>: Telegram Mini App delivery lowers onboarding friction across devices.</li>
                 </ul>
             </div>
 
@@ -129,7 +129,7 @@
                 </ul>
 
                 <h3>2.2 System Architecture</h3>
-                <p>KinetraX operates as a three-tier system:</p>
+                <p>KinetraX follows a three-layer architecture:</p>
                 <ol>
                     <li><strong>Presentation Layer</strong>: Telegram Mini App (React frontend)</li>
                     <li><strong>Application Layer</strong>: RESTful API (Fastify backend)</li>
@@ -144,106 +144,98 @@
                 <h3>3.1 User Management</h3>
                 <p><strong>Telegram Authentication:</strong></p>
                 <ul>
-                    <li>Seamless authentication via Telegram Web App</li>
-                    <li>No separate account creation required</li>
-                    <li>User profiles automatically linked to Telegram accounts</li>
+                    <li>Users sign in through Telegram Web App identity.</li>
+                    <li>No additional password flow is required.</li>
+                    <li>Profiles are linked to Telegram accounts for continuity.</li>
                 </ul>
 
                 <p><strong>User Profiles:</strong></p>
                 <ul>
-                    <li>Professional profiles with description (minimum 100 characters)</li>
-                    <li>Session statistics (sessions conducted as trainer, sessions participated as athlete)</li>
-                    <li>Profile viewing and editing capabilities</li>
+                    <li>Trainer-facing profiles include a public description and session metadata.</li>
+                    <li>Users can track their participation as trainer or athlete.</li>
+                    <li>Profile editing supports iterative improvements over time.</li>
                 </ul>
 
                 <h3>3.2 Session Management</h3>
                 <p><strong>Session Creation:</strong></p>
-                <p>Trainers can create sport sessions with:</p>
+                <p>Trainers can create sessions with:</p>
                 <ul>
-                    <li>Session name and type (e.g., "Yoga", "CrossFit", "Running")</li>
-                    <li>Detailed description</li>
-                    <li>Location (GPS coordinates)</li>
-                    <li>Date and time</li>
-                    <li>Duration (in minutes)</li>
-                    <li>Price (in TON)</li>
-                    <li>Number of available slots</li>
-                    <li>Wallet address for receiving payments</li>
+                    <li>Session title and category (for example: Yoga, CrossFit, Running).</li>
+                    <li>Description, location coordinates, date, time, and duration.</li>
+                    <li>Price in TON and available participant slots.</li>
+                    <li>Wallet address for settlement.</li>
                 </ul>
 
                 <p><strong>Session Discovery:</strong></p>
                 <ul>
-                    <li>Interactive map interface showing all available sessions</li>
-                    <li>Location-based filtering</li>
-                    <li>Real-time availability display</li>
-                    <li>Session type filtering</li>
+                    <li>Interactive map view of published sessions.</li>
+                    <li>Location-aware filtering and category filtering.</li>
+                    <li>Availability display aligned with current booking state.</li>
                 </ul>
 
                 <p><strong>Session Management:</strong></p>
                 <ul>
-                    <li>View session details</li>
-                    <li>Update session information (name, description, time, price, location, slots)</li>
-                    <li>Delete sessions</li>
-                    <li>View participant lists</li>
+                    <li>View full session details and participant lists.</li>
+                    <li>Update key parameters such as title, schedule, location, price, and slot count.</li>
+                    <li>Delete sessions when plans change.</li>
                 </ul>
 
                 <h3>3.3 Booking System</h3>
                 <p><strong>Session Registration:</strong></p>
                 <ul>
-                    <li>Athletes can browse and join available sessions</li>
-                    <li>Real-time slot availability checking</li>
-                    <li>Automatic wallet connection via TON Connect</li>
-                    <li>Blockchain-verified payment processing</li>
+                    <li>Athletes browse and join open sessions.</li>
+                    <li>Slot availability is validated before payment.</li>
+                    <li>Wallet connection is handled through TON Connect.</li>
+                    <li>Payment is executed through TON transaction flow.</li>
                 </ul>
 
                 <p><strong>Participant Verification:</strong></p>
                 <ul>
-                    <li>Unique participant codes generated for each booking</li>
-                    <li>SHA-256 hash-based code generation</li>
-                    <li>Coach-verifiable codes for session attendance</li>
-                    <li>Secure code validation system</li>
+                    <li>Each booking receives a unique participant code.</li>
+                    <li>Code generation uses SHA-256 based derivation.</li>
+                    <li>Trainers validate codes to confirm attendance.</li>
+                    <li>Validation endpoints enforce consistency and integrity checks.</li>
                 </ul>
 
                 <h3>3.4 Payment System</h3>
                 <p><strong>Smart Contract Architecture:</strong></p>
-                <p>The platform uses a TON smart contract (Session Payment Contract) that handles:</p>
+                <p>The Session Payment Contract on TON handles:</p>
                 <ul>
-                    <li><strong>Payment Reception</strong>: Receives payments from participants</li>
-                    <li><strong>Automatic Distribution</strong>: Splits payment between trainer and platform</li>
-                    <li><strong>Commission Management</strong>: Configurable commission rate (default: 2% = 200 basis points)</li>
-                    <li><strong>Transparent Transactions</strong>: All transactions recorded on blockchain</li>
+                    <li><strong>Payment Reception</strong>: Receiving participant payments.</li>
+                    <li><strong>Automatic Distribution</strong>: Splitting settlement between trainer and platform wallets.</li>
+                    <li><strong>Commission Management</strong>: Applying a configurable commission rate (default: 2% = 200 basis points).</li>
+                    <li><strong>On-Chain Traceability</strong>: Recording payment transactions on TON.</li>
                 </ul>
 
                 <p><strong>Payment Flow:</strong></p>
                 <ol>
-                    <li>Participant initiates payment via TON Connect wallet</li>
-                    <li>Payment sent to smart contract with coach wallet address</li>
-                    <li>Smart contract calculates commission (e.g., 2% of payment)</li>
-                    <li>Coach receives payment minus commission</li>
-                    <li>Platform receives commission</li>
-                    <li>Transaction recorded on TON blockchain</li>
+                    <li>Participant signs a payment transaction via TON Connect.</li>
+                    <li>Payment is sent to the smart contract with trainer settlement parameters.</li>
+                    <li>The contract calculates the commission according to configured basis points.</li>
+                    <li>The trainer receives the net amount and the platform receives commission.</li>
+                    <li>The final settlement is recorded on TON.</li>
                 </ol>
 
                 <p><strong>Commission Model:</strong></p>
                 <ul>
-                    <li>Default commission rate: 2% (200 basis points)</li>
-                    <li>Configurable by platform owner</li>
-                    <li>Commission rate range: 0-100% (0-10,000 basis points)</li>
-                    <li>Platform wallet address configurable</li>
+                    <li>Default commission rate: 2% (200 basis points).</li>
+                    <li>Commission and destination wallet are configurable by contract owner permissions.</li>
+                    <li>Rate bounds are enforced through basis-point logic.</li>
                 </ul>
 
                 <h3>3.5 Session History</h3>
                 <p><strong>Past Sessions:</strong></p>
                 <ul>
-                    <li>View all completed sessions</li>
-                    <li>Filter by user participation (as trainer or participant)</li>
-                    <li>Chronological ordering (newest first)</li>
+                    <li>Users can view completed sessions.</li>
+                    <li>Filters support trainer and participant perspectives.</li>
+                    <li>Results are sorted by recency.</li>
                 </ul>
 
                 <p><strong>Upcoming Sessions:</strong></p>
                 <ul>
-                    <li>View all future sessions user is involved in</li>
-                    <li>Filter by user participation (as trainer or participant)</li>
-                    <li>Chronological ordering (soonest first)</li>
+                    <li>Users can view upcoming sessions where they are involved.</li>
+                    <li>Participation filters separate trainer and athlete context.</li>
+                    <li>Results are sorted by nearest date.</li>
                 </ul>
             </div>
 
@@ -253,45 +245,18 @@
                 <h3>4.1 TON Blockchain Benefits</h3>
                 <p><strong>Why TON?</strong></p>
                 <ul>
-                    <li><strong>High Throughput</strong>: Can handle millions of transactions per second</li>
-                    <li><strong>Low Fees</strong>: Minimal transaction costs (fractions of a cent)</li>
-                    <li><strong>Fast Finality</strong>: Near-instant transaction confirmation</li>
-                    <li><strong>Scalability</strong>: Built for mass adoption</li>
-                    <li><strong>Telegram Integration</strong>: Native support for Telegram ecosystem</li>
+                    <li><strong>Low Transaction Costs</strong>: Efficient on-chain settlement for small and medium payments.</li>
+                    <li><strong>Fast Confirmation</strong>: Suitable for booking flows that require predictable UX.</li>
+                    <li><strong>Telegram Ecosystem Fit</strong>: Natural distribution channel through Telegram Mini Apps.</li>
+                    <li><strong>Smart Contract Flexibility</strong>: Payment logic can evolve with product requirements.</li>
                 </ul>
 
-                <h3>4.2 Smart Contract Features</h3>
-                <p><strong>Session Payment Contract:</strong></p>
-                <ul>
-                    <li>Written in Tolk language</li>
-                    <li>Handles payment distribution automatically</li>
-                    <li>Owner-controlled configuration</li>
-                    <li>Transparent and auditable</li>
-                </ul>
-
-                <p><strong>Contract Methods:</strong></p>
-                <ul>
-                    <li><code>getPlatformWallet()</code>: Returns platform wallet address</li>
-                    <li><code>getCommissionRate()</code>: Returns current commission rate</li>
-                    <li><code>getOwner()</code>: Returns contract owner address</li>
-                    <li><code>onInternalMessage()</code>: Handles payment processing</li>
-                </ul>
-
-                <p><strong>Security Features:</strong></p>
-                <ul>
-                    <li>Owner-only settings updates</li>
-                    <li>Input validation for all parameters</li>
-                    <li>Error handling for invalid transactions</li>
-                    <li>Payment requirement validation</li>
-                </ul>
-
-                <h3>4.3 Wallet Integration</h3>
+                <h3>4.2 Wallet Integration</h3>
                 <p><strong>TON Connect:</strong></p>
                 <ul>
-                    <li>Native Telegram wallet support</li>
-                    <li>External wallet compatibility</li>
-                    <li>Secure transaction signing</li>
-                    <li>User-friendly payment flow</li>
+                    <li>Support for wallets compatible with TON Connect.</li>
+                    <li>Secure user-side transaction signing.</li>
+                    <li>A payment flow designed for minimal checkout friction.</li>
                 </ul>
             </div>
 
@@ -301,39 +266,38 @@
                 <h3>5.1 Telegram Mini App</h3>
                 <p><strong>Accessibility:</strong></p>
                 <ul>
-                    <li>Available within Telegram app</li>
-                    <li>No separate app installation required</li>
-                    <li>Cross-platform compatibility (iOS, Android, Web)</li>
-                    <li>Instant access via Telegram bot or link</li>
+                    <li>Available directly inside Telegram.</li>
+                    <li>No separate app installation required.</li>
+                    <li>Cross-platform access (iOS, Android, Web).</li>
+                    <li>Entry through bot links and shared session links.</li>
                 </ul>
 
                 <p><strong>User Interface:</strong></p>
                 <ul>
-                    <li>Modern, clean design</li>
-                    <li>Mobile-optimized layout</li>
-                    <li>Intuitive navigation</li>
-                    <li>Real-time updates</li>
+                    <li>Mobile-first interface design.</li>
+                    <li>Clear navigation for publish, discover, and booking actions.</li>
+                    <li>State updates that reflect booking and availability changes.</li>
                             </ul>
 
                 <h3>5.2 Key User Flows</h3>
                 <p><strong>For Trainers:</strong></p>
                 <ol>
-                    <li>Sign up and create profile</li>
-                    <li>Create sport session with details</li>
-                    <li>Share session or wait for bookings</li>
-                    <li>Receive payments automatically to wallet</li>
-                    <li>Verify participants using codes</li>
-                    <li>View session statistics</li>
+                    <li>Authenticate with Telegram and complete profile.</li>
+                    <li>Publish session details and pricing.</li>
+                    <li>Collect bookings through shareable links and in-app discovery.</li>
+                    <li>Receive settlement to wallet after contract execution.</li>
+                    <li>Verify participants at attendance time.</li>
+                    <li>Review upcoming and completed sessions.</li>
                 </ol>
 
                 <p><strong>For Athletes:</strong></p>
                 <ol>
-                    <li>Browse sessions on map</li>
-                    <li>View session details</li>
-                    <li>Connect wallet and pay</li>
-                    <li>Receive participant verification code</li>
-                    <li>Attend session and provide code</li>
-                    <li>View session history</li>
+                    <li>Browse sessions using map and filters.</li>
+                    <li>Open session details and confirm fit.</li>
+                    <li>Connect wallet and complete payment.</li>
+                    <li>Receive participant verification code.</li>
+                    <li>Provide code when attending the session.</li>
+                    <li>Track upcoming and completed bookings.</li>
                 </ol>
                     </div>
 
@@ -343,32 +307,31 @@
                 <h3>6.1 Commission Structure</h3>
                 <p><strong>Platform Revenue:</strong></p>
                 <ul>
-                    <li>Commission from each session booking</li>
-                    <li>Default rate: 2% of session price</li>
-                    <li>Adjustable by platform governance</li>
-                    <li>Received in TON cryptocurrency</li>
+                    <li>Primary revenue source: commission on each paid booking.</li>
+                    <li>Default commission rate: 2% of session price.</li>
+                    <li>Commission parameters can be updated through governance controls.</li>
+                    <li>Settlement occurs in TON.</li>
                 </ul>
 
                 <p><strong>Revenue Distribution:</strong></p>
                 <ul>
-                    <li>98% to trainer (coach wallet)</li>
-                    <li>2% to platform (platform wallet)</li>
+                    <li>98% to trainer wallet (default configuration).</li>
+                    <li>2% to platform wallet (default configuration).</li>
                 </ul>
 
                 <h3>6.2 Cost Structure</h3>
                 <p><strong>Transaction Costs:</strong></p>
                 <ul>
-                    <li>TON blockchain fees: Minimal (typically &lt;$0.01 per transaction)</li>
-                    <li>No credit card processing fees</li>
-                    <li>No payment gateway fees</li>
-                    <li>No currency conversion fees</li>
+                    <li>TON network fees associated with on-chain settlement.</li>
+                    <li>No card processor dependency in the core payment flow.</li>
+                    <li>No traditional payment gateway markup in contract-based settlement.</li>
                             </ul>
                         </div>
 
             <div class="whitepaper-section">
                 <h2>7. Token Distribution</h2>
                 
-                <p>The KinetraX token distribution is designed to ensure fair allocation, community engagement, and long-term sustainability of the platform. The total token supply is distributed across key stakeholders and purposes as follows:</p>
+                <p>KTX token distribution is structured to balance product development, ecosystem growth, liquidity, and long-term team incentives. The total supply is allocated across the following categories:</p>
                 
                 <div style="overflow-x: auto; margin: 2rem 0;">
                     <table style="width: 100%; border-collapse: collapse; background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); font-size: 0.9rem;">
@@ -400,12 +363,12 @@
                                 <td style="padding: 1rem; color: var(--gray);">Monthly linear vesting</td>
                             </tr>
                             <tr style="border-bottom: 1px solid var(--light-gray);">
-                                <td style="padding: 1rem; font-weight: 500;">Airdrop</td>
+                                <td style="padding: 1rem; font-weight: 500;">Community Growth Campaigns</td>
                                 <td style="padding: 1rem; text-align: center; color: var(--primary-color); font-weight: 600;">5</td>
                                 <td style="padding: 1rem; text-align: center;">100</td>
                                 <td style="padding: 1rem; text-align: center;">0</td>
                                 <td style="padding: 1rem; text-align: center;">0</td>
-                                <td style="padding: 1rem; color: var(--gray);">One time</td>
+                                <td style="padding: 1rem; color: var(--gray);">Milestone-based distribution</td>
                             </tr>
                             <tr style="border-bottom: 1px solid var(--light-gray); background: var(--light-bg);">
                                 <td style="padding: 1rem; font-weight: 500;">Ecosystem Development</td>
@@ -462,53 +425,52 @@
                 </div>
                 
                 <p style="margin-top: 1.5rem; color: var(--gray); font-size: 0.95rem;">
-                    <strong>Note:</strong> Token distribution percentages are subject to vesting schedules and lock-up periods as defined in the tokenomics model above. The Token Generation Event (TGE) percentage indicates the portion of each allocation that will be released at the token launch, with the remaining tokens subject to the vesting schedule specified.
+                    <strong>Note:</strong> Allocation percentages are governed by vesting and lock-up parameters shown above. TGE percentage indicates the share unlocked at launch; the remainder follows the defined vesting schedule.
                 </p>
             </div>
 
             <div class="whitepaper-section">
                 <h2>8. Security & Privacy</h2>
                 
-                <h3>7.1 Security Measures</h3>
+                <h3>8.1 Security Measures</h3>
                 <p><strong>Blockchain Security:</strong></p>
                 <ul>
-                    <li>Immutable transaction records</li>
-                    <li>Smart contract code auditable</li>
-                    <li>No central point of failure</li>
-                    <li>Decentralized payment processing</li>
+                    <li>Immutable transaction records for payment events.</li>
+                    <li>Auditable contract behavior and state transitions.</li>
+                    <li>Reduced reliance on centralized settlement infrastructure.</li>
                 </ul>
 
                 <p><strong>Application Security:</strong></p>
                 <ul>
-                    <li>Type-safe codebase (TypeScript)</li>
-                    <li>Input validation on all endpoints</li>
-                    <li>Secure participant code generation</li>
-                    <li>Protected API endpoints</li>
+                    <li>Type-safe implementation (TypeScript).</li>
+                    <li>Input validation and server-side checks on API endpoints.</li>
+                    <li>Secure participant code generation and verification logic.</li>
+                    <li>Access controls for sensitive operations.</li>
                 </ul>
 
                 <p><strong>Data Privacy:</strong></p>
                 <ul>
-                    <li>User data stored securely</li>
-                    <li>Telegram authentication (no password storage)</li>
-                    <li>Location data only stored for session purposes</li>
-                    <li>GDPR-compliant data handling principles</li>
+                    <li>Minimal data collection for session operations.</li>
+                    <li>Telegram-based authentication without password storage.</li>
+                    <li>Location data used for session logistics and discovery features.</li>
+                    <li>Data handling guided by standard privacy and minimization principles.</li>
                 </ul>
 
-                <h3>7.2 Participant Verification</h3>
+                <h3>8.2 Participant Verification</h3>
                 <p><strong>Code Generation:</strong></p>
                 <ul>
-                    <li>SHA-256 hash-based codes</li>
-                    <li>Deterministic generation (same input = same code)</li>
-                    <li>Unique per user-session combination</li>
-                    <li>8-character uppercase codes</li>
+                    <li>SHA-256 based derivation process.</li>
+                    <li>Deterministic output for identical validated inputs.</li>
+                    <li>Unique code per participant-session pair.</li>
+                    <li>Compact code format designed for manual verification.</li>
                 </ul>
 
                 <p><strong>Verification Process:</strong></p>
                 <ul>
-                    <li>Coaches can validate participant codes</li>
-                    <li>Codes linked to registered participants</li>
-                    <li>Secure validation endpoint</li>
-                    <li>Prevents unauthorized access</li>
+                    <li>Trainers validate submitted participant codes.</li>
+                    <li>Codes are matched to registered booking records.</li>
+                    <li>Validation endpoint applies strict matching rules.</li>
+                    <li>Reduces unauthorized attendance risk.</li>
                             </ul>
                         </div>
 
@@ -517,7 +479,7 @@
 
             <div class="whitepaper-section">
                 <h2>9. Current Status & Development</h2>
-                <p>The platform successfully launched its MVP in Q4 2025 and is currently operational with core features implemented and actively serving users. As of Q1 2026, KinetraX is focused on marketing initiatives and user growth while continuing to enhance the platform based on user feedback.</p>
+                <p>KinetraX launched an MVP in 2026 and is iterating on core workflows: session publishing, booking, payment, and verification. The current development focus is reliability, trainer supply growth, and onboarding quality while preparing the platform for broader distribution.</p>
                     </div>
 
             <div class="whitepaper-section" id="roadmap">
@@ -525,7 +487,7 @@
 
                 <div class="roadmap-timeline">
                     <div class="roadmap-item">
-                        <div class="roadmap-date">Q4 2025</div>
+                        <div class="roadmap-date">Q1 2026</div>
                         <div class="roadmap-content">
                             <h3>PoC Ready ✅</h3>
                             <ul>
@@ -537,12 +499,12 @@
                     </div>
 
                     <div class="roadmap-item">
-                        <div class="roadmap-date">Q1 2026</div>
+                        <div class="roadmap-date">Q2 2026</div>
                         <div class="roadmap-content">
-                            <h3>Social Media Launch & Airdrop 1</h3>
+                            <h3>Social Media Launch & Community Campaigns</h3>
                             <ul>
                                 <li>Starting social media presence and community building</li>
-                                <li>AIRDROP 1 launch</li>
+                                <li>Community campaign launch</li>
                                 <li>Community engagement and growth initiatives</li>
                                 <li>Brand awareness campaigns</li>
                             </ul>
@@ -550,11 +512,10 @@
                     </div>
 
                     <div class="roadmap-item">
-                        <div class="roadmap-date">Q2 2026</div>
+                        <div class="roadmap-date">Q3 2026</div>
                         <div class="roadmap-content">
-                            <h3>Airdrop 2 & Presale</h3>
+                            <h3>Presale & Growth Partnerships</h3>
                             <ul>
-                                <li>Airdrop 2 launch</li>
                                 <li>Token presale launch</li>
                                 <li>Expanded marketing and community growth</li>
                                 <li>Partnership development</li>
@@ -563,7 +524,7 @@
                     </div>
 
                     <div class="roadmap-item">
-                        <div class="roadmap-date">Q3 2026</div>
+                        <div class="roadmap-date">Q4 2026</div>
                         <div class="roadmap-content">
                             <h3>Public Launch & Platform Enhancement</h3>
                             <ul>
@@ -577,7 +538,7 @@
                     </div>
 
                     <div class="roadmap-item">
-                        <div class="roadmap-date">Q4 2026</div>
+                        <div class="roadmap-date">Q1 2027</div>
                         <div class="roadmap-content">
                             <h3>Feature Expansion & Growth</h3>
                             <ul>
@@ -591,7 +552,7 @@
                     </div>
 
                     <div class="roadmap-item">
-                        <div class="roadmap-date">2027</div>
+                        <div class="roadmap-date">2028</div>
                         <div class="roadmap-content">
                             <h3>Advanced Features</h3>
                             <ul>
@@ -606,8 +567,8 @@
 
             <div class="whitepaper-section">
                 <h2>11. Conclusion</h2>
-                <p>KinetraX represents a new paradigm in sport marketplace platforms, leveraging blockchain technology to create a transparent, efficient, and user-friendly experience. By combining Telegram's accessibility with TON blockchain's efficiency, we've built a platform that benefits both trainers and athletes while maintaining minimal operational costs.</p>
-                <p>The platform is currently operational with core features implemented and actively serving users. As we continue to develop and enhance the platform, we remain committed to our core principles: transparency, efficiency, and user empowerment.</p>
+                <p>KinetraX is designed as an operational layer for sport session commerce: discoverable supply, clear booking mechanics, and transparent settlement on TON. By combining Telegram distribution with smart-contract payments, we prioritize practical utility for trainers and athletes rather than speculative complexity.</p>
+                <p>Our roadmap remains focused on product quality, measurable trainer and athlete outcomes, and disciplined ecosystem growth.</p>
             </div>
 
             <div class="whitepaper-section">
@@ -621,7 +582,7 @@
 
             <div class="whitepaper-section" style="margin-top: 4rem; padding-top: 2rem; border-top: 2px solid var(--light-gray);">
                 <p style="color: var(--gray); font-style: italic; text-align: center;">
-                    <em>This whitepaper reflects the current state of the KinetraX platform as of January 2026. Features and specifications are subject to change as the platform evolves.</em>
+                    <em>This whitepaper reflects the current state of the KinetraX platform as of April 2026. Features and specifications may change as the platform evolves.</em>
                 </p>
                 </div>
 
