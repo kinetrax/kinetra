@@ -7,6 +7,12 @@ var path = require('path');
 
 var configPath = path.join(__dirname, 'js', 'config.js');
 var envPath = path.join(__dirname, '.env');
+var htmlFiles = [
+    path.join(__dirname, 'index.html'),
+    path.join(__dirname, 'whitepaper.html'),
+    path.join(__dirname, 'terms-of-use.html'),
+    path.join(__dirname, 'privacy-policy.html')
+];
 
 // Read values from environment variables (Netlify) or .env file (local)
 // Note: telegramBotToken and telegramChatId are no longer exposed to frontend
@@ -100,4 +106,28 @@ try {
     fs.writeFileSync(configPath, configContent, 'utf8');
 } catch (error) {
     process.exit(1);
+}
+
+// Deploy-based cache buster for static assets.
+// This forces browsers/CDN to request fresh CSS/JS after each deployment.
+var cacheVersion = process.env.DEPLOY_ID || process.env.COMMIT_REF || String(Date.now());
+
+function updateAssetVersionInHtml(filePath, version) {
+    if (!fs.existsSync(filePath)) {
+        return;
+    }
+
+    var html = fs.readFileSync(filePath, 'utf8');
+    var updated = html
+        .replace(/href="css\/styles\.css(?:\?v=[^"]*)?"/g, 'href="css/styles.css?v=' + version + '"')
+        .replace(/src="js\/translations\.js(?:\?v=[^"]*)?"/g, 'src="js/translations.js?v=' + version + '"')
+        .replace(/src="js\/script\.js(?:\?v=[^"]*)?"/g, 'src="js/script.js?v=' + version + '"');
+
+    if (updated !== html) {
+        fs.writeFileSync(filePath, updated, 'utf8');
+    }
+}
+
+for (var i = 0; i < htmlFiles.length; i++) {
+    updateAssetVersionInHtml(htmlFiles[i], cacheVersion);
 }
