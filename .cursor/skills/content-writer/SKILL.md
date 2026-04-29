@@ -11,7 +11,7 @@ Professional content writing skill for KinetraX — bilingual (EN/RU), SEO-aware
 
 - **Domain**: Blockchain-powered sport platform on TON connecting trainers and athletes
 - **Brand name**: KinetraX (always capitalize the X)
-- **Token**: KinetraX token (KTX), total supply 21M
+- **Token**: KinetraX token (KNT), total supply 21M
 - **Stack**: Static HTML pages, vanilla JS, single CSS file
 - **Pages**: `index.html`, `whitepaper.html`, `terms-of-use.html`, `privacy-policy.html`
 - **Languages**: English (primary), Russian
@@ -153,7 +153,7 @@ Every page needs these in `<head>`:
 | Smart contract | Смарт-контракт | Hyphenated in Russian |
 | Blockchain | Блокчейн | Loan word |
 | Token | Токен | Loan word |
-| KTX payment discounts | Скидки при оплате KTX | Use this instead of staking references |
+| KNT payment discounts | Скидки при оплате KNT | Use this instead of staking references |
 | Wallet | Кошелёк | |
 | Verification | Верификация | |
 | Platform | Платформа | |

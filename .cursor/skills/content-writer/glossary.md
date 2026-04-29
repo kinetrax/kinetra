@@ -7,7 +7,7 @@ Extended EN/RU term reference for consistent content across the site.
 | English | Russian | Context / Notes |
 |---------|---------|-----------------|
 | KinetraX | KinetraX | Never transliterate to Cyrillic |
-| KTX token | Токен KTX | Token ticker stays Latin |
+| KNT token | Токен KNT | Token ticker stays Latin |
 | Trainer | Тренер | Professional who leads sessions |
 | Athlete | Спортсмен | User who books sessions |
 | Participant | Участник | Generic attendee |
@@ -34,7 +34,7 @@ Extended EN/RU term reference for consistent content across the site.
 | Decentralized | Децентрализованный | |
 | Jetton | Jetton | TON token standard, keep English |
 | DApp | DApp | Keep English |
-| KTX payment discounts | Скидки при оплате KTX | Preferred KTX utility wording |
+| KNT payment discounts | Скидки при оплате KNT | Preferred KNT utility wording |
 | Liquidity | Ликвидность | |
 | Vesting | Вестинг | Loan word |
 
@@ -68,4 +68,4 @@ Extended EN/RU term reference for consistent content across the site.
 | Download | Скачать | |
 | Share | Поделиться | |
 | Claim tokens | Получить токены | Token distribution context |
-| Use KTX for discounts | Использовать KTX для скидок | Preferred over staking phrasing |
+| Use KNT for discounts | Использовать KNT для скидок | Preferred over staking phrasing |

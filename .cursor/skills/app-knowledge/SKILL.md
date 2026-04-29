@@ -63,21 +63,21 @@ Coach creates session → User discovers it → User books & pays → Platform t
 | Payment method | Platform fee | Coach receives |
 |----------------|-------------|----------------|
 | TON (Toncoin)  | 1–3%        | 97–99%         |
-| KTX token      | 0%          | 100%           |
+| KNT token      | 0%          | 100%           |
 
 Default commission: **2%** (200 basis points), configurable by platform owner via smart contract.
 
-This incentivizes KTX token usage — zero fees for coaches who accept KTX payments.
+This incentivizes KNT token usage — zero fees for coaches who accept KNT payments.
 
 ### Revenue sources
 
 - Commission on every session booking paid in TON
 - Future: premium features, promoted listings, verified badge fees
 
-## Token — KTX
+## Token — KNT
 
 - **Name**: KinetraX Token
-- **Ticker**: KTX
+- **Ticker**: KNT
 - **Total supply**: 21,000,000
 - **Blockchain**: TON (Jetton standard)
 
@@ -97,7 +97,7 @@ This incentivizes KTX token usage — zero fees for coaches who accept KTX payme
 ### Token utility
 
 - Pay for sessions with 0% platform fee
-- Payment discounts when using KTX
+- Payment discounts when using KNT
 - Priority access to selected feature rollouts and campaigns
 - Community incentives
 
@@ -149,4 +149,4 @@ Session Payment Contract on TON, written in Tolk:
 | Session | A training event with time, place, price, and slots |
 | Booking | A user reserving and paying for a session slot |
 | Verification code | Unique code proving a user booked a session |
-| KTX | The platform's native token on TON |
+| KNT | The platform's native token on TON |
