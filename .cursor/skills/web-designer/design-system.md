@@ -52,12 +52,20 @@ Hardcoded values also in use (not yet tokenized):
 | Token section | `.token-*` | 1172–1231 |
 | Documentation | `.doc-*` | 1232–1275 |
 | Whitepaper | `.whitepaper-*` | 1276–1359 |
-| Roadmap | `.roadmap-*` | 1360–1459 |
 | Footer | `footer`, `.footer-*` | 1460–1532 |
 | Animations | `@keyframes`, `.animate-*` | 1533–1581 |
 | Modal | `.modal-*` | 1582–1671 |
 | Pricing | `.pricing-*` | 1672–1756 |
 | FAQ | `.faq-*` | 1757–1819 |
+| AI product section | `.ai-product`, `.ai-feature-card`, `.ai-screen-tile`, `.flow-ai-*` | See `css/styles.css` |
+
+### AI / “smart match” UI hints
+
+For marketing mockups and future app-adjacent UI:
+
+- **Recommendation strip**: `.flow-ai-banner` — compact gradient panel with a small uppercase label (`.flow-ai-badge`) and one line of explanation (`.flow-ai-reason`); keep contrast high on dark backgrounds.
+- **Feature cards**: `.ai-feature-card` mirrors `.about-card` (icon, title, body); use **violet + teal** gradient accents sparingly so AI visuals stay distinct from pure brand blocks but still on-palette.
+- **Mini “screens” row**: `.ai-screen-tile` — three tiles labeling product surfaces (e.g. find → book → manage); short headline + muted hint line.
 
 ## Breakpoints (current)
 

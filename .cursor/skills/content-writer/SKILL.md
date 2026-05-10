@@ -30,6 +30,16 @@ Professional content writing skill for KinetraX — bilingual (EN/RU), SEO-aware
 
 **Bad**: "KinetraX is a revolutionary game-changing platform that will disrupt the entire sport industry!!!"
 
+## AI & Intelligent Features
+
+When writing about AI on KinetraX:
+
+- **Be concrete**: Say what the user gets (e.g. ranked sessions, short “why this fits” explanations, less manual filtering) — not abstract “powered by AI” fluff.
+- **Set boundaries**: AI helps with **discovery and clarity**; verification, escrow, and payments remain blockchain- and policy-backed. Never imply medical diagnosis, guaranteed results, or fully automated coaching.
+- **Prefer these patterns**: “AI-assisted matching”, “suggested sessions”, “ranked for your goals and schedule”, “optional drafting help for titles and descriptions” (coach remains in control).
+- **Avoid**: “Our AI knows you better than you do”, unqualified superlatives, or promising features that are not shipped yet (use “rolling out”, “planned”, or describe the marketing site as reflecting the product roadmap only if accurate).
+- **i18n**: On the marketing site, **Russian uses the Latin term `AI`** (not «ИИ») for product-facing matching/discovery copy, e.g. «matching с AI», «ранжирование AI», «модели AI».
+
 ## i18n System
 
 All user-facing text uses a `data-i18n` attribute system with translations stored in `js/translations.js`.

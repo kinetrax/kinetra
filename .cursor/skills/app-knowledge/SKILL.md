@@ -133,12 +133,37 @@ Session Payment Contract on TON, written in Tolk:
 ## Key Platform Features
 
 - **Map-based session discovery** with real-time availability
+- **AI-assisted discovery and matching** — models help athletes find sessions and coaches that fit goals, level, location, schedule, and reviews; coaches reach better-matched demand (see **AI in the product** below)
 - **TON Connect wallet** integration for payments
 - **Participant verification codes** (SHA-256 hash-based)
 - **Session management** (create, update, delete, view participants)
 - **User profiles** linked to Telegram accounts
 - **Session history** (past and upcoming, as trainer or participant)
 - **Bilingual** marketing site (EN/RU)
+
+## AI in the Product
+
+KinetraX treats **AI as product infrastructure**, not a gimmick: it is designed **for both athletes and coaches** — reducing search friction on the demand side and improving listing clarity plus demand fit on the supply side.
+
+### What AI is for
+
+| Area | Role of AI |
+|------|----------------|
+| **Session discovery** | Rank and explain why a session fits (sport, level, distance, time, price band, ratings, stated preferences). |
+| **Athlete experience** | Short prompts or filters translated into structured search; fewer dead ends when the map is crowded. |
+| **Coach experience** | Help surface listings to intent-matched athletes; optional help drafting clear titles/descriptions/tags (always coach-controlled). |
+| **Safety & trust** | AI does **not** replace verification, escrow, or on-chain settlement; it assists discovery and communication clarity. |
+
+### Principles for implementation and messaging
+
+1. **Human choice first** — recommendations are suggestions; **athletes** explicitly book and **coaches** explicitly publish; payments follow wallet and contract actions only.
+2. **Transparency** — users should see *why* something is suggested when practical (e.g. “matches your goal · nearby · fits your schedule”).
+3. **Privacy-conscious** — use the minimum data needed for ranking; no wallet keys; align with the Privacy Policy on personalization and matching.
+4. **Honest capability** — describe what ships or is planned; avoid implying medical diagnosis or guaranteed outcomes.
+
+### Tech stack note (marketing vs app repo)
+
+The **live Mini App** (React/TypeScript backend) is where AI features are implemented (e.g. ranking API, LLM or embedding services). The **marketing site** in this repo communicates those capabilities and must stay aligned with what the app actually offers.
 
 ## Terminology
 
@@ -150,3 +175,4 @@ Session Payment Contract on TON, written in Tolk:
 | Booking | A user reserving and paying for a session slot |
 | Verification code | Unique code proving a user booked a session |
 | KNT | The platform's native token on TON |
+| AI matching / smart picks | Ranked session or coach suggestions with transparent reasons; not a substitute for verification or contracts |

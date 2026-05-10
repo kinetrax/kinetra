@@ -555,7 +555,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Enhanced animation on scroll with Intersection Observer - optimized
-    const animatedElements = document.querySelectorAll('.about-card, .audience-card, .step, .tech-card, .pricing-card, .faq-item, .utility-item, .dist-item, .roadmap-phase, .benefit-card, .event-card, .doc-card');
+    const animatedElements = document.querySelectorAll('.about-card, .audience-card, .step, .tech-card, .pricing-card, .faq-item, .utility-item, .dist-item, .benefit-card, .event-card, .doc-card, .ai-feature-card, .ai-screen-tile');
     
     if (animatedElements.length > 0 && 'IntersectionObserver' in window) {
         const animationObserver = new IntersectionObserver((entries) => {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="KinetraX Whitepaper - Decentralized sport platform connecting trainers and athletes through TON blockchain. Complete technical documentation and platform overview.">
+    <meta name="description" content="KinetraX Whitepaper — TON-based sport marketplace with AI-assisted session discovery, smart-contract payments, and Telegram Mini App delivery.">
     <title>KinetraX - Whitepaper</title>
     
     <!-- Canonical URL -->
@@ -73,7 +73,7 @@
 
             <div class="whitepaper-section">
                 <h2>Executive Summary</h2>
-                <p>KinetraX is a sport marketplace built as a Telegram Mini App and powered by TON. The platform helps trainers publish paid sessions, allows athletes to discover and book those sessions, and processes payments through smart contracts. Our goal is practical: reduce friction in booking and payouts, keep fees transparent, and make participation simple for both sides.</p>
+                <p>KinetraX is a sport marketplace built as a Telegram Mini App and powered by TON. The platform helps trainers publish paid sessions, allows athletes to discover and book those sessions — with AI-assisted matching to improve session–athlete fit — and processes payments through smart contracts. Our goal is practical: reduce friction in booking and payouts, keep fees transparent, and make participation simple for both sides.</p>
             </div>
 
             <div class="whitepaper-section">
@@ -119,6 +119,7 @@
                     <li>TypeORM for database management</li>
                     <li>PostgreSQL for persistent data storage</li>
                     <li>Redis for caching and performance optimization</li>
+                    <li>AI-assisted matching and optional LLM integrations served via the API layer (configuration-dependent; not on-chain)</li>
                 </ul>
 
                 <p><strong>Blockchain:</strong></p>
@@ -171,6 +172,16 @@
                     <li>Interactive map view of published sessions.</li>
                     <li>Location-aware filtering and category filtering.</li>
                     <li>Availability display aligned with current booking state.</li>
+                </ul>
+
+                <p><strong>Intelligent discovery (AI-assisted):</strong></p>
+                <p>KinetraX uses machine-learning and, where appropriate, language models in the application layer to reduce search friction. The intent is not to replace human judgment, but to rank and explain options:</p>
+                <ul>
+                    <li><strong>Ranking</strong>: Sessions and coaches can be scored for fit using signals such as sport category, stated skill level, distance, schedule overlap, price band, ratings, and historical engagement — subject to product configuration and privacy rules.</li>
+                    <li><strong>Transparency</strong>: The product surfaces concise “why this fits” explanations when helpful so athletes remain in control of booking decisions.</li>
+                    <li><strong>Natural-language and prompt-driven search</strong>: User phrasing can be mapped to structured filters and queries over the catalog and map, improving recall as inventory grows.</li>
+                    <li><strong>Coach tooling</strong>: Optional assistance for drafting titles, tags, and descriptions; trainers approve all published content. Verification, reviews, and on-chain settlement remain authoritative for trust.</li>
+                    <li><strong>Boundaries</strong>: AI features assist discovery and communication clarity; they do not constitute medical advice, guaranteed outcomes, or a substitute for trainer verification and smart-contract payment rules.</li>
                 </ul>
 
                 <p><strong>Session Management:</strong></p>
@@ -482,97 +493,13 @@
                 <p>KinetraX launched an MVP in 2026 and is iterating on core workflows: session publishing, booking, payment, and verification. The current development focus is reliability, trainer supply growth, and onboarding quality while preparing the platform for broader distribution.</p>
                     </div>
 
-            <div class="whitepaper-section" id="roadmap">
-                <h2>10. Roadmap</h2>
-
-                <div class="roadmap-timeline">
-                    <div class="roadmap-item">
-                        <div class="roadmap-date">Q1 2026</div>
-                        <div class="roadmap-content">
-                            <h3>PoC Ready ✅</h3>
-                            <ul>
-                                <li>Platform launch and initial user onboarding</li>
-                                <li>Core features: session creation, booking, and payments</li>
-                                <li>Basic user profiles and session management</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="roadmap-item">
-                        <div class="roadmap-date">Q2 2026</div>
-                        <div class="roadmap-content">
-                            <h3>Social Media Launch & Community Campaigns</h3>
-                            <ul>
-                                <li>Starting social media presence and community building</li>
-                                <li>Community campaign launch</li>
-                                <li>Community engagement and growth initiatives</li>
-                                <li>Brand awareness campaigns</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="roadmap-item">
-                        <div class="roadmap-date">Q3 2026</div>
-                        <div class="roadmap-content">
-                            <h3>Presale & Growth Partnerships</h3>
-                            <ul>
-                                <li>Token presale launch</li>
-                                <li>Expanded marketing and community growth</li>
-                                <li>Partnership development</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="roadmap-item">
-                        <div class="roadmap-date">Q4 2026</div>
-                        <div class="roadmap-content">
-                            <h3>Public Launch & Platform Enhancement</h3>
-                            <ul>
-                                <li>Public app release and platform launch</li>
-                                <li>Enhanced user experience and interface improvements</li>
-                                <li>Advanced filtering and search capabilities</li>
-                                <li>Notification system implementation</li>
-                                <li>Initial trainer onboarding</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="roadmap-item">
-                        <div class="roadmap-date">Q1 2027</div>
-                        <div class="roadmap-content">
-                            <h3>Feature Expansion & Growth</h3>
-                            <ul>
-                                <li>Rating and review system</li>
-                                <li>Recurring sessions and advanced booking options</li>
-                                <li>Analytics dashboard for trainers</li>
-                                <li>Multi-language support</li>
-                                <li>Partnership program launch</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="roadmap-item">
-                        <div class="roadmap-date">2028</div>
-                        <div class="roadmap-content">
-                            <h3>Advanced Features</h3>
-                            <ul>
-                                <li>AI-powered recommendations</li>
-                                <li>Gamification and rewards system</li>
-                                <li>Advanced payment options and subscriptions</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="whitepaper-section">
-                <h2>11. Conclusion</h2>
+                <h2>10. Conclusion</h2>
                 <p>KinetraX is designed as an operational layer for sport session commerce: discoverable supply, clear booking mechanics, and transparent settlement on TON. By combining Telegram distribution with smart-contract payments, we prioritize practical utility for trainers and athletes rather than speculative complexity.</p>
-                <p>Our roadmap remains focused on product quality, measurable trainer and athlete outcomes, and disciplined ecosystem growth.</p>
             </div>
 
             <div class="whitepaper-section">
-                <h2>12. Contact & Resources</h2>
+                <h2>11. Contact & Resources</h2>
                 <p><strong>Platform:</strong> <a href="https://kinetra-x.com/" target="_blank">https://kinetra-x.com/</a></p>
                 
 

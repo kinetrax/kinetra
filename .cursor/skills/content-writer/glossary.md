@@ -38,6 +38,20 @@ Extended EN/RU term reference for consistent content across the site.
 | Liquidity | Ликвидность | |
 | Vesting | Вестинг | Loan word |
 
+## AI & Discovery Terms
+
+On the **marketing site**, Russian copy uses the Latin term **AI** (not «ИИ») for product-facing matching/discovery wording, e.g. «matching с AI», «ранжирование AI».
+
+| English | Russian | Context / Notes |
+|---------|---------|-----------------|
+| AI-assisted matching | Matching с AI / подбор с AI | Session and coach recommendations |
+| Suggested sessions | Рекомендованные занятия | Ranked list, user still chooses |
+| Smart discovery | Умный поиск | Discovery UX, not a separate product name |
+| Ranked for your goals | Подобрано под ваши цели | Explain *why* a session fits |
+| Natural language search | Поиск на естественном языке | If/when the app supports it |
+| Session fit | Соответствие занятия | Match quality, schedule, level |
+| Optional drafting help | Помощь в формулировках | Coach copy suggestions, user approves |
+
 ## UI & Navigation Terms
 
 | English | Russian | Context / Notes |
